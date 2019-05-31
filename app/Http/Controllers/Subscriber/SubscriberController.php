@@ -582,6 +582,37 @@ class SubscriberController extends Controller
     }
 
     /**
+     * get signin page
+     */
+    public function phoneSignin(){
+        if (session('subscriber_id')) {
+            return redirect('dashboard');
+        }
+        return view('phone_login');
+       
+    }
+    public function processPhoneSignin(Request $request){
+        // dd(Auth::user());
+         $this->validate($request,[
+            'phone' => 'required',
+        ]);
+        $user = User::where('phone', $request->phone)->first();
+
+        // dd($user);
+        if(Auth::check([
+            'phone' => $request->phone
+        ]))
+        {
+            // $user = User::where('phone', $request->phone)->first();
+            session(['subscriber_id'=>$user->id]);
+            return redirect('dashboard');
+        } else {
+            return redirect()->back()->withErrors('User does not exist')->withInput();
+        }
+        // return redirect()->back()->withErrors('Invalid username or password')->withInput();       
+    }
+
+    /**
      * update a subscriber
      */
     public function UpdateProfile(Request $request){
@@ -719,7 +750,7 @@ class SubscriberController extends Controller
 
         $request->session()->forget(['subscriber_id']);
        
-        return redirect('signin')->with('success', 'You have been log out');
+        return redirect('phonesignin')->with('success', 'You have been log out');
     }
 
     public function uploadAvatar (Request $request) {

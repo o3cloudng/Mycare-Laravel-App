@@ -197,7 +197,7 @@
         $(this).toggleClass("check");
       });
   }
-  setTimeout(subscription, 2000);
+  // setTimeout(subscription, 2000);
 
 
   window.onload = function(e) {

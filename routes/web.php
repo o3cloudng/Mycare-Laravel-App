@@ -13,25 +13,28 @@
 Auth::routes();
 
 //-------------------get signup page------------//
-Route::group( [ 'middleware' => 'web', 'role:subscriber'], function () {
-    Route::get('/', 'Subscriber\SubscriberController@getSignin');
-    
-    Route::get('/signup', 'Subscriber\SubscriberController@getSignup');
+// Route::group( [ 'middleware' => 'web', 'role:subscriber'], function () {
+    // Route::get('/', 'Subscriber\SubscriberController@getSignin');
+    Route::get('/', 'Subscriber\SubscriberController@getDashboard');
+
+    Route::get('/phonesignin', 'Subscriber\SubscriberController@phoneSignin');
+    Route::post('/phonesignin', 'Subscriber\SubscriberController@processPhoneSignin');
+    // Route::get('/signup', 'Subscriber\SubscriberController@getSignup');
     //--------------------------get sign in page---------//
-    Route::get('/signin', 'Subscriber\SubscriberController@getSignin');
+    // Route::get('/signin', 'Subscriber\SubscriberController@getSignin');
     //----------------------process user signup------------------//
-    Route::post('/signup', 'Subscriber\SubscriberController@processSignup');
+    // Route::post('/signup', 'Subscriber\SubscriberController@processSignup');
     //-----------------------------process signin=-------------------//
-    Route::post('/signin', 'Subscriber\SubscriberController@processSignin');
+    // Route::post('/signin', 'Subscriber\SubscriberController@processSignin');
 
     //--------------------forgot subscriber profile---------------------//
-    Route::get('/forgotPassword', 'Subscriber\SubscriberController@processForgotPassword');
+    // Route::get('/forgotPassword', 'Subscriber\SubscriberController@processForgotPassword');
         
-    Route::get('/verifyEmailPage', 'Subscriber\SubscriberController@verifyEmailPage');
+    // Route::get('/verifyEmailPage', 'Subscriber\SubscriberController@verifyEmailPage');
     
-    Route::post('/verifyEmail', 'Subscriber\SubscriberController@verifyEmail');
-    Route::get('/reset_password/{token}', 'Subscriber\SubscriberController@loadResetPassword');
-    Route::post('/reset_password/{token}', 'Subscriber\SubscriberController@resetPassword');
+    // Route::post('/verifyEmail', 'Subscriber\SubscriberController@verifyEmail');
+    // Route::get('/reset_password/{token}', 'Subscriber\SubscriberController@loadResetPassword');
+    // Route::post('/reset_password/{token}', 'Subscriber\SubscriberController@resetPassword');
     
 
     Route::get('/activate/{token}', 'Subscriber\CareTeamController@activateUser')->name('user-activate');
@@ -49,7 +52,7 @@ Route::group( [ 'middleware' => 'web', 'role:subscriber'], function () {
     /* Subscriber Routes */
 
     /* Create a middleware that only gives access to login subscribers */
-    Route::group( [ 'middleware' => ['web'] ], function () {
+    // Route::group( [ 'middleware' => ['web'] ], function () {
 
         Route::resource('/admin/care','Care\CareController');
 
@@ -200,11 +203,11 @@ Route::group( [ 'middleware' => 'web', 'role:subscriber'], function () {
         /***** Goal Tab *****/
         Route::get('/goals', 'Subscriber\GoalController@index');
         
-    });
+    // });
 
 
 
-});
+// });
 
 // Doctor Admin (Healthcare Personel)
 // Route::get('/doctor', 'DoctorController@index');
