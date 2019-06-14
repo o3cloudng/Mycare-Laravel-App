@@ -629,7 +629,7 @@ class SubscriberController extends Controller
         $user = User::where('phone', $request->phone)->first();
 
         // dd($user);
-        if($user->phone)
+        if($user)
         {
             session(['subscriber_id'=>$user->id]);
             return redirect('subscription');
