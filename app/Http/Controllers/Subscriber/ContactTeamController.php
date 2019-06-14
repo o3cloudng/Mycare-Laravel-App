@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers\Subscriber;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\ContactTeam;
+use App\Http\Controllers\Controller;
+use App\User;
+use Illuminate\Http\Request;
 
 
 class ContactTeamController extends Controller
 {
     public function index() {
         $subscriber_id = session('subscriber_id');
+        $subscriber = User::findOrFail($subscriber_id);
         $contactTeams = ContactTeam::where('subscriber_id', $subscriber_id)->get();
         return view('subscriber.contact-team.index', [
-            'contactTeams' => $contactTeams
+            'contactTeams' => $contactTeams,
+            'subscriber' => $subscriber
         ]);
     }
     public function store(Request $request) {

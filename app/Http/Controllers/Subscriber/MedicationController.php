@@ -11,16 +11,21 @@ class MedicationController extends Controller
 {
     public function index() {
         $subscriber_id = session('subscriber_id');
+
+        $subscriber = User::findOrFail($subscriber_id);
         $medications = Medication::where('subscriber_id', $subscriber_id)->get();
 
         return view('subscriber.medication.index', [
-            'medications' => $medications
+            'medications' => $medications,
+            'subscriber' => $subscriber
         ]);
     }
 
     public function addMedication() {
         $subscriber_id = session('subscriber_id');
+        $subscriber  = User::findOrFail($subscriber_id);
         return view('subscriber.medication.new', [
+            'subscriber' => $subscriber
         ]);
 
     }
@@ -29,6 +34,7 @@ class MedicationController extends Controller
         $diagnosis = Diagnosis::findOrFail($id);
         $medications = Medication::where('diagnosis_id', $id)->get();
         $users = User::where('subscriber_id', $subscriber_id)->role('doctor')->get();
+        $subscriber  = User::findOrFail($subscriber_id);
        
         if ($subscriber_id === $diagnosis->subscriber_id ) {
 
@@ -36,7 +42,8 @@ class MedicationController extends Controller
                 'diagnosis_id' => $id,
                 'diagnosis' => $diagnosis,
                 'medications' => $medications,
-                'users' => $users
+                'users' => $users,
+                'subscriber' => $subscriber
             ]);
         } else {
             return redirect('dashboard');

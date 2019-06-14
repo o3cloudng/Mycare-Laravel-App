@@ -66,19 +66,30 @@ class Handler extends ExceptionHandler
         //     return parent::render($request, $exception);
         // }
         if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
-                  return redirect('/errors/noRole');
-            }
+                  return redirect('/phonesignin');
+            } 
+            // elseif ($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException){
 
-        // if ($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException){
-
-        //         // return response(redirect(url('/')), 404);
-        //         return redirect('/errors/404');
-        //     }
+            //     // return response(redirect(url('/')), 404);
+            //     return redirect('/phonesignin');
+            // }
 
             return parent::render($request, $exception);
         }
 
+    protected function prepareException(Exception $e)
+    {
+        if ($e instanceof ModelNotFoundException) {
+            $e = new NotFoundHttpException($e->getMessage(), $e);
+        } elseif ($e instanceof AuthorizationException) {
+            $e = new AccessDeniedHttpException($e->getMessage(), $e);
+        } elseif ($e instanceof TokenMismatchException) {
+              return redirect()->route('phonesignin');
+        }
+        return $e;
     }
+
+}
 
 
 

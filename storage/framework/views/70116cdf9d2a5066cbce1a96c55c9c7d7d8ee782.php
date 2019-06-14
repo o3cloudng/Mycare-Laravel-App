@@ -75,7 +75,10 @@
 
 </div>
 
-
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
+<script>
+  tinymce.init({ selector:'textarea' });
+</script>
 <script type="text/javascript">
       // console.log("Working...");
   // $(document).ready(function() {
@@ -86,10 +89,10 @@
     // });
   // });
 
-  var title = () => {
-    document.getElementById("title").value;
-    console.log("title");
-  }
+  // var title = () => {
+  //   document.getElementById("title").value;
+  //   console.log("title");
+  // }
 
 </script>
 <?php $__env->stopSection(); ?>

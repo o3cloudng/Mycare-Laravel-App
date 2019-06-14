@@ -117,12 +117,22 @@ black
                                     
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <label>Height</label>
-                                            <input class="form-control" value="{{old('height')}}" name="height" type="number" step="any">
+                                                <div id="height">
+                                                    <label>Height</label>
+                                                    <input id="height_val" class="form-control" value="{{old('height')}}" name="height" type="number" onfocusout="heightFeet()">
+                                                </div>
+                                                <div id="feet" class="col-sm-6" style="float: left;">
+                                                    <label>Feet</label>
+                                                    <input id="feet_val" class="form-control" value="{{old('feet')}}" name="feet" type="number">
+                                                </div>
+                                                <div id="inches" class="col-sm-6" style="float: left;"> 
+                                                    <label>Inches</label>                                                   
+                                                    <input id="inches_val" class="form-control" value="{{old('inches')}}" name="inches" type="number" onfocusout="heightCm()">
+                                                </div>
                                         </div>
                                         <div class="col-sm-6">
                                             <label>Measurement Unit (ft/cm)</label>
-                                            <select name="height_unit" class="form-control" required>
+                                            <select name="height_unit" id="height_unit" class="form-control" required>
                                                 <option value="" selected="selected" disabled="disabled">-- Select One --</option>
                                                 <option value="feet">Feet</option>
                                                 <option value="cm">Centimeter</option>
@@ -141,7 +151,7 @@ black
                                         </div>
                                         <div class="col-sm-6">
                                                 <label>Measurement Unit (lbs/kg)</label>
-                                            <select name="weight_unit" class="form-control" required>
+                                            <select name="weight_unit" id="weight_unit" class="form-control" required>
                                                 <option value="" selected="selected" disabled="disabled">-- Select One --</option>
                                                 <option value="lbs">Pounds</option>
                                                 <option value="kg">Kilogram</option>
@@ -204,4 +214,61 @@ black
         </div>
         <!-- /.container-fluid-->
     </div>
+@endsection
+@section('scripts')
+<script>
+    $(document).ready(function() {
+        $('#height').hide();
+        $('#feet').hide();
+        $('#inches').hide();
+
+        $("#height_unit").change(function() {
+          if($(this).val() == "feet") {
+            $('#feet').fadeIn();
+            $('#inches').fadeIn();
+            $('#height').hide();
+            // alert(feet_val+" "+ inches_val);
+            } else {
+                $('#height').show();
+                $('#feet').hide();
+                $('#inches').hide();
+            }
+        });
+        $("#height_unit").trigger("change");
+
+    });
+
+        function heightCm() {
+            var feet_val = $('#feet_val').val();
+            var inches_val = $('#inches_val').val();
+            inches_val = parseInt(inches_val, 10);
+
+            var heightCm = feet_val * 12;
+            // console.log(typeof inches_val);
+            heightCm = heightCm + inches_val;
+            heightCm = heightCm * 2.54;
+            heightCm = Math.floor(heightCm);;
+            // alert(heightCm);
+            // console.log(typeof heightCm);
+
+            // $('#height_val').val() = heightCm;
+            document.getElementById('height_val').value = heightCm;
+        }
+        function heightFeet() {
+            var height_val = $('#height_val').val();
+
+            // Convert from cm to inches
+            var heightInches = height_val / 2.54;
+            // From inches to feet
+            heightFeet = heightInches / 12;
+            // Remainder inches
+            heightInches = heightInches % 12;
+            heightFeet = Math.floor(heightFeet);
+            // console.log("Feet: "+heightFeet);
+            document.getElementById('feet_val').value = heightFeet;
+            heightInches = Math.round(heightInches);
+            document.getElementById('inches_val').value = heightInches;
+            // console.log("Inches: " + heightInches);
+        }
+</script>
 @endsection

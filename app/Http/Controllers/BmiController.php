@@ -113,12 +113,29 @@ class BmiController extends Controller
             }
 
             //TODO: Convert Height From Inches to Centimetre
+            // if ($height_unit == 'feet') {
+            //     $this->validate($request, [
+            //         'height' => 'required|numeric|max:120'
+            //     ]);
+            //     $h = $request->height;
+            //     $height = round($h*30.48, 2);
+            // } else {
+            //     $this->validate($request, [
+            //         'height' => 'required|numeric|max:370'
+            //     ]);
+            //     $height = round($request->height, 2);
+
+            // }
+
+
+            // Calculate Feet, Inches & Centimeter
             if ($height_unit == 'feet') {
                 $this->validate($request, [
-                    'height' => 'required|numeric|max:12'
+                    'height' => 'required|numeric|max:370'
+                    // 'inches_val' => 'required|numeric|max:12'
                 ]);
-                $h = $request->height;
-                $height = round($h*30.48, 2);
+                $height = $request->height;
+                // $height = $h + $request->inches_val;
             } else {
                 $this->validate($request, [
                     'height' => 'required|numeric|max:370'

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+// use Spatie\Permission\Traits\HasRoles;
 
 class LoginController extends Controller
 {
@@ -20,7 +21,7 @@ class LoginController extends Controller
     |
     */
 
-    use HasRole;
+    // use HasRole;
 
     use AuthenticatesUsers {
         logout as performLogout;
@@ -61,20 +62,20 @@ class LoginController extends Controller
             return redirect()->route('user')->with('success', 'Welcome to MyCarePlus '. Auth::user()->name);
         }
 
-
-        if ($user->hasRole('administrator')) {
-            return redirect()->route('admin');
-        } elseif ( $user->hasRole('doctor') ){
-            return redirect()->route('physical-trainer');
-        } elseif ( $user->hasRole('physical_trainer')  ) {
-            return redirect()->route('nutritionist');
-        } elseif ( $user->hasRole('health-coach')  ) {
-            return redirect()->route('health_coach');
-        } elseif ( $user->hasRole('subscriber')  ) {
-            return redirect()->route('subscriber');
-        } else {
-            return redirect()->route('home')->with('error', 'Please reset your password');
-        }
+        // Using Spatie Role based authentication
+        // if ($user->hasRole('administrator')) {
+        //     return redirect()->route('admin');
+        // } elseif ( $user->hasRole('doctor') ){
+        //     return redirect()->route('physical-trainer');
+        // } elseif ( $user->hasRole('physical_trainer')  ) {
+        //     return redirect()->route('nutritionist');
+        // } elseif ( $user->hasRole('health-coach')  ) {
+        //     return redirect()->route('health_coach');
+        // } elseif ( $user->hasRole('subscriber')  ) {
+        //     return redirect()->route('subscriber');
+        // } else {
+        //     return redirect()->route('home')->with('error', 'Please reset your password');
+        // }
     }
 
 

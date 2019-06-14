@@ -35,7 +35,7 @@
                   <div class="card-header">
                     <i class="fa fa-table"></i> <h2>{{ $blog->title }}<small> &nbsp;{{ $blog->slug}} </small></h2></div>
                   <div class="card-body">
-                      <p>{{ $blog->content }}</p>
+                      <p>{!! $blog->content !!}</p>
                   </div>
                   <div class="card-footer small text-muted">Blood Pressure</div>
                 </div>

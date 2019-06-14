@@ -41,10 +41,14 @@ class BloodGlucoseController extends Controller
 
     public function index() {
         $id = session('subscriber_id');
-        $bgs = User::findOrFail($id)->bloodGlucose()->get();
+        $subscriber = User::findOrFail($id);
+        $bgs = User::findOrFail($id)->bloodGlucose()->orderBy('created_at', 'DESC')->get();
+
+        // dd($bgs);
 
         return view('subscriber.records.blood_glucose.index', [
-            'bgs' => $bgs
+            'bgs' => $bgs,
+            'subscriber' => $subscriber
         ]);
     }
 
@@ -75,12 +79,17 @@ class BloodGlucoseController extends Controller
      * get edit page
      */
     public function edit($id){
+        $id = session('subscriber_id');
+        $subscriber = User::findOrFail($id);
      
         $bg = BloodGlucose::find($id);
         if(is_null($bg)){
             return back()->with('error','Blood Glucose record not found');
         }
-        return view('edit_bg',['bg'=>$bg]);
+        return view('edit_bg',[
+            'bg'=>$bg,
+            'subscriber' => $subscriber
+        ]);
        
     }
 

@@ -98,7 +98,7 @@ function addUserToCareTeam(userID) {
                 },
                 error : function(e) {
                     console.log(e)
-                    // toastr.error("There was an error sending your request")
+                    toastr.error("There was an error sending your request")
                 }
               });
     }

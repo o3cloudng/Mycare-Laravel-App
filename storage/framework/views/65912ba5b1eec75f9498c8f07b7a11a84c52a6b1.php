@@ -87,9 +87,9 @@
         </li>
         
         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bookings">
-          <a class="nav-link" href="/medical_personal">
+          <a class="nav-link" href="/medical_personel">
             <i class="fa fa-fw fa-calendar-check-o"></i>
-            <span class="nav-link-text">Medical Personal
+            <span class="nav-link-text">Medical Personnel
             </span>
           </a>
         </li>
@@ -133,7 +133,7 @@
         </li> --> 
         <li class="nav-item" title="My Settings">
             <a class="nav-link ">
-              <span class="nav-link-text">Welcome <?php echo e(Auth::user()->name); ?></span>
+              <span class="nav-link-text">Welcome <?php echo e($subscriber->name); ?> </span>
             </a>
           </li>
           <li class="nav-item" title="My Settings">
@@ -170,14 +170,14 @@
                   <i class="fa fa-fw fa-bell-slash"></i>
                 </span>
                 <!-- <span class="nav-link-text">Notification</span> -->
-                <span class="badge rounded-circle" style="padding: 3px; position: relative;top: -15px; right: 4px;background: red;color: white; border: 1px solid red;">3</span>
+                <!-- <span class="badge rounded-circle" style="padding: 3px; position: relative;top: -15px; right: 4px;background: red;color: white; border: 1px solid red;">3</span> -->
               </a>
         </li>
-        <li class="nav-item">
+       <!--  <li class="nav-item">
               <a class="nav-link" href="/personal_profile">
-                  <span class="nav-link-text"><img class="img-responsive rounded-circle" style="width: 25px;margin-top: 0px;padding-bottom: 0px; background: white;" src="<?php echo e(isset($subscriber->avatar) ? asset('/img/'.$subscriber->avatar): asset('/img/avatar.png')); ?>" /></span>
+                  <span class="nav-link-text"><img class="img-responsive rounded-circle" style="width: 25px;margin-top: 0px;padding-bottom: 0px; background: white;" src="" /></span>
                 </a>
-          </li>
+          </li> -->
         <li class="nav-item">
           <a class="nav-link" href="#"
                 onclick="event.preventDefault();
@@ -234,8 +234,11 @@
   <script src="<?php echo e(asset('admin/vendor/retina-replace.min.js')); ?>"></script>
   <script src="<?php echo e(asset('admin/vendor/jquery.magnific-popup.min.js')); ?>"></script>
   <script src="<?php echo e(asset('admin/js/aos.js')); ?>"></script>
+  <script src="<?php echo e(asset('admin/js/gauge.js')); ?>"></script>
   <!-- Custom scripts for all pages-->
   <script src="<?php echo e(asset('admin/js/admin.js')); ?>"></script>
+  <script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+  <script src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
   <script>
     AOS.init({
       duration: 400

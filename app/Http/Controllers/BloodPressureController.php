@@ -59,11 +59,13 @@ class BloodPressureController extends Controller
 
     public function index() {
         $id = session('subscriber_id');
+        $subscriber = User::findOrfail($id);
         $bps = User::findOrFail($id)->bloodPressure()->get();
         // return $bps;
         
         return view('subscriber.records.blood_pressure.index', [
-            'bps' => $bps
+            'bps' => $bps,
+            'subscriber' => $subscriber
         ]);
     }
 

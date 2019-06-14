@@ -1,4 +1,3 @@
-
 @extends('layouts.dashboard')
 
 @section('title')
@@ -17,31 +16,124 @@
 .hidden {
   visibility: hidden;
 }
+element.style {
+font-size: 0px;
+}
 </style>
     <div class="content-wrapper">
       <div class="container-fluid">
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="#">Dashboard</a>
-          </li>
-          <li class="breadcrumb-item active">My Dashboard</li>
-        </ol>
+        @include('layouts.service_menu')
         <!-- Icon Cards-->
-        <div class="box_general padding_bottom" data-aos="fade-right">
+        <div class="box_general padding_bottom">
           <div class="row">
-            <!-- <div class="col-xl-6 col-sm-6 mb-6">
-              <h6 style="color: #eb6b2c !important;" class="text-center">Current Body Mass Index (BMI)</h6>
-                {{-- <canvas id="bmi_donut" width="300" height="300"></canvas> --}}
-                  <p class="text-center"><a href="{{ url("bmi") }}" class="btn_1 gray approve">View History</a></p>
-            </div> -->
-            <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card dashboard text-white o-hidden h-100">
+
+             <div class="col-xl-3 col-sm-6 mb-3" style="margin: auto -40px 0px 40px;">
+                  <canvas data-type="linear-gauge"
+                    data-width="120"
+                    data-height="300"
+                    data-units="Blood Pressure"
+                    data-min-value="0"
+                    data-start-angle="90"
+                    data-ticks-angle="180"
+                    data-value-box="false"
+                    data-max-value="200"
+                    data-major-ticks="0,20,40,60,80,100,120,140,160,180,200"
+                    data-minor-ticks="2"
+                    data-stroke-ticks="true"
+                    data-highlights='[ {"from": 140, "to": 200, "color": "rgba(200, 50, 50, .75)"}]'
+                    data-color-plate="#fff"
+                    data-border-shadow-width="0"
+                    data-borders="true"
+                    data-needle-type="arrow"
+                    data-needle-width="2"
+                    data-needle-circle-size="7"
+                    data-needle-circle-outer="true"
+                    data-needle-circle-inner="false"
+                    data-animation-duration="1500"
+                    data-animation-rule="linear"
+                    data-bar-width="20"
+                    data-value="@isset( $currentBP ){{ $currentBP->systolic }} @endisset"
+                ></canvas>
+              <h5 style="margin-left: -40px; margin-bottom: -20px; color: #aaa !important;">Current BP: @isset( $currentBP ){{ $currentBP->systolic }}/{{ $currentBP->diastolic }} ({{ $currentBloodPressure }}) @endisset</h5><br>
+              <small class="text-center ml-4">(@isset( $bps ){{ $currentBP->created_at->diffForHumans() }} @endisset)</small>
+              </div>
+               <div class="col-xl-3 col-sm-6 mb-3">
+                  <div class="card dashboard text-white bg-info o-hidden h-100 bg-warning" >
+                    <div class="card-body">
+                      <div class="card-body-icon">
+                          @if( $currentBloodPressure == 'At Risk (Prehypertension)') 
+                            <i class="fa fa-fw fa-caret-up"></i>
+                          @elseif ($currentBloodPressure == 'Normal')
+                            <i class="fa fa-fw fa-caret-down"></i>
+                          @else 
+                            <i class="fa fa-fw fa-caret-up"></i>
+                          @endif
+                      </div>
+                      <div class="mr-5">
+                        <h5>Blood <br/>Glucose </h5>
+                        <p><h1 class="text-center text-white mt-5">{{ isset( $bgs[0]->bg ) ? $bgs[0]->bg : "N/A"}}</h1></p>
+                      </div>
+                        <p>
+                          <h6 class="text-center text-white my-auto">
+                            @if($bgs[0]->bg < 101)
+                              Normal
+                            @elseif(($bgs[0]->bg > 100) && ($bgs[0]->bg < 126))
+                              Pre-Diabetes
+                            @elseif($bgs[0]->bg > 125)
+                              Daibetes
+                            @else
+                              N/A
+                            @endif
+                          </h6>
+                        </p>
+                  <p class="text-center">({{ isset( $bgs_last ) ? $bgs[0]->created_at->diffForHumans() : "N/A" }})</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 mb-3">
+              <div class="card dashboard text-white bg-success o-hidden h-100">
                 <div class="card-body">
                   <div class="card-body-icon">
-                      @if( $currentBloodPressure == 'Normal') 
+                    <i class="fa fa-fw fa-heart"></i>
+                </div>
+                <div class="mr-5">
+                  <h5>Body Mass Index </h5>
+                  <p><h1 class="text-white text-center mt-5">@isset( $bmi->bmi ){{ $bmi->bmi }} @endisset</h1></p>
+                </div>              
+                  <p><h6 class="text-white text-center">@isset( $bmi->bmi ){{ $bmi->status }} @endisset</h6></p>
+              <p class="text-center">( {{ isset( $bmi ) ? $bmi->created_at->diffForHumans() : "N/A"}})</p>
+              </div>
+            </div>
+          </div>
+            <div class="col-xl-3 col-sm-6 mb-3">
+              <div class="card dashboard text-white bg-primary o-hidden h-100">
+                <div class="card-body">
+                  <div class="card-body-icon">
+                    <i class="fa fa-fw fa-heart"></i>
+                  </div>
+                <div class="mr-5" >
+                  <h5 style="color: white !important;">Cholesterol</h5>
+                  <p><h1 class="text-white text-center mt-5">{{ isset( $cholesterol ) ? $cholesterol->total_cholesterol : "N/A" }} /  
+                    {{ isset( $cholesterol ) ? $cholesterol->high_density_lipoprotein : "N/A" }}</h1></p>
+                </div>
+                  <p><h6 class="text-white text-center my-auto">{{ isset( $cholesterol ) ? $cholesterol->total_cholesterol_status : "N/A" }}</h6></p> 
+              <p class="text-center">( {{ isset( $cholesterol ) ? $cholesterol->created_at->diffForHumans() : "N/A"}})</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+       <!--  <div class="box_general padding_bottom" data-aos="fade-right">
+          <div class="row">
+            <div class="col-xl-3 col-sm-6 mb-3">
+              <div class="card dashboard text-white o-hidden h-100 bg-warning" >
+                <div class="card-body">
+                  <div class="card-body-icon">
+                      @if( $currentBloodPressure == 'At Risk (Prehypertension)') 
                         <i class="fa fa-fw fa-caret-up"></i>
-                      @elseif ($currentBloodPressure == 'At Risk (Prehypertension)')
+                      @elseif ($currentBloodPressure == 'Normal')
                         <i class="fa fa-fw fa-caret-down"></i>
                       @else 
                         <i class="fa fa-fw fa-caret-up"></i>
@@ -49,13 +141,13 @@
                   </div>
                   <div class="mr-5">
                     <h5>Blood Pressure </h5>
-                    <p>@isset( $currentBP->systolic ){{ $currentBloodPressure .' - '. $currentBP->systolic.'/'.$currentBP->diastolic }} @endisset</p>
+                    <p>@isset( $bgs[0]->bg ){{ $bgs[0]->bg }} @endisset</p>
                   </div>
                 </div>
               </div>
             </div>
             <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card dashboard text-white o-hidden h-100 bg-warning" >
+              <div class="card dashboard text-white bg-info o-hidden h-100 bg-warning" >
                 <div class="card-body">
                   <div class="card-body-icon">
                       @if( $currentBloodPressure == 'At Risk (Prehypertension)') 
@@ -97,10 +189,18 @@
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
         <!-- /cards -->
+            <!-- <div class="col-xl-3 col-sm-6 mb-3">
+              <div class="card dashboard text-white o-hidden h-100">
+                <div class="card-body" style="height: 300px !important;">
+                    <div id="chart-container">Fusion</div>
+                  </div>
+                </div>
+              </div> -->
+ 
 
-        {{-- Auth::user() --}}
+
 
         <div class="box_general padding_bottom" data-aos="fade-left">
             <div class="header_box version_2">
@@ -191,6 +291,103 @@
 @endsection
 @section('scripts')
 <script>
+
+
+  function gauge() {
+    var gauge = new LinearGauge({
+        renderTo: 'canvas-id',
+        width: 120,
+        height: 400,
+        units: "BP",
+        minValue: 0,
+        startAngle: 90,
+        ticksAngle: 180,
+        valueBox: false,
+        maxValue: 220,
+        majorTicks: [
+            "0",
+            "20",
+            "40",
+            "60",
+            "80",
+            "100",
+            "120",
+            "140",
+            "160",
+            "180",
+            "200"
+        ],
+        minorTicks: 2,
+        strokeTicks: true,
+        highlights: [
+            {
+                "from": 100,
+                "to": 220,
+                "color": "rgba(200, 50, 50, .75)"
+            }
+        ],
+        colorPlate: "#fff",
+        borderShadowWidth: 0,
+        borders: false,
+        needleType: "arrow",
+        needleWidth: 2,
+        needleCircleSize: 7,
+        needleCircleOuter: true,
+        needleCircleInner: false,
+        animationDuration: 1500,
+        animationRule: "linear",
+        barWidth: 10,
+        value: 35
+    }).draw();
+  }
+
+  FusionCharts.ready(function() {
+  var chart = new FusionCharts({
+      type: 'vled',
+      renderAt: 'chart-container',
+      width: '150',
+      height: '250',
+      dataFormat: 'json',
+      dataSource: {
+        "chart": {
+          "theme": "fusion",
+          "caption": "BP",
+          "lowerLimit": "0",
+          "upperLimit": "100",
+          "lowerLimitDisplay": "Too low",
+          "upperLimitDisplay": "Too high",
+          "numberSuffix": "%",
+          "showValue": "1",
+          "valueFontSize": "12",
+          "showhovereffect": "1",
+          "chartBottomMargin": "20",
+          "theme": "fusion"
+        },
+        "colorRange": {
+          "color": [{
+              "minValue": "0",
+              "maxValue": "45",
+              "code": "#e44a00"
+            },
+            {
+              "minValue": "45",
+              "maxValue": "75",
+              "code": "#f8bd19"
+            },
+            {
+              "minValue": "75",
+              "maxValue": "100",
+              "code": "#6baa01"
+            }
+          ]
+        },
+        "value": "52"
+      }
+
+    })
+    .render();
+});
+
 
   function subscription() {
     $("#subscribe").modal('show');
@@ -300,7 +497,7 @@
     // Line Graph for Blood Pressure 
 
     var bps = {!! json_encode($bps) !!}
-    var bps = bps.reverse(bps);
+    // var bps = bps.reverse(bps);
     var systolicData = [];
     var diastolicData = [];
     var date = [];
@@ -322,12 +519,12 @@
             data: systolicData,
             label: "Systolic",
             borderColor: "#3e95cd",
-            fill: false
+            fill: true
           }, { 
             data: diastolicData,
             label: "Diastolic",
             borderColor: "#8e5ea2",
-            fill: false
+            fill: true
           }
         ]
       },
@@ -362,7 +559,7 @@
             data: bloodGlucose,
             label: "Glucose",
             borderColor: "#3e95cd",
-            fill: false
+            fill: true
           }
         ]
       },
@@ -378,7 +575,7 @@
         //   text: 'Blood Glucose'
         // }
       }
-    })
+    });
 
     // Line Graph to show Blood Pressure trend
 

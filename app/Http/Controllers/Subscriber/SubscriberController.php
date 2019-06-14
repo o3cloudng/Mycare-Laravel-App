@@ -88,8 +88,8 @@ class SubscriberController extends Controller
      * get the dashboard
      */
     public function getDashboard(){
-            // $id = session('subscriber_id');
-            $id = Auth::user()->id;
+            $id = session('subscriber_id');
+            // $id = Auth::user()->id;
             $subscriber = User::findOrFail($id);
            $bps = BloodPressure::where('subscriber_id',$id)->orderBy('id', 'desc')->take(7)->get();
             
@@ -99,7 +99,11 @@ class SubscriberController extends Controller
             $bp_diastole_today = BloodPressure::where('subscriber_id',$id)->pluck('diastolic');
             $currentBP = BloodPressure::where('subscriber_id', $id)->latest()->first();
             if (!is_null($currentBP)) {
-                if ($currentBP->systolic < 120 && $currentBP->diastolic < 80) {
+                if ($currentBP->systolic < 90 && $currentBP->diastolic < 60) {
+                    $currentBloodPressure = 'Low';
+                    $bps_color = "bg-success";
+                }
+                elseif (($currentBP->systolic < 120 && $currentBP->diastolic < 80) && ($currentBP->systolic > 90 && $currentBP->diastolic > 60)) {
                     $currentBloodPressure = 'Normal';
                     $bps_color = "bg-success";
                 } elseif(($currentBP->systolic >= 120 && $currentBP->systolic < 139) && ($currentBP->diastolic >= 80 && $currentBP->diastolic < 89)) {
@@ -150,6 +154,11 @@ class SubscriberController extends Controller
 
            
             $bmi = Bmi::where('subscriber_id',$id)->orderBy('created_at', 'desc')->first();
+            $bgs_last = BloodGlucose::where('subscriber_id',$id)->orderBy('created_at', 'desc')->first();
+            $cholesterol = \App\Cholesterol::where('subscriber_id',$id)->orderBy('created_at', 'desc')->first();
+            // $cholesterol = \App\Cholesterol::all();
+
+            // dd($cholesterol);
 
        
             
@@ -179,7 +188,10 @@ class SubscriberController extends Controller
                 'bmi_goal' => $bmi_goal,
                 'currentBloodPressure' => $currentBloodPressure,
                 'currentBP' => $currentBP,
-                'subscriber' => $subscriber
+                'bps_color' => $bps_color,
+                'subscriber' => $subscriber,
+                'cholesterol' => $cholesterol,
+                'bgs_last' => $bgs_last
 
                 ]);
     }
@@ -246,14 +258,24 @@ class SubscriberController extends Controller
      * get subscriptions page
      */
     public function getSubscriptions(){
-        return view('subscriptions');
+        $id = session('subscriber_id');
+
+        $subscriber = User::findOrFail($id);
+
+        return view('subscriptions',[
+            'subscriber' => $subscriber
+        ]);
     }
 
     /**
      * get subscriptions page
      */
     public function getSettings(){
-        return view('settings');
+        $id = session('subscriber_id');
+        $subscriber = User::findOrFail($id);
+        return view('settings',[
+            'subscriber' => $subscriber
+        ]);
     }
 
     /**
@@ -270,10 +292,13 @@ class SubscriberController extends Controller
 
     /** Medical Personals Page */
     public function getMedicalPersonals() {
+        $id = session('subscriber_id');
+        $subscriber = User::findOrfail($id);
         $users = User::all();
 
         return view('subscriber.medical_personal.index', [
-            'users' => $users
+            'users' => $users,
+            'subscriber' => $subscriber
         ]);
 
     }
@@ -299,6 +324,7 @@ class SubscriberController extends Controller
     public function getNotification(){
         
             $id = session('subscriber_id');
+            $subscriber = User::findOrFail($id);
             $notification = Notify::where('subscriber_id',$id);
             if($notification->count()<1){
                 //array of default notifications
@@ -338,7 +364,10 @@ class SubscriberController extends Controller
                    
             }
             $notification = Notify::where('subscriber_id',$id)->paginate(10);
-            return view('notifications',['notifications'=>$notification]);
+            return view('notifications',[
+                'notifications'=>$notification,
+                'subscriber' => $subscriber
+            ]);
      
     }
 
@@ -347,10 +376,12 @@ class SubscriberController extends Controller
      */
     public function getBmi(){
         $id = session('subscriber_id');
+        $subscriber = User::findOrFail($id);
         $body_mass_indexes = Bmi::where('subscriber_id', $id)->get();
         
         return view('subscriber.records.body_mass_index.index', [
-            'body_mass_indexes' => $body_mass_indexes
+            'body_mass_indexes' => $body_mass_indexes,
+            'subscriber' => $subscriber
             ]);
        
     }
@@ -592,20 +623,16 @@ class SubscriberController extends Controller
        
     }
     public function processPhoneSignin(Request $request){
-        // dd(Auth::user());
          $this->validate($request,[
             'phone' => 'required',
         ]);
         $user = User::where('phone', $request->phone)->first();
 
         // dd($user);
-        if(Auth::check([
-            'phone' => $request->phone
-        ]))
+        if($user->phone)
         {
-            // $user = User::where('phone', $request->phone)->first();
             session(['subscriber_id'=>$user->id]);
-            return redirect('dashboard');
+            return redirect('subscription');
         } else {
             return redirect()->back()->withErrors('User does not exist')->withInput();
         }
@@ -775,6 +802,245 @@ class SubscriberController extends Controller
             return redirect('/personal_profile')->with('error', 'No image added');
         endif;
        
+    }
+
+
+    public function subscription()
+    {
+        $subscriber_id = session('subscriber_id');
+        if(!$subscriber_id) {
+            return redirect()->back()->withErrors('You do not have access to this page')->withInput();
+        }
+
+        $subscriber = User::findOrFail($subscriber_id);
+        return view('subscription', [
+            'subscriber' => $subscriber
+        ]);
+    }
+    public function mybp()
+    {
+        $id = session('subscriber_id');
+        if(!$id) {
+            return redirect()->back()->withErrors('You do not have access to this page')->withInput();
+        }
+
+        $subscriber = User::findOrFail($id);
+
+
+        $bps = BloodPressure::where('subscriber_id',$id)->orderBy('id', 'desc')->take(7)->get();
+            
+            $bgs = BloodGlucose::where('subscriber_id',$id)->orderBy('id', 'desc')->take(7)->get();
+            
+            $bp_systole_today = BloodPressure::where('subscriber_id',$id)->pluck('systolic');
+            $bp_diastole_today = BloodPressure::where('subscriber_id',$id)->pluck('diastolic');
+            $currentBP = BloodPressure::where('subscriber_id', $id)->latest()->first();
+            if (!is_null($currentBP)) {
+                if ($currentBP->systolic < 90 && $currentBP->diastolic < 60) {
+                    $currentBloodPressure = 'Low';
+                    $bps_color = "bg-success";
+                }
+                elseif (($currentBP->systolic < 120 && $currentBP->diastolic < 80) && ($currentBP->systolic > 90 && $currentBP->diastolic > 60)) {
+                    $currentBloodPressure = 'Normal';
+                    $bps_color = "bg-success";
+                } elseif(($currentBP->systolic >= 120 && $currentBP->systolic < 139) && ($currentBP->diastolic >= 80 && $currentBP->diastolic < 89)) {
+                    $currentBloodPressure = 'At Risk (Prehypertension)';
+                    $bps_color = "bg-warning";
+                } elseif($currentBP->systolic >= 140 &&  $currentBP->diastolic >= 90) {
+                    $currentBloodPressure = 'High';
+                    $bps_color = "bg-danger";
+                } else {
+                    $currentBloodPressure = 'Unclear';
+                    $bps_color = "bg-default";
+                }
+            } else {
+                $currentBloodPressure = 'Undetermined';
+                $bps_color = "bg-default";
+            }
+          
+
+            $bg_today = BloodGlucose::where('subscriber_id',$id)->pluck('bg')->take(1);
+            $bp_systole_weekly = BloodPressure::where('subscriber_id',$id)->pluck('systolic')->take(7);
+            $bp_diastole_weekly = BloodPressure::where('subscriber_id',$id)->pluck('diastolic')->take(7);
+            $bg_weekly = BloodGlucose::where('subscriber_id',$id)->pluck('bg')->take(7);
+            
+            $bp_systole_monthly = BloodPressure::where('subscriber_id',$id)->pluck('systolic')->take(30);
+            $bp_diastole_monthly = BloodPressure::where('subscriber_id',$id)->pluck('diastolic')->take(30);
+            $bg_monthly = BloodGlucose::where('subscriber_id',$id)->pluck('bg')->take(30);
+
+            $bmi_goal = BmiGoal::where('subscriber_id', $id)->first();
+
+            if (count($bp_systole_today) == 0 ) {
+                $bp_systole_today[0] = 0;
+            }
+            if (count($bp_diastole_today) == 0) {
+                $bp_diastole_today[0] = 0; 
+            }
+
+            if (count($bg_today) == 0) {
+                $bg_today[0] = 0;
+            }
+            
+            $bp_systole_weekly_avg = count($bp_systole_weekly) > 0 ? collect($bp_systole_weekly[0])->sum()/7 : 0;
+            $bp_diastole_weekly_avg = count($bp_diastole_weekly) > 0 ? collect($bp_diastole_weekly[0])->sum()/7 : 0;
+            $bg_weekly_avg = count($bg_weekly) > 0 ? collect($bg_weekly[0])->sum()/7 : 0;
+
+            $bp_systole_monthly_avg = count($bp_systole_monthly) > 0 ? collect($bp_systole_monthly[0])->sum()/30 : 0;
+            $bp_diastole_monthly_avg = count($bp_diastole_monthly) > 0 ? collect($bp_diastole_monthly[0])->sum()/30 : 0;
+            $bg_monthly_avg = count($bg_monthly) > 0 ? collect($bg_monthly[0])->sum()/30 : 0;
+
+           
+            $bmi = Bmi::where('subscriber_id',$id)->orderBy('created_at', 'desc')->first();
+            $bgs_last = BloodGlucose::where('subscriber_id',$id)->orderBy('created_at', 'desc')->first();
+            $cholesterol = \App\Cholesterol::where('subscriber_id',$id)->orderBy('created_at', 'desc')->first();
+
+           
+           
+            return view('mybp',[
+                'bp_systole_today'=> $bp_systole_today[0],
+                'bp_diastole_today'=> $bp_diastole_today[0],
+                'bg_today'=>$bg_today[0],
+
+                'bp_systole_weekly_avg'=>$bp_systole_weekly_avg,
+                'bp_diastole_weekly_avg'=>$bp_diastole_weekly_avg,
+
+                'bg_weekly_avg'=>$bg_weekly_avg,
+
+                'bp_systole_monthly_avg'=>$bp_systole_monthly_avg,
+                'bp_diastole_monthly_avg'=>$bp_diastole_monthly_avg,
+
+                'bg_monthly_avg'=>$bg_monthly_avg,
+                'bmi'=>$bmi,
+                'bps' => $bps,
+                'bgs' => $bgs,
+                'bmi_goal' => $bmi_goal,
+                'currentBloodPressure' => $currentBloodPressure,
+                'currentBP' => $currentBP,
+                'bps_color' => $bps_color,
+                'subscriber' => $subscriber,
+                'cholesterol' => $cholesterol,
+                'bgs_last' => $bgs_last
+
+                ]);
+
+
+
+    }
+    public function mybg()
+    {
+        $id = session('subscriber_id');
+        if(!$id) {
+            return redirect()->back()->withErrors('You do not have access to this page')->withInput();
+        }
+
+        $subscriber = User::findOrFail($id);
+
+
+        $bps = BloodPressure::where('subscriber_id',$id)->orderBy('id', 'desc')->take(7)->get();
+            
+            $bgs = BloodGlucose::where('subscriber_id',$id)->orderBy('id', 'desc')->take(7)->get();
+            
+            $bp_systole_today = BloodPressure::where('subscriber_id',$id)->pluck('systolic');
+            $bp_diastole_today = BloodPressure::where('subscriber_id',$id)->pluck('diastolic');
+            $currentBP = BloodPressure::where('subscriber_id', $id)->latest()->first();
+            if (!is_null($currentBP)) {
+                if ($currentBP->systolic < 90 && $currentBP->diastolic < 60) {
+                    $currentBloodPressure = 'Low';
+                    $bps_color = "bg-success";
+                }
+                elseif (($currentBP->systolic < 120 && $currentBP->diastolic < 80) && ($currentBP->systolic > 90 && $currentBP->diastolic > 60)) {
+                    $currentBloodPressure = 'Normal';
+                    $bps_color = "bg-success";
+                } elseif(($currentBP->systolic >= 120 && $currentBP->systolic < 139) && ($currentBP->diastolic >= 80 && $currentBP->diastolic < 89)) {
+                    $currentBloodPressure = 'At Risk (Prehypertension)';
+                    $bps_color = "bg-warning";
+                } elseif($currentBP->systolic >= 140 &&  $currentBP->diastolic >= 90) {
+                    $currentBloodPressure = 'High';
+                    $bps_color = "bg-danger";
+                } else {
+                    $currentBloodPressure = 'Unclear';
+                    $bps_color = "bg-default";
+                }
+            } else {
+                $currentBloodPressure = 'Undetermined';
+                $bps_color = "bg-default";
+            }
+          
+
+            $bg_today = BloodGlucose::where('subscriber_id',$id)->pluck('bg')->take(1);
+            $bp_systole_weekly = BloodPressure::where('subscriber_id',$id)->pluck('systolic')->take(7);
+            $bp_diastole_weekly = BloodPressure::where('subscriber_id',$id)->pluck('diastolic')->take(7);
+            $bg_weekly = BloodGlucose::where('subscriber_id',$id)->pluck('bg')->take(7);
+            
+            $bp_systole_monthly = BloodPressure::where('subscriber_id',$id)->pluck('systolic')->take(30);
+            $bp_diastole_monthly = BloodPressure::where('subscriber_id',$id)->pluck('diastolic')->take(30);
+            $bg_monthly = BloodGlucose::where('subscriber_id',$id)->pluck('bg')->take(30);
+
+            $bmi_goal = BmiGoal::where('subscriber_id', $id)->first();
+
+            if (count($bp_systole_today) == 0 ) {
+                $bp_systole_today[0] = 0;
+            }
+            if (count($bp_diastole_today) == 0) {
+                $bp_diastole_today[0] = 0; 
+            }
+
+            if (count($bg_today) == 0) {
+                $bg_today[0] = 0;
+            }
+            
+            $bp_systole_weekly_avg = count($bp_systole_weekly) > 0 ? collect($bp_systole_weekly[0])->sum()/7 : 0;
+            $bp_diastole_weekly_avg = count($bp_diastole_weekly) > 0 ? collect($bp_diastole_weekly[0])->sum()/7 : 0;
+            $bg_weekly_avg = count($bg_weekly) > 0 ? collect($bg_weekly[0])->sum()/7 : 0;
+
+            $bp_systole_monthly_avg = count($bp_systole_monthly) > 0 ? collect($bp_systole_monthly[0])->sum()/30 : 0;
+            $bp_diastole_monthly_avg = count($bp_diastole_monthly) > 0 ? collect($bp_diastole_monthly[0])->sum()/30 : 0;
+            $bg_monthly_avg = count($bg_monthly) > 0 ? collect($bg_monthly[0])->sum()/30 : 0;
+
+           
+            $bmi = Bmi::where('subscriber_id',$id)->orderBy('created_at', 'desc')->first();
+            $bgs_last = BloodGlucose::where('subscriber_id',$id)->orderBy('created_at', 'desc')->first();
+            $cholesterol = \App\Cholesterol::where('subscriber_id',$id)->orderBy('created_at', 'desc')->first();
+
+           
+           
+            return view('mybg',[
+                'bp_systole_today'=> $bp_systole_today[0],
+                'bp_diastole_today'=> $bp_diastole_today[0],
+                'bg_today'=>$bg_today[0],
+
+                'bp_systole_weekly_avg'=>$bp_systole_weekly_avg,
+                'bp_diastole_weekly_avg'=>$bp_diastole_weekly_avg,
+
+                'bg_weekly_avg'=>$bg_weekly_avg,
+
+                'bp_systole_monthly_avg'=>$bp_systole_monthly_avg,
+                'bp_diastole_monthly_avg'=>$bp_diastole_monthly_avg,
+
+                'bg_monthly_avg'=>$bg_monthly_avg,
+                'bmi'=>$bmi,
+                'bps' => $bps,
+                'bgs' => $bgs,
+                'bmi_goal' => $bmi_goal,
+                'currentBloodPressure' => $currentBloodPressure,
+                'currentBP' => $currentBP,
+                'bps_color' => $bps_color,
+                'subscriber' => $subscriber,
+                'cholesterol' => $cholesterol,
+                'bgs_last' => $bgs_last
+
+                ]);
+    }
+    public function mybump()
+    {
+        $subscriber_id = session('subscriber_id');
+        if(!$subscriber_id) {
+            return redirect()->back()->withErrors('You do not have access to this page')->withInput();
+        }
+
+        $subscriber = User::findOrFail($subscriber_id);
+        return view('mybump', [
+            'subscriber' => $subscriber
+        ]);
     }
 
  

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Subscriber;
 
-use Illuminate\Http\Request;
+use App\User;
 use App\{Subscriber, Cholesterol, Http\Controllers\Controller, Notifications\CholesterolAlert};
+use Illuminate\Http\Request;
 
 class CholesterolController extends Controller
 {
@@ -46,12 +47,15 @@ class CholesterolController extends Controller
        return $status;
     }
     public function index() {
-        $subscriber_id = session('subscriber_id');
+        $id = session('subscriber_id');
 
-        $cholesterol = Cholesterol::where('subscriber_id', $subscriber_id)->first();
+        $subscriber = User::findOrFail($id);
+
+        $cholesterol = Cholesterol::where('subscriber_id', $id)->first();
 
         return view('subscriber.records.cholesterol.index', [
             'cholesterol' => $cholesterol,
+            'subscriber' => $subscriber
         ]);
     }
 

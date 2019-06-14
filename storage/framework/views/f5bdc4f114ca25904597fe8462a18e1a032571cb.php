@@ -32,7 +32,7 @@
                   <div class="card-header">
                     <i class="fa fa-table"></i> <h2><?php echo e($blog->title); ?><small> &nbsp;<?php echo e($blog->slug); ?> </small></h2></div>
                   <div class="card-body">
-                      <p><?php echo e($blog->content); ?></p>
+                      <p><?php echo $blog->content; ?></p>
                   </div>
                   <div class="card-footer small text-muted">Blood Pressure</div>
                 </div>

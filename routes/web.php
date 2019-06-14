@@ -15,7 +15,7 @@ Auth::routes();
 //-------------------get signup page------------//
 // Route::group( [ 'middleware' => 'web', 'role:subscriber'], function () {
     // Route::get('/', 'Subscriber\SubscriberController@getSignin');
-    Route::get('/', 'Subscriber\SubscriberController@getDashboard');
+    Route::get('/', 'Subscriber\SubscriberController@phoneSignin');
 
     Route::get('/phonesignin', 'Subscriber\SubscriberController@phoneSignin');
     Route::post('/phonesignin', 'Subscriber\SubscriberController@processPhoneSignin');
@@ -80,7 +80,7 @@ Auth::routes();
         Route::get('/diagnosis/{diagnosis}/medication/{id}/delete', 'Subscriber\MedicationController@delete');
         
         /* Users */
-        Route::get('/medical_personal', 'Subscriber\SubscriberController@getMedicalPersonals');
+        Route::get('/medical_personel', 'Subscriber\SubscriberController@getMedicalPersonals');
 
         /* Contact Team: To Replace Care Team Implementation */
         Route::get('/contact-team', 'Subscriber\ContactTeamController@index');
@@ -217,6 +217,13 @@ Route::match(['get', 'post'], 'register', function(){
     return redirect('/login');
 });
 
+Route::get('/subscription', 'Subscriber\SubscriberController@subscription')->name('subscription');
+Route::get('/mybp', 'Subscriber\SubscriberController@mybp')->name('mybp');
+Route::get('/mybg', 'Subscriber\SubscriberController@mybg')->name('mybg');
+Route::get('/mybump', 'Subscriber\SubscriberController@mybump')->name('mybump');
+
+
+
 Route::get('/home', 'UserController@index')->name('home');
 Route::get('/user', 'UserController@index')->name('user');
 
@@ -229,29 +236,29 @@ Route::get('errors/noRole', 'PagesController@noRole');
 
 
 //Admin Routes
-Route::group( [ 'middleware' => ['auth','role:administrator'] ], function () {
-    Route::get('/administrator', 'Admin\AdminController@admin');
-});
+// Route::group( [ 'middleware' => ['auth','role:administrator'] ], function () {
+//     Route::get('/administrator', 'Admin\AdminController@admin');
+// });
 
-Route::group( [ 'middleware' => ['auth','role:administrator|doctor']], function () {
-    Route::get('/doctor', 'Admin\AdminController@doctor');    
-});
+// Route::group( [ 'middleware' => ['auth','role:administrator|doctor']], function () {
+//     Route::get('/doctor', 'Admin\AdminController@doctor');    
+// });
 
-Route::group( [ 'middleware' => ['auth','role:administrator|physical-trainer']], function () {
-    Route::get('/physical-trainer', 'Admin\AdminController@physicalTrainer');    
-});
+// Route::group( [ 'middleware' => ['auth','role:administrator|physical-trainer']], function () {
+//     Route::get('/physical-trainer', 'Admin\AdminController@physicalTrainer');    
+// });
 
-Route::group( [ 'middleware' => ['auth','role:administrator|nutritionist']], function () {
-    Route::get('/nutritionist', 'Admin\AdminController@nutritionist');    
-});
+// Route::group( [ 'middleware' => ['auth','role:administrator|nutritionist']], function () {
+//     Route::get('/nutritionist', 'Admin\AdminController@nutritionist');    
+// });
 
 // Route::group( [ 'middleware' => ['auth','role:administrator|nutritionist']], function () {
 //     Route::get('/medical_personel', 'Admin\AdminController@medicalPersonel');    
 // });
 
-Route::group( [ 'middleware' => ['auth','role:administrator|health-coach']], function () {
-    Route::get('/health-coach', 'Admin\AdminController@healthCoach');    
-});
+// Route::group( [ 'middleware' => ['auth','role:administrator|health-coach']], function () {
+//     Route::get('/health-coach', 'Admin\AdminController@healthCoach');    
+// });
     
 Route::get('/blog', 'Blog\BlogsController@index');    
 Route::get('/blog/create', 'Blog\BlogsController@create');    

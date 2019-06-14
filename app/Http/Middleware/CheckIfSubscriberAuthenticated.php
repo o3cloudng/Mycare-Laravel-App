@@ -17,7 +17,7 @@ class CheckIfSubscriberAuthenticated
     public function handle($request, Closure $next)
     {
         if (!$request->session()->exists('subscriber_id')) {
-            return redirect('/signin');
+            return redirect('/phonesignin');
         } else {
             $id = $request->session()->get('subscriber_id');
             $subscriber = User::findOrFail($id);
