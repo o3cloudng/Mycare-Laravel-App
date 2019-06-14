@@ -19,11 +19,11 @@ Auth::routes();
 
     Route::get('/phonesignin', 'Subscriber\SubscriberController@phoneSignin');
     Route::post('/phonesignin', 'Subscriber\SubscriberController@processPhoneSignin');
-    // Route::get('/signup', 'Subscriber\SubscriberController@getSignup');
+    Route::get('/signup', 'Subscriber\SubscriberController@getSignup');
     //--------------------------get sign in page---------//
     // Route::get('/signin', 'Subscriber\SubscriberController@getSignin');
     //----------------------process user signup------------------//
-    // Route::post('/signup', 'Subscriber\SubscriberController@processSignup');
+    Route::post('/signup', 'Subscriber\SubscriberController@processSignup');
     //-----------------------------process signin=-------------------//
     // Route::post('/signin', 'Subscriber\SubscriberController@processSignin');
 
