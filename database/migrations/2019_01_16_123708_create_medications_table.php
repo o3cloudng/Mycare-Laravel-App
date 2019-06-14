@@ -22,6 +22,10 @@ class CreateMedicationsTable extends Migration
             $table->string('frequency');
             $table->integer('duration')->nullable();
             $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+
+            $table->string('medical_personal')->nullable();
+            $table->string('medical_personal_phone')->nullable();
             $table->softDeletes();
             
             $table->timestamps();
