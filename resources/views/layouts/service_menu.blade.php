@@ -19,6 +19,6 @@
     <a href="/subscription" class="btn btn-secondary">Service:</a>
     <a href="/mybp" class="btn btn-secondary">MYBP</a>
     <a href="/mybg" class="btn btn-secondary">MYBG</a>
-    <a href="/mybump" class="btn btn-secondary">MYBUNMP</a>
+    <a href="/mybump" class="btn btn-secondary">MYBUMP</a>
   </div>
 </div>

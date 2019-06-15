@@ -16,8 +16,14 @@ class CreateBmiGoalsTable extends Migration
         Schema::create('bmi_goals', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('subscriber_id');
-            $table->integer('bmi');
             $table->string('status');
+            $table->string('bmi')->change();
+            $table->integer('weight');
+            $table->integer('height');
+            $table->string('frequency');
+            $table->string('weekDay')->nullable();
+            $table->integer('monthDay')->nullable();
+            $table->integer('hour')->change();
             $table->timestamps();
         });
     }
