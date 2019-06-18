@@ -58,3 +58,23 @@ body{font-family:Lato}h1,h2,h3,h4,h5,h6{font-family:Catamaran;font-weight:800!im
   	background: none;
   }
 }
+
+
+
+
+/* MY CUSTOM CSS*/
+
+.img-rounded {
+  width: 107px; 
+  height: 47px;
+  border-radius: 50px !important;
+  margin-top: -10px;
+}
+
+.bootstrap-select>.dropdown-toggle {
+  width: 90px !important;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px #CCC;
+  font-size: 12px;
+}
