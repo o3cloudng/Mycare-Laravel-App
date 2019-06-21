@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    #wrapper{
+    width: 400px;
+    height: 400px;
+    }
+    
+    #meter{
+    width: 100%;
+    height: 100%;
+    transform: rotateX(180deg);
+    }
+    .circle {
+    fill: none;
+    }
+    .outline, #mask {
+    stroke: #F1F1F1;
+    stroke-width: 65;
+    }
+    #meter_needle {
+        height: 40%;
+        left: 10px;
+        /* margin: auto; */
+        position: absolute;
+        top: 1px;
+        transform-origin: 159px 210px;
+        transform: rotate(180deg) scale(1.2);
+    }
+</style>
+</head>
+<body>
+        <div id="wrapper">
+                <svg id="meter">
+                    <!-- Meter Outline -->
+                    <circle id="outline_curves" r="150" cx="50%" cy="50%" stroke="#f6f6f6" stroke-width="65" stroke-dasharray="471, 943" fill="none"> </circle>
+                    
+                    <!-- Low Range Zone (Yellow) -->
+                    <circle id="low" r="150" cx="50%" cy="50%" stroke="#FDE47F" stroke-width="60" stroke-dasharray="471, 943" fill="none"></circle>
+                    
+                    <!-- Average Range Zone (Blue) -->
+                    <circle id="avg" r="150" cx="50%" cy="50%" stroke="#7CCCE5" stroke-width="60" stroke-dasharray="314, 943" fill="none"></circle>
+                    
+                    <!-- High Range Zone (Red) -->
+                    <circle id="high"  r="150" cx="50%" cy="50%" stroke="#E04644" stroke-width="60" stroke-dasharray="157, 943" fill="none"></circle>
+                    
+                    <!-- Mask -->
+                    <circle id="mask" r="150" cx="50%" cy="50%" stroke="#f6f6f6" stroke-width="65" stroke-dasharray="150, 943" fill="none"></circle>
+                    
+                    <!-- Outline Ends -->
+                    <circle id="outline_ends" r="150" cx="50%" cy="50%" stroke="#f9f9f9" stroke-width="65" stroke-dasharray="2, 469" fill="none">
+                    </circle>
+
+                  <path id="meter_needle" d="M44.775,82.56h0l77.1,138.464a5.9,5.9,0,0,1-2.66,7.977h0a5.871,5.871,0,0,1-7.932-2.658Z" fill="#495265" />
+                </svg>
+              </div>
+
+
+
+<!-- <script>
+/* Set radius for all circles */
+var r = 250;
+var circles = document.querySelectorAll('.circle');
+var total_circles = circles.length;
+for (var i = 0; i < total_circles; i++) {
+    circles[i].setAttribute('r', r);
+}
+ 
+/* Set meter's wrapper dimension */
+var meter_dimension = (r * 2) + 100;
+var wrapper = document.querySelector("#wrapper");
+wrapper.style.width = meter_dimension + "px";
+wrapper.style.height = meter_dimension + "px";
+ 
+/* Add strokes to circles  */
+var cf = 2 * Math.PI * r;
+var semi_cf = cf / 2;
+var semi_cf_1by3 = semi_cf / 3;
+var semi_cf_2by3 = semi_cf_1by3 * 2;
+document.querySelector("#outline_curves")
+    .setAttribute("stroke-dasharray", semi_cf + "," + cf);
+document.querySelector("#low")
+    .setAttribute("stroke-dasharray", semi_cf + "," + cf);
+document.querySelector("#avg")
+    .setAttribute("stroke-dasharray", semi_cf_2by3 + "," + cf);
+document.querySelector("#high")
+    .setAttribute("stroke-dasharray", semi_cf_1by3 + "," + cf);
+document.querySelector("#outline_ends")
+    .setAttribute("stroke-dasharray", 2 + "," + (semi_cf - 2));
+document.querySelector("#mask")
+    .setAttribute("stroke-dasharray", semi_cf + "," + cf);
+ 
+/* Bind range slider event*/
+var slider = document.querySelector("#slider");
+var lbl = document.querySelector("#lbl");
+var mask = document.querySelector("#mask");
+var meter_needle =  document.querySelector("#meter_needle");
+ 
+function range_change_event() {
+    var percent = slider.value;
+    var meter_value = semi_cf - ((percent * semi_cf) / 100);
+    mask.setAttribute("stroke-dasharray", meter_value + "," + cf);
+    meter_needle.style.transform = "rotate(" + 
+        (270 + ((percent * 180) / 100)) + "deg)";
+    lbl.textContent = percent + "%";
+}
+slider.addEventListener("input", range_change_event);
+</script> -->
+</body>
+</html>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26.916" height="26.916" viewBox="0 0 26.916 26.916">
+  <g id="Group_96" data-name="Group 96" transform="translate(-127.5 -127.5)">
+    <g id="Group_92" data-name="Group 92" transform="translate(128 144.197)">
+      <path id="Path_83" data-name="Path 83" d="M136.1,138H129.62a1.62,1.62,0,1,0,0,3.239h4.859V146.1a1.62,1.62,0,0,0,3.239,0V139.62A1.618,1.618,0,0,0,136.1,138Z" transform="translate(-128 -138)" fill="none" stroke="#f17c00" stroke-width="1"/>
+    </g>
+    <g id="Group_93" data-name="Group 93" transform="translate(144.197 144.197)">
+      <path id="Path_84" data-name="Path 84" d="M146.1,138H139.62a1.618,1.618,0,0,0-1.62,1.62V146.1a1.62,1.62,0,0,0,3.239,0v-4.859H146.1a1.62,1.62,0,0,0,0-3.239Z" transform="translate(-138 -138)" fill="none" stroke="#f17c00" stroke-width="1"/>
+    </g>
+    <g id="Group_94" data-name="Group 94" transform="translate(144.197 128)">
+      <path id="Path_85" data-name="Path 85" d="M139.62,137.718H146.1a1.62,1.62,0,0,0,0-3.239h-4.859V129.62a1.62,1.62,0,1,0-3.239,0V136.1A1.618,1.618,0,0,0,139.62,137.718Z" transform="translate(-138 -128)" fill="none" stroke="#f17c00" stroke-width="1"/>
+    </g>
+    <g id="Group_95" data-name="Group 95" transform="translate(128 128)">
+      <path id="Path_86" data-name="Path 86" d="M136.1,128a1.618,1.618,0,0,0-1.62,1.62v4.859H129.62a1.62,1.62,0,1,0,0,3.239H136.1a1.618,1.618,0,0,0,1.62-1.62V129.62A1.618,1.618,0,0,0,136.1,128Z" transform="translate(-128 -128)" fill="none" stroke="#f17c00" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

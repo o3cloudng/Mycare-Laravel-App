@@ -1,588 +1,186 @@
-<?php $__env->startSection('title'); ?>
-    Dashboard
-<?php $__env->stopSection(); ?>
-<?php $__env->startSection('content'); ?>
-<style type="text/css">
-  .check
-{
-  opacity:0.5;
-  color:#996;
-}
-.img-check:hover {
-  cursor: pointer;
-}
-.hidden {
-  visibility: hidden;
-}
-element.style {
-font-size: 0px;
-}
-</style>
-    <div class="content-wrapper">
-      <div class="container-fluid">
-        <?php echo $__env->make('layouts.service_menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-        <!-- Icon Cards-->
-        <div class="box_general padding_bottom">
-          <div class="row">
 
-             <div class="col-xl-3 col-sm-6 mb-3" style="margin: auto -40px 0px 40px;">
-                  <canvas data-type="linear-gauge"
-                    data-width="120"
-                    data-height="300"
-                    data-units="Blood Pressure"
-                    data-min-value="0"
-                    data-start-angle="90"
-                    data-ticks-angle="180"
-                    data-value-box="false"
-                    data-max-value="200"
-                    data-major-ticks="0,20,40,60,80,100,120,140,160,180,200"
-                    data-minor-ticks="2"
-                    data-stroke-ticks="true"
-                    data-highlights='[ {"from": 140, "to": 200, "color": "rgba(200, 50, 50, .75)"}]'
-                    data-color-plate="#fff"
-                    data-border-shadow-width="0"
-                    data-borders="true"
-                    data-needle-type="arrow"
-                    data-needle-width="2"
-                    data-needle-circle-size="7"
-                    data-needle-circle-outer="true"
-                    data-needle-circle-inner="false"
-                    data-animation-duration="1500"
-                    data-animation-rule="linear"
-                    data-bar-width="20"
-                    data-value="<?php if(isset( $currentBP )): ?><?php echo e($currentBP->systolic); ?> <?php endif; ?>"
-                ></canvas>
-              <h5 style="margin-left: -40px; margin-bottom: -20px; color: #aaa !important;">Current BP: <?php if(isset( $currentBP )): ?><?php echo e($currentBP->systolic); ?>/<?php echo e($currentBP->diastolic); ?> (<?php echo e($currentBloodPressure); ?>) <?php endif; ?></h5><br>
-              <small class="text-center ml-4">(<?php if(isset( $bps )): ?><?php echo e($currentBP->created_at->diffForHumans()); ?> <?php endif; ?>)</small>
-              </div>
-               <div class="col-xl-3 col-sm-6 mb-3">
-                  <div class="card dashboard text-white bg-info o-hidden h-100 bg-warning" >
-                    <div class="card-body">
-                      <div class="card-body-icon">
-                          <?php if( $currentBloodPressure == 'At Risk (Prehypertension)'): ?> 
-                            <i class="fa fa-fw fa-caret-up"></i>
-                          <?php elseif($currentBloodPressure == 'Normal'): ?>
-                            <i class="fa fa-fw fa-caret-down"></i>
-                          <?php else: ?> 
-                            <i class="fa fa-fw fa-caret-up"></i>
-                          <?php endif; ?>
-                      </div>
-                      <div class="mr-5">
-                        <h5>Blood <br/>Glucose </h5>
-                        <p><h1 class="text-center text-white mt-5"><?php echo e(isset( $bgs[0]->bg ) ? $bgs[0]->bg : "N/A"); ?></h1></p>
-                      </div>
-                        <p>
-                          <h6 class="text-center text-white my-auto">
-                            <?php if($bgs[0]->bg < 101): ?>
-                              Normal
-                            <?php elseif(($bgs[0]->bg > 100) && ($bgs[0]->bg < 126)): ?>
-                              Pre-Diabetes
-                            <?php elseif($bgs[0]->bg > 125): ?>
-                              Daibetes
-                            <?php else: ?>
-                              N/A
-                            <?php endif; ?>
-                          </h6>
-                        </p>
-                  <p class="text-center">(<?php echo e(isset( $bgs_last ) ? $bgs[0]->created_at->diffForHumans() : "N/A"); ?>)</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card dashboard text-white bg-success o-hidden h-100">
-                <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fa fa-fw fa-heart"></i>
-                </div>
-                <div class="mr-5">
-                  <h5>Body Mass Index </h5>
-                  <p><h1 class="text-white text-center mt-5"><?php if(isset( $bmi->bmi )): ?><?php echo e($bmi->bmi); ?> <?php endif; ?></h1></p>
-                </div>              
-                  <p><h6 class="text-white text-center"><?php if(isset( $bmi->bmi )): ?><?php echo e($bmi->status); ?> <?php endif; ?></h6></p>
-              <p class="text-center">( <?php echo e(isset( $bmi ) ? $bmi->created_at->diffForHumans() : "N/A"); ?>)</p>
-              </div>
-            </div>
-          </div>
-            <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card dashboard text-white bg-primary o-hidden h-100">
-                <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fa fa-fw fa-heart"></i>
-                  </div>
-                <div class="mr-5" >
-                  <h5 style="color: white !important;">Cholesterol</h5>
-                  <p><h1 class="text-white text-center mt-5"><?php echo e(isset( $cholesterol ) ? $cholesterol->total_cholesterol : "N/A"); ?> /  
-                    <?php echo e(isset( $cholesterol ) ? $cholesterol->high_density_lipoprotein : "N/A"); ?></h1></p>
-                </div>
-                  <p><h6 class="text-white text-center my-auto"><?php echo e(isset( $cholesterol ) ? $cholesterol->total_cholesterol_status : "N/A"); ?></h6></p> 
-              <p class="text-center">( <?php echo e(isset( $cholesterol ) ? $cholesterol->created_at->diffForHumans() : "N/A"); ?>)</p>
-                </div>
-              </div>
-            </div>
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MYCARE ADMIN</title>
 
-          </div>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/sticky-footer-navbar/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style/bootstrap-select.min.css">
+   
+    <!-- Custom styles for this template -->
+    <link href="css/style/style.css" rel="stylesheet">
+    <link href="sticky-footer-navbar.css" rel="stylesheet">
+  </head>
+  <body class="d-flex flex-column h-100">
+<div class="container-fliud h-100">
+    <div class="row">
+        <div class="col-md-2 h-100 sticky-top" id="sidebar">
+            <div class="text-center">
+                <a href="/subscription"><img class="img-rounded rounded mt-4" src="img/svg/logo.svg" /></a>
+                <br>
+                <img class="profile mt-3" src="img/profile.png" /><br/><br/>
+                <span>Profile</span>
+                <div class="text-left ml-2">
+                    <a href="#" class="list-group-item"><img src="img/svg/icons/dashboard.svg" class="menu_icon" /> Dashboard</a>
+                    <a href="#" class="list-group-item"><img src="img/svg/icons/medical_records.svg" class="menu_icon" /> Medical Records</a>
+                    <a href="#" class="list-group-item"><img src="img/svg/icons/contact_team.svg" class="menu_icon" /> Care Team</a>
+                    <a href="#" class="list-group-item"><img src="img/svg/icons/medical_personel.svg" class="menu_icon" /> Medical Personal</a>
+                    <a href="#" class="list-group-item"><img src="img/svg/icons/medication.svg" class="menu_icon" /> Medication</a>
+                    <a href="#" class="list-group-item"><img src="img/svg/icons/goals.svg" class="menu_icon" /> Goal</a>
+                    <a href="#" class="list-group-item"><img src="img/svg/icons/subscription.svg" class="menu_icon" /> Subscription</a>
+                </div>
+            </div>
+            <!-- <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> -->
         </div>
-
-       <!--  <div class="box_general padding_bottom" data-aos="fade-right">
-          <div class="row">
-            <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card dashboard text-white o-hidden h-100 bg-warning" >
-                <div class="card-body">
-                  <div class="card-body-icon">
-                      <?php if( $currentBloodPressure == 'At Risk (Prehypertension)'): ?> 
-                        <i class="fa fa-fw fa-caret-up"></i>
-                      <?php elseif($currentBloodPressure == 'Normal'): ?>
-                        <i class="fa fa-fw fa-caret-down"></i>
-                      <?php else: ?> 
-                        <i class="fa fa-fw fa-caret-up"></i>
-                      <?php endif; ?>
-                  </div>
-                  <div class="mr-5">
-                    <h5>Blood Pressure </h5>
-                    <p><?php if(isset( $bgs[0]->bg )): ?><?php echo e($bgs[0]->bg); ?> <?php endif; ?></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card dashboard text-white bg-info o-hidden h-100 bg-warning" >
-                <div class="card-body">
-                  <div class="card-body-icon">
-                      <?php if( $currentBloodPressure == 'At Risk (Prehypertension)'): ?> 
-                        <i class="fa fa-fw fa-caret-up"></i>
-                      <?php elseif($currentBloodPressure == 'Normal'): ?>
-                        <i class="fa fa-fw fa-caret-down"></i>
-                      <?php else: ?> 
-                        <i class="fa fa-fw fa-caret-up"></i>
-                      <?php endif; ?>
-                  </div>
-                  <div class="mr-5">
-                    <h5>Blood Glucose </h5>
-                    <p><?php if(isset( $bgs[0]->bg )): ?><?php echo e($bgs[0]->bg); ?> <?php endif; ?></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card dashboard text-white bg-success o-hidden h-100">
-                <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fa fa-fw fa-heart"></i>
-                </div>
-                <div class="mr-5">
-                  <h5>Body Mass Index </h5>
-                  <p><?php if(isset( $bmi->bmi )): ?><?php echo e($bmi->bmi); ?> <?php endif; ?></p>
-                </div>              
-              </div>
-            </div>
-          </div>
-            <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card dashboard text-white bg-primary o-hidden h-100">
-                <div class="card-body">
-                  <div class="card-body-icon">
-                    <i class="fa fa-fw fa-heart"></i>
-                  </div>
-                <div class="mr-5" ><h5 style="color: white !important;">Cholesterol</h5></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-        <!-- /cards -->
-            <!-- <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card dashboard text-white o-hidden h-100">
-                <div class="card-body" style="height: 300px !important;">
-                    <div id="chart-container">Fusion</div>
-                  </div>
-                </div>
-              </div> -->
- 
-
-
-
-        <div class="box_general padding_bottom" data-aos="fade-left">
-            <div class="header_box version_2">
-              <h2><i class="fa fa-line-chart"></i>Blood Pressure Statistics </h2>
-            </div>
-            <?php if(count($bps) > 0): ?>
-              <canvas id="bloodPressureGraph" width="100%" height="30" style="margin:45px 0 15px 0;"></canvas>
-              <div class="card-footer small text-muted">Last 7 Days</div>
-            <?php else: ?> 
-              <br>
-              <br>
-              <br>
-              <p class="text-center">No Blood Pressure Recorded Yet</p>
-            <?php endif; ?>
-          </div>
-
-          <div class="box_general padding_bottom">
-              <div class="header_box version_2">
-                <h2><i class="fa fa-line-chart"></i>Blood Glucose</h2> 
-              </div>      
-              <?php if(count($bps) > 0): ?>
-                <canvas id="bloodGlucoseGraph" width="100%" height="30"></canvas>
-              <?php else: ?> 
-                <br>
-                <br>
-                <br>
-                <p class="text-center">No Blood Glucose Recorded Yet</p>
-              <?php endif; ?>
-            </div>
-          </div>
-      </div>
+        <div class="col-md-10" style="height:100%;">
+                <div id="mainOne" class="">
+                        <section>
+                            <div class="container mt-4">
+                                <div class="row">
+                                <div class="col-md-3 ml-4 mt-1">  Hi +234 8045654325,</div>
+                                <div class="col-md-4">
+                                    <a href="#" class="btn btn2 button shadow mr-2 activeBPLink">MYBP</a>
+                                    <a href="#" class="btn btn2 button shadow mr-2">MYBG</a>
+                                    <a href="#" class="btn btn2 button shadow mr-2">MYBUMP</a>
+                                </div>
+                                <div class="col-md-3 text-right"><a href="#"></a><img src="img/svg/icons/settings.svg" id="cog" />  <small>Settings</small></</div>
+                                </div>
+                            </div>
+                        </section>
+                        <section>
+                                <div class="container mt-4 mb-2">
+                                    <div class="row">
+                                    <div class="col-md-3 ml-4"> <h3>Blood Pressure</h3></div>
+                                    <div class="col-md-3 mt-1">
+                                        <span class="float-left">
+                                            <select class="selectpicker bg-light list-inline">
+                                                <option value="/mybp">Weekly</option>
+                                                <!-- <option value="/mybg">MYBG</option>
+                                                <option value="/mybump">MYBUMP</option> -->
+                                            </select>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-2 mt-1">
+                                            <span class="float-right">
+                                                <select class="selectpicker bg-light list-inline">
+                                                    <option value="/mybp">1 Week Ago</option>
+                                                    <!-- <option value="/mybg">MYBG</option>
+                                                    <option value="/mybump">MYBUMP</option> -->
+                                                </select>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                          <section>
+                            <div class="container">
+                                <div class="row">
+                                  <div class="col-md-5 text-center my-3 ml-4 mybox shadow" id="mybox_gauge">
+                                      <div class="container">
+                                          <div class="row">
+                                                <div class="col-md-4 my-auto align-middle">
+                                                    <h5>Systolic</h5>
+                                                </div>
+                                                <div class="col-md-8">
+                                                        <div id="wrapper" class="mr-5">
+                                                                <svg id="meter">
+                                                                        <defs>
+                                                                            <filter id="meter_needle" x="0" y="0" width="300" height="250" filterUnits="userSpaceOnUse">
+                                                                                <feOffset dy="3" input="SourceAlpha"/>
+                                                                                <feGaussianBlur stdDeviation="5" result="blur"/>
+                                                                                <feFlood flood-opacity="0.2"/>
+                                                                                <feComposite operator="in" in2="blur"/>
+                                                                                <feComposite in="SourceGraphic"/>
+                                                                            </filter>
+                                                                        </defs>
+                                                                    <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#meter_needle)">
+                                                                    <!-- Meter Outline -->
+                                                                    <circle id="outline_curves" r="75" cx="50%" cy="50%" stroke="#f6f6f6" stroke-width="50" stroke-dasharray="235, 471" fill="none"> </circle>
+                                                                    
+                                                                    <!-- Low Range Zone (Yellow) -->
+                                                                    <circle id="low" r="75" cx="50%" cy="50%" stroke="#FDE47F" stroke-width="45" stroke-dasharray="235, 471" fill="none"></circle>
+                                                                    
+                                                                    <!-- Average Range Zone (Blue) -->
+                                                                    <circle id="avg" r="75" cx="50%" cy="50%" stroke="#7CCCE5" stroke-width="45" stroke-dasharray="157, 471" fill="none"></circle>
+                                                                    
+                                                                    <!-- High Range Zone (Red) -->
+                                                                    <circle id="high"  r="75" cx="50%" cy="50%" stroke="#E04644" stroke-width="45" stroke-dasharray="117, 471" fill="none"></circle>
+                                                                    
+                                                                    <!-- Mask -->
+                                                                    <circle id="mask" r="75" cx="50%" cy="50%" stroke="#f6f6f6" stroke-width="50" stroke-dasharray="50, 471" fill="none"></circle>
+                                                                    
+                                                                    <!-- Outline Ends -->
+                                                                    <circle id="outline_ends" r="75" cx="50%" cy="50%" stroke="#f9f9f9" stroke-width="50" stroke-dasharray="2, 250" fill="none">
+                                                                    </circle>
+                                                
+                                                                  <!-- <path id="meter_needle" d="M44.775,82.56h0l77.1,138.464a5.9,5.9,0,0,1-2.66,7.977h0a5.871,5.871,0,0,1-7.932-2.658Z" fill="#495265" />  -->
+                                                                  </g>
+                                                                </svg>
+                                                              </div>
+                                                    <p class="mtop"><span class="float-left align-top"><small>0</small></span>
+                                                        <span class="float-right align-text-top"><small>200</small></span></p>
+                                                </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-5 ml-3 text-center my-3 mybox shadow" id="mybox_gauge">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-4 my-auto">
+                                               <h5>Diastolic</h5>
+                                            </div>
+                                            <div class="col-md-8">
+                                              <img src="img/diastolic.png" style="width: 100%; margin-bottom: -60px;" />
+                                              <span class="float-left"><small>0</small></span><span class="float-right"><small>200</small></span>
+                                              <p>&nbsp;</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                            
+                          </section>
+                          <section>
+                              <div class="container">
+                                  <div class="row">
+                                      <div class="col-md-11">
+                                        <div class="card shadow mt-4">
+                                            <div class="card-header"><h2><i class="fa fa-line-chart"></i> Blood Pressure Statistics </h2></div>
+                                            <div class="card-body">
+                                                <img src="img/bloodPressure_Graph.png" alt="Blood Pressure Graph" class="w-100">
+                                            </div>
+                                            <div class="card-footer">&nbsp;</div>
+                                        </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </section>
+                    </div>
+        </div>
     </div>
-        <!-- /.container-fluid-->
-  </div>
-
-  <!-- Select services modal on page ready -->
-<div class="modal fade" id="subscribe" tabindex="-1" role="dialog" aria-labelledby="addUserLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-      <div class="modal-content">
-          <div class="modal-header">
-          <h5 class="modal-title" id="addEmergencyLabel">Service subscription</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-          </button>
-          </div>
-          <form action="<?php echo e(url('')); ?>" method="POST">  
-                  <?php echo e(csrf_field()); ?>
-
-              <div class="modal-body">
-                <p class="text-center">Kindly subscribe to your prefered service</p>
-                <div class="row">
-                  <form method="get">
-                  <div class="form-group d-flex">  
-                  <div class="col-md-4">
-                    <label class="btn btn-info">
-                      <img class="img-thumbnail img-check rounded-circle" src="<?php echo e(asset('img/myBloodPressure.png')); ?>" />
-                    </label>
-                  </div>
-                  <div class="col-md-4">
-                    <label class="btn btn-info">
-                      <img class="img-thumbnail img-check rounded-circle" src="<?php echo e(asset('img/myBloodGlucose.png')); ?>" />
-                      <input type="checkbox" name="chk2" id="item4" value="val2" class="hidden" autocomplete="off">
-                    </label>
-                  </div>
-                  <div class="col-md-4">
-                    <label class="btn btn-info">
-                    <img class="img-thumbnail img-check rounded-circle" src="<?php echo e(asset('img/myBUMP.png')); ?>" />
-                    <input type="checkbox" name="chk3" id="item4" value="val3" class="hidden" autocomplete="off">
-                  </label>
-                  </div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-              <div class="modal-footer">
-                  <button type="button" class="btn_1 gray delete" data-dismiss="modal">Close</button>
-
-                  <input type="submit" value="Submit" class="btn_1 blue">
-                  
-                  </form>
-              </div>
-            </div>
-          </form> 
-      </div>
-  </div>
 </div>
 
+<!-- Begin page content -->
+<!-- <main role="main" class="flex-shrink-0">
+  <div class="container">
+      
+  </div>
+</main> -->
 
-<?php $__env->stopSection(); ?>
-<?php $__env->startSection('scripts'); ?>
-<script>
-
-
-  function gauge() {
-    var gauge = new LinearGauge({
-        renderTo: 'canvas-id',
-        width: 120,
-        height: 400,
-        units: "BP",
-        minValue: 0,
-        startAngle: 90,
-        ticksAngle: 180,
-        valueBox: false,
-        maxValue: 220,
-        majorTicks: [
-            "0",
-            "20",
-            "40",
-            "60",
-            "80",
-            "100",
-            "120",
-            "140",
-            "160",
-            "180",
-            "200"
-        ],
-        minorTicks: 2,
-        strokeTicks: true,
-        highlights: [
-            {
-                "from": 100,
-                "to": 220,
-                "color": "rgba(200, 50, 50, .75)"
-            }
-        ],
-        colorPlate: "#fff",
-        borderShadowWidth: 0,
-        borders: false,
-        needleType: "arrow",
-        needleWidth: 2,
-        needleCircleSize: 7,
-        needleCircleOuter: true,
-        needleCircleInner: false,
-        animationDuration: 1500,
-        animationRule: "linear",
-        barWidth: 10,
-        value: 35
-    }).draw();
-  }
-
-  FusionCharts.ready(function() {
-  var chart = new FusionCharts({
-      type: 'vled',
-      renderAt: 'chart-container',
-      width: '150',
-      height: '250',
-      dataFormat: 'json',
-      dataSource: {
-        "chart": {
-          "theme": "fusion",
-          "caption": "BP",
-          "lowerLimit": "0",
-          "upperLimit": "100",
-          "lowerLimitDisplay": "Too low",
-          "upperLimitDisplay": "Too high",
-          "numberSuffix": "%",
-          "showValue": "1",
-          "valueFontSize": "12",
-          "showhovereffect": "1",
-          "chartBottomMargin": "20",
-          "theme": "fusion"
-        },
-        "colorRange": {
-          "color": [{
-              "minValue": "0",
-              "maxValue": "45",
-              "code": "#e44a00"
-            },
-            {
-              "minValue": "45",
-              "maxValue": "75",
-              "code": "#f8bd19"
-            },
-            {
-              "minValue": "75",
-              "maxValue": "100",
-              "code": "#6baa01"
-            }
-          ]
-        },
-        "value": "52"
-      }
-
-    })
-    .render();
-});
-
-
-  function subscription() {
-    $("#subscribe").modal('show');
-
-    $(".img-check").click(function(){
-        $(this).toggleClass("check");
-      });
-  }
-  // setTimeout(subscription, 2000);
-
-
-  window.onload = function(e) {
-
-    var bmi = <?php echo json_encode($bmi); ?>
-
-
-    var bloodMassIndexValue = bmi.bmi;
-    if (bloodMassIndexValue < 18.5) {
-      var bloodMassIndexStatus = 'Underweight';
-      var donutColor = 'yellow';
-    } 
-    if ( (18.5 <= bloodMassIndexValue) && (bloodMassIndexValue <= 24.9) ) {
-      var bloodMassIndexStatus = 'Healthy';
-      var donutColor = 'green';
-    } 
-    if (bloodMassIndexValue >= 25) {
-      var bloodMassIndexStatus = 'Overweight';
-      var donutColor = 'red';
-    } 
-    
-    //Plugin for center text
-    Chart.pluginService.register({
-      beforeDraw: function (chart) {
-        if (chart.config.options.elements.center) {
-          //Get ctx from string
-          var ctx = chart.chart.ctx;
-
-          //Get options from the center object in options
-          var centerConfig = chart.config.options.elements.center;
-          var fontStyle = centerConfig.fontStyle || 'Arial';
-          var txt = centerConfig.text;
-          var color = centerConfig.color || '#000';
-          var sidePadding = centerConfig.sidePadding || 20;
-          var sidePaddingCalculated = (sidePadding/100) * (chart.innerRadius * 2)
-          //Start with a base font of 30px
-          ctx.font = "30px " + fontStyle;
-
-          //Get the width of the string and also the width of the element minus 10 to give it 5px side padding
-          var stringWidth = ctx.measureText(txt).width;
-          var elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
-
-          // Find out how much the font can grow in width.
-          var widthRatio = elementWidth / stringWidth;
-          var newFontSize = Math.floor(30 * widthRatio);
-          var elementHeight = (chart.innerRadius * 2);
-
-          // Pick a new font size so it will not be larger than the height of label.
-          var fontSizeToUse = Math.min(newFontSize, elementHeight);
-
-          //Set font settings to draw it correctly.
-          ctx.textAlign = 'center';
-          ctx.textBaseline = 'middle';
-          var centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
-          var centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
-          ctx.font = 20+"px " + fontStyle;
-          ctx.fillStyle = color;
-
-          //Draw text in center
-          ctx.fillText(txt, centerX, centerY);
-        }
-      }
-    });
-
-    //TODO: Use chartjs-plugin-datalabels
-    // var bmiDonut = document.getElementById('bmi_donut');
-    //     bmiDonut.getContext("2d");
-    // var bmiDonutChart = new Chart(bmiDonut, {
-    //   type: 'doughnut',
-    //   data: {
-    //     labels: [bloodMassIndexStatus, ''],
-    //     datasets: [{
-    //         label: bloodMassIndexStatus,
-    //         data: [bloodMassIndexValue, 100-bloodMassIndexValue],
-    //         backgroundColor: [
-    //           donutColor
-    //         ],
-    //         borderWidth: 1
-    //     }]
-    //   },
-    //   options: {
-    //     rotation:  -Math.PI,
-    //     circumference: Math.PI,
-    //     elements: {
-    //       center: {
-    //         text:  bloodMassIndexStatus + ' | ' + bloodMassIndexValue +'%',
-    //         color: '#36A2EB', //Default black
-    //         fontStyle: 'Arial', //Default Arial
-    //       }
-    //     },
-    //     cutoutPercentage: 80, //Here for innerRadius. It's already exists
-    //     // outerRadius: 30,//Here for outerRadius
-    //   }
-    // });
-
-
-
-
-    // Line Graph for Blood Pressure 
-
-    var bps = <?php echo json_encode($bps); ?>
-
-    // var bps = bps.reverse(bps);
-    var systolicData = [];
-    var diastolicData = [];
-    var date = [];
-
-    for (var x = 0; x < bps.length; x++) {
-      systolicData.push(bps[x]['systolic']);
-      diastolicData.push(bps[x]['diastolic']);
-      var day = new Date(bps[x]['created_at']);
-      var days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
-
-      date.push(days[day.getDay()]);
-    }
-    let bpLine = document.getElementById('bloodPressureGraph');
-    let bpLineGraph = new Chart(bpLine, {
-      type: 'line',
-      data: {
-        labels: date,
-        datasets: [{ 
-            data: systolicData,
-            label: "Systolic",
-            borderColor: "#3e95cd",
-            fill: true
-          }, { 
-            data: diastolicData,
-            label: "Diastolic",
-            borderColor: "#8e5ea2",
-            fill: true
-          }
-        ]
-      },
-      options: {
-        title: {
-          display: true,
-          text: 'Systolic and Diabolistic'
-        }
-      }
-    })
-
-    // Line Graph for Blood Glucose
-    var bgs = <?php echo json_encode($bgs); ?>
-
-    var bgs = bgs.reverse(bgs);
-    var date = [];
-    var bloodGlucose = [];
-
-    for (var x = 0; x < bgs.length; x++) {
-      bloodGlucose.push(bgs[x]['bg']);
-      var day = new Date(bgs[x]['created_at']);
-      var days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
-
-      date.push(days[day.getDay()]);
-    }
-
-    let bgLine = document.getElementById('bloodGlucoseGraph');
-    let bgLineGraph = new Chart(bgLine, {
-      type: 'line',
-      data: {
-        labels: date,
-        datasets: [{ 
-            data: bloodGlucose,
-            label: "Glucose",
-            borderColor: "#3e95cd",
-            fill: true
-          }
-        ]
-      },
-      options: {
-        scales: {
-          xAxes: [{
-            reverse: false
-            }]
-        }
-        // title: {
-        //   display: true,
-        //   reverse: true,
-        //   text: 'Blood Glucose'
-        // }
-      }
-    });
-
-    // Line Graph to show Blood Pressure trend
-
-  }
-  
-</script>
-<?php $__env->stopSection(); ?>
-<?php echo $__env->make('layouts.dashboard', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+<!-- <footer class="footer mt-auto py-3">
+  <div class="container">
+    <span class="text-muted">Place sticky footer content here.</span>
+  </div>
+</footer> -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="js/bootstrap-select.min.js"></script>
+    </body>
+</html>

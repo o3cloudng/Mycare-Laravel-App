@@ -1,143 +1,94 @@
-@extends('layouts.dashboard')
 
-@section('title')
-    Welcome
-@endsection
-@section('content')
-    <div class="content-wrapper">
-      <div class="container-fluid">
-        <!-- Breadcrumbs-->
-        @include('layouts.service_menu')
-        <!-- Icon Cards-->
-        <div class="box_general padding_bottom">
-          <div class="row my-auto">
-               <div class="col-xl-3 col-sm-6 mb-3 offset-sm-1">
-                  <div class="card dashboard text-white bg-default o-hidden h-100" >
-                    <div class="card-body">
-                      <div class="card-body-icon">
-                        <i class="fa fa-heartbeat"></i>
-                      </div>
-                      <div class="mr-5" style="padding-bottom: -50px !important;">
-                        <h5>MY BLOOD PRESSURE </h5>
-                      </div>
-                    </div>
-                    <div class="card-footer">
-                      <p class="text-white text-center">
-                        My Blood Pressure (MYBP) <br/>
-                        Monitor your blood pressure and avoid the risk of Hypertension
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>MYCARE ADMIN</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/sticky-footer-navbar/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style/bootstrap-select.min.css">
+   
+    <!-- Custom styles for this template -->
+    <link href="css/style/style.css" rel="stylesheet">
+    <link href="sticky-footer-navbar.css" rel="stylesheet">
+  </head>
+  <body class="d-flex flex-column h-100">
+<div id="main" class="mt-5">
+    <section>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 ml-5"><a href="/subscription"><img class="rounded mr-5" src="img/svg/logo.svg" /></a>  Hi +234 8045654325,</div>
+            <div class="col-md-2 mt-2"></div>
+            <div class="col-md-1 mt-2 pull-right"><small>3 Services </small></div>
+            <div class="col-md-1 mt-1">
+                <span class="pull-right">
+                    <select class="selectpicker bg-light list-inline" style="width: 60px !important;">
+                      <option value="/mybp">MYBP</option>
+                      <option value="/mybg">MYBG</option>
+                      <option value="/mybump">MYBUMP</option>
+                    </select>
+                </span>
+            </div>
+            <div class="col-md-3 text-right mt-2"><img src="img/svg/icons/settings.svg" id="cog" />  <small>Settings</small></div>
+          </div>
+        </div>
+      </section>
+      <section>
+        <div class="container">
+            <div class="row">
+              <div class="col-md-3 shadow text-center my-3 ml-5 mybox">
+                <img src="img/svg/mybp.svg" class="my-4" />
+                <h3>My Blood Pressure</h3>
+                <p class="p-2">My Blood Pressure (MYBP) 
+                    Monitor your blood pressure and avoid the risk of Hypertension</p>
+                    <p>
+                        <a href="dashboard" class="btn btn1 btn-warning">Continue</a>
                       </p>
-                    </div>
-                    <div class="card-footer text-center">
-                      <a href="mybp" class="btn btn-secondary"> Continue</a>
-                    </div>
-                  </div>
-                </div>
-               <div class="col-xl-3 col-sm-6 mb-3">
-                  <div class="card dashboard text-white bg-default o-hidden h-100" >
-                    <div class="card-body">
-                      <div class="card-body-icon">
-                        <i class="fa fa-stethoscope"></i>
-                      </div>
-                      <div class="mr-5" style="padding-bottom: -50px !important;">
-                        <h5>MY BLOOD GLUCOSE </h5>
-                      </div>
-                  <p class="text-center"></p>
-                    </div>
-                    <div class="card-footer">
-                      <p class="text-white text-center">
-                        My Blood Glucose (MYBG) <br/>
-                        Monitor your blood glucose level and avoid the risk of Diabetes
-                      </p>
-                    </div>
-                    <div class="card-footer text-center">
-                      <a href="mybg" class="btn btn-secondary"> Continue</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 mb-3">
-              <div class="card dashboard text-white bg-default o-hidden h-100">
-                <div class="card-body">
-                  <div class="card-body-icon">
-                    <!-- <i class="fa fa-fw fa-heart"></i> -->
-                    <i class="fa fa-heart"></i>
-                </div>
-                <div class="mr-5" style="padding-bottom: -50px !important;">
-                  <h5>MYBUMP </h5>
-                </div>              
               </div>
-                <div class="card-footer">
-                  <p class="text-white text-center">
-                    My BUMP <br/>
-                    Monitor your blood glucose level and avoid the risk of Diabetes
-                  </p>
-                </div>
-                <div class="card-footer text-center">
-                  <a href="mybump" class="btn btn-secondary align-center"> Continue</a>
+              <div class="col-md-3 shadow offset-md-1 text-center my-3 mybox">
+                <img src="img/svg/mybg.svg" class="my-4" />
+                <h3>My Blood Glucose</h3>
+                <p class="p-2">My Blood Glucose (MYBG) 
+                    Monitor your blood glucose level and avoid the risk of Diabetes</p>
+                    <p>
+                        <a href="dashboard" class="btn btn1 btn-info">Continue</a>
+                      </p>
+              </div>
+              <div class="col-md-3 shadow offset-md-1 text-center my-3 mybox">
+                <img src="img/svg/mybump.svg" class="my-4" />
+                  <h3>MYBUMP</h3>
+                  <p class="p-2">My BUMP 
+                      Important and regular updates for you during pregnancy.
+                    </p>
+                    <p>
+                      <a href="dashboard" class="btn btn1 btn-success mt-2">Continue</a>
+                    </p>
                 </div>
             </div>
-          </div>
-
-          </div>
- 
-          </div>
-      </div>
-    </div>
-        <!-- /.container-fluid-->
-  </div>
-
-  <!-- Select services modal on page ready -->
-<div class="modal fade" id="subscribe" tabindex="-1" role="dialog" aria-labelledby="addUserLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-      <div class="modal-content">
-          <div class="modal-header">
-          <h5 class="modal-title" id="addEmergencyLabel">Service subscription</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-          </button>
-          </div>
-          <form action="{{ url('') }}" method="POST">  
-                  {{ csrf_field() }}
-              <div class="modal-body">
-                <p class="text-center">Kindly subscribe to your prefered service</p>
-                <div class="row">
-                  <form method="get">
-                  <div class="form-group d-flex">  
-                  <div class="col-md-4">
-                    <label class="btn btn-info">
-                      <img class="img-thumbnail img-check rounded-circle" src="{{ asset('img/myBloodPressure.png') }}" />
-                    </label>
-                  </div>
-                  <div class="col-md-4">
-                    <label class="btn btn-info">
-                      <img class="img-thumbnail img-check rounded-circle" src="{{ asset('img/myBloodGlucose.png') }}" />
-                      <input type="checkbox" name="chk2" id="item4" value="val2" class="hidden" autocomplete="off">
-                    </label>
-                  </div>
-                  <div class="col-md-4">
-                    <label class="btn btn-info">
-                    <img class="img-thumbnail img-check rounded-circle" src="{{ asset('img/myBUMP.png') }}" />
-                    <input type="checkbox" name="chk3" id="item4" value="val3" class="hidden" autocomplete="off">
-                  </label>
-                  </div>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-              <div class="modal-footer">
-                  <button type="button" class="btn_1 gray delete" data-dismiss="modal">Close</button>
-
-                  <input type="submit" value="Submit" class="btn_1 blue">
-                  
-                  </form>
-              </div>
-            </div>
-          </form> 
-      </div>
-  </div>
+        </div>
+        
+      </section>
 </div>
 
+<!-- Begin page content -->
+<!-- <main role="main" class="flex-shrink-0">
+  <div class="container">
+      
+  </div>
+</main> -->
 
-@endsection
-@section('scripts')
-
-@endsection
+<!-- <footer class="footer mt-auto py-3">
+  <div class="container">
+    <span class="text-muted">Place sticky footer content here.</span>
+  </div>
+</footer> -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="js/bootstrap-select.min.js"></script>
+    </body>
+</html>
