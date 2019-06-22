@@ -112,7 +112,7 @@
                                                                     <circle id="high"  r="75" cx="50%" cy="50%" stroke="#E04644" stroke-width="45" stroke-dasharray="117, 471" fill="none"></circle>
                                                                     
                                                                     <!-- Mask -->
-                                                                    <circle id="mask" r="75" cx="50%" cy="50%" stroke="#f6f6f6" stroke-width="50" stroke-dasharray="50, 471" fill="none"></circle>
+                                                                    <circle id="mask" r="75" cx="50%" cy="50%" stroke="#f6f6f6" stroke-width="50" stroke-dasharray="150, 471" fill="none"></circle>
                                                                     
                                                                     <!-- Outline Ends -->
                                                                     <circle id="outline_ends" r="75" cx="50%" cy="50%" stroke="#f9f9f9" stroke-width="50" stroke-dasharray="2, 250" fill="none">
