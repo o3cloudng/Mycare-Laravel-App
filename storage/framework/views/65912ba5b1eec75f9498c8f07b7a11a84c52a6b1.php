@@ -28,7 +28,6 @@
   <link href="<?php echo e(asset('admin/vendor/datatables/dataTables.bootstrap4.css')); ?>" rel="stylesheet">
 
   <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
   <!-- Your custom styles -->
   <link href="<?php echo e(asset('admin/css/admin.css')); ?>" rel="stylesheet">
   <link href="<?php echo e(asset('admin/css/custom.css')); ?>" rel="stylesheet">
@@ -43,8 +42,160 @@
 
 </head>
 
-<body>
+<body class="fixed-nav sticky-footer" id="page-top">
+  <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-default fixed-top" id="mainNav">
+    <a class="navbar-brand" href="index.html">
+      <img src="<?php echo e(asset('img/logo.jpeg')); ?>" data-retina="true" alt="" width="163" height="36">
+    </a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+          <a class="nav-link" href="/subscription">
+            <i class="fa fa-fw fa-dashboard"></i>
+            <span class="nav-link-text">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Messages">
+          <a class="nav-link" href="/personal_profile">
+            <i class="fa fa-fw fa-user"></i>
+            <span class="nav-link-text">Personal Profile</span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Medical Records">
+            <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMedicalRecords" data-parent="#exampleAccordion">
+                <i class="fa fa-fw fa-user-md"></i>
+                <span class="nav-link-text">Medical Records</span>
+            </a>
+            <ul class="sidenav-second-level collapse" id="collapseMedicalRecords">
+                <li><a href=" <?php echo e(url('blood_pressures')); ?> ">Blood Pressure</a></li>
+                <li><a href=" <?php echo e(url('blood_glucoses')); ?> ">Blood Glucose</a></li>
+                <li><a href=" <?php echo e(url('bmi')); ?> ">Body Mass Index</a></li>
+                <li><a href=" <?php echo e(url('cholesterol')); ?> ">Cholesterol</a></li>
+            </ul>
+        </li>
+         <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bookings">
+          <a class="nav-link" href="/contact-team">
+            <i class="fa fa-fw fa-calendar-check-o"></i>
+            <span class="nav-link-text">Contact Team
+            </span>
+          </a>
+        </li>
+        
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bookings">
+          <a class="nav-link" href="/medical_personel">
+            <i class="fa fa-fw fa-calendar-check-o"></i>
+            <span class="nav-link-text">Medical Personnel
+            </span>
+          </a>
+        </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bookings">
+            <a class="nav-link" href="/medications">
+              <i class="fa fa-fw fa-calendar-check-o"></i>
+              <span class="nav-link-text">Medication
+              </span>
+            </a>
+          </li>
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Bookings">
+          <a class="nav-link" href="/goals">
+            <i class="fa fa-fw fa-calendar-check-o"></i>
+            <span class="nav-link-text">Goals
+            </span>
+          </a>
+        </li>
 
+        
+        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Add listing">
+          <a class="nav-link" href="/subscriptions">
+            <i class="fa fa-fw fa-plus-circle"></i>
+            <span class="nav-link-text">Subscription</span>
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav sidenav-toggler">
+        <li class="nav-item">
+          <a class="nav-link text-center" id="sidenavToggler">
+            <i class="fa fa-fw fa-angle-left"></i>
+          </a>
+        </li>
+      </ul>
+<!-- TOP NAV MENU -->
+      <ul class="navbar-nav ml-auto">
+        <!-- <li class="nav-item">
+            <a class="nav-link" href="#">
+                <i class="fa fa-fw fa-bell-slash"></i>
+                <span class="nav-link-text">Age: <?php echo e(!empty($subscriber->age) ? $subscriber->age : 'N/A'); ?></span>
+              </a>
+        </li> --> 
+        <li class="nav-item" title="My Settings">
+            <a class="nav-link ">
+              <span class="nav-link-text">Welcome <?php echo e($subscriber->name); ?> </span>
+            </a>
+          </li>
+          <li class="nav-item" title="My Settings">
+            <a class="nav-link "  href="/settings">
+              <i class="fa fa-fw fa-cogs"></i>
+              <span class="nav-link-text">Settings</span>
+            </a>
+          </li> 
+          <style>
+            .notification {
+              /*background-color: #555;
+              color: white;
+              text-decoration: none;
+              padding: 15px 26px;
+              position: relative;
+              display: inline-block;
+              border-radius: 2px;*/
+            }
+
+            .notification .badge {
+              position: absolute;
+              top: -10px;
+              right: -10px;
+              padding: 5px 10px;
+              border-radius: 50%;
+              background-color: red;
+              color: white;
+            }
+          </style>      
+       
+        <li class="nav-item" >
+            <a class="nav-link" href="/notifications" class="notification">
+                <span class="rounded-circle" style="border: 1px solid #ccc; padding:3px 3px;">
+                  <i class="fa fa-fw fa-bell-slash"></i>
+                </span>
+                <!-- <span class="nav-link-text">Notification</span> -->
+                <!-- <span class="badge rounded-circle" style="padding: 3px; position: relative;top: -15px; right: 4px;background: red;color: white; border: 1px solid red;">3</span> -->
+              </a>
+        </li>
+       <!--  <li class="nav-item">
+              <a class="nav-link" href="/personal_profile">
+                  <span class="nav-link-text"><img class="img-responsive rounded-circle" style="width: 25px;margin-top: 0px;padding-bottom: 0px; background: white;" src="" /></span>
+                </a>
+          </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="#"
+                onclick="event.preventDefault();
+                              document.getElementById('signout-form').submit();" class="nav-link logout"> 
+              <span class="d-none d-sm-inline-block"></span>
+              <i class="fa fa-fw fa-sign-out"></i><?php echo e(__('')); ?>
+
+          </a>
+        </li>
+        <form id="signout-form" action="<?php echo e(route('subscriberLogout')); ?>" method="POST" style="display: none;">
+            
+            <?php echo e(csrf_field()); ?>
+
+        </form>
+      </ul>
+    </div>
+  </nav>
+  <!-- /Navigation-->
   <?php if(session('success')): ?>
   <script type="text/javascript">
       toastr.success("<?php echo e(session('success')); ?>");
@@ -82,7 +233,6 @@
   <script src="<?php echo e(asset('admin/vendor/jquery.selectbox-0.2.js')); ?>"></script>
   <script src="<?php echo e(asset('admin/vendor/retina-replace.min.js')); ?>"></script>
   <script src="<?php echo e(asset('admin/vendor/jquery.magnific-popup.min.js')); ?>"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
   <script src="<?php echo e(asset('admin/js/aos.js')); ?>"></script>
   <script src="<?php echo e(asset('admin/js/gauge.js')); ?>"></script>
   <!-- Custom scripts for all pages-->

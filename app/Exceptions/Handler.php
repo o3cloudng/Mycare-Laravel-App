@@ -65,6 +65,11 @@ class Handler extends ExceptionHandler
         // } else {
         //     return parent::render($request, $exception);
         // }
+        if ($exception instanceof \Illuminate\Session\TokenMismatchException) {
+
+            return redirect('/');
+
+        }
         if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
                   return redirect('/phonesignin');
             } 

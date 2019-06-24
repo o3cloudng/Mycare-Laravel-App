@@ -44,7 +44,6 @@
 </head>
 
 <body>
-
   @if(session('success'))
   <script type="text/javascript">
       toastr.success("{{ session('success') }}");
@@ -55,6 +54,7 @@
       toastr.error("{{ session('error') }}");
       </script>
   @endif
+  
   @yield('content')
 
   <!-- /.container-wrapper-->

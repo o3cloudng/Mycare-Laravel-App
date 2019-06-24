@@ -45,7 +45,7 @@ body{
     margin-right: 10px;
   }
   #mainOne {
-    width: 90%;
+    width: 100%;
     /* border: 1px solid #ccc; */
   }
   .mybox {
@@ -60,6 +60,9 @@ body{
     border-radius: 40px !important;
     height: 50px;
     width: 120px;
+  }
+  #mlogo {
+    display: none;
   }
   .img-rounded {
     height: 30px !important;
@@ -79,10 +82,11 @@ body{
     font-family: 'Dosis', sans-serif;
     font-size: 30px !important;
   }
-  p {
-    font-size: 14px !important;
+  p, button, a {
+    font-size: 13px !important;
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
+    text-decoration: none !important;
   }
 
   .button {
@@ -91,6 +95,7 @@ body{
   .activeBPLink {
     background: #FCB858 !important;
     color: white !important;
+    background-image: linear-gradient(#F7A501, #EF6800) !important;
     /* box-shadow: 2px 2px 2px 1px #FCB858 !important; */
   }
 
@@ -175,3 +180,47 @@ body{
       font-size: 3.5rem;
     }
   }
+
+
+/* Mobile Device */
+  @media only screen and (max-width: 600px) {
+  body {
+    background-color: lightblue;
+  }
+
+  #sidebar {
+    display: none !important;
+    /* width: 0px !important; */
+  }
+  #mlogo {
+    display: inline-block !important;
+    text-align: center !important;
+    margin-bottom: 40px !important;
+  }
+  #img-logo {
+    width: 250px !important;
+  }
+  #settings {
+    margin-top: -200px !important;
+  }
+  .nav-item, a.nav-link {
+    color: #707070 !important;
+    text-decoration: none !important;
+    padding-left: 10px;
+    transition: all .2s;
+    cursor: pointer;
+  }
+  .nav-item:hover, a.nav-link:hover {
+    color: #fcfcfc !important;
+    padding-left: 4px;
+    background-color: #222 !important;
+    transform: scale(1.01);
+  }
+  .navbar-toggler-icon {
+    cursor: pointer !important;
+  }
+  #systolic {
+    margin-left: -100px !important;
+    width: 80%;
+  }
+}
