@@ -12,13 +12,6 @@ black
 @section('content')
     <div class="content-wrapper">
         <div class="container-fluid">
-          <!-- Breadcrumbs-->
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="#">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item active">Medical Personals</li>
-          </ol>
           <div class="box_general">
                 <div class="header_box">
                     <h2 class="d-inline-block">Medical Personals</h2>
@@ -34,14 +27,14 @@ black
                     <ul>
                         @if (count($users) > 0)
                             @foreach ($users as $user)
-                            <li>
-                                {{-- <figure><img src="img/avatar1.jpg" alt=""></figure> --}}
+                            <li class="box">
+                                <center><img class="rounded" style="width: 50px; height: 50px; margin: auto;" src="img/avatar.png" alt=""></center>
                                 <small>{{-- ucfirst($user->roles()->first()->name) --}}</small>
-                                <h4>{{ $user->name }}</h4>
-                                <p>{{ $user->email }}</p>
-                                <p>{{ $user->phone }}</p>
-                                <ul class="buttons">
-                                    <li><a href="javascript:void(0);" onclick="addUserToCareTeam({{ $user->id }})" class="btn_1 gray approve wishlist_close"><i class="fa fa-fw fa-times-circle-o"></i> Add to Care Team</a></li>
+                                <h4 class="text-center">{{ $user->name }}</h4>
+                                <p class="text-center">{{ $user->email }}</p>
+                                <p class="text-center">{{ $user->phone }}</p>
+                                <ul class="buttons text-center">
+                                    <li class="text-center"> <a href="javascript:void(0);" onclick="addUserToCareTeam({{ $user->id }} )" class="btn_1 gray approve wishlist_close btn2 activeLink shadow text-center"><i class="fa fa-fw fa-times-circle-o"></i> Add to Care Team </a></li>
                                 </ul>
                             </li>
                             @endforeach

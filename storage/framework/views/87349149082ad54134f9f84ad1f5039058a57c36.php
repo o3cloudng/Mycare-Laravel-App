@@ -1,12 +1,12 @@
 <?php $__env->startSection('title'); ?>
-    Welcome
+    MYBUMP
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('header'); ?>
+    MYBUMP
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
     <div class="content-wrapper">
       <div class="container-fluid">
-        <!-- Breadcrumbs-->
-        <?php echo $__env->make('layouts.service_menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-        <!-- Icon Cards-->
         <div class="box_general padding_bottom">
           <div class="row my-auto">
                <div class="col-xl-3 col-sm-6 mb-3 offset-sm-1">
@@ -130,10 +130,7 @@
                   </form>
               </div>
             </div>
-          </form> 
-      </div>
-  </div>
-</div>
+          </form>
 
 
 <?php $__env->stopSection(); ?>

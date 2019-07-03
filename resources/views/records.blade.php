@@ -10,23 +10,12 @@ black
 @endsection
 
 @section('content')
-    <div class="content-wrapper">
         <div class="container-fluid">
-          <!-- Breadcrumbs-->
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="dashboard">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item active">Records 
-                
-            </li>
-          </ol>
           <div class="box_general padding_bottom">
             <div class="header_box version_2">
-              <h2>
-                <i class="fa fa-user"></i>Medical Data</h2>
+              <h2><i class="fa fa-user"></i> Medical Data</h2>
                 <div class="text-right">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addBloodPressure">
+                    <button type="button" class="btn btn2 button shadow mx-auto activeBPLink" data-toggle="modal" data-target="#addBloodPressure">
                         Add New Blood Pressure
                     </button>
                 </div>
@@ -44,32 +33,36 @@ black
             <div class="row">
                 <div class="col-md-12">
                     <h5 class="text-center">Blood Pressure Records</h5>
-                    <table class="table table-striped">
-                        <tr>
-                            <th>Systolic</th>
-                            <th>Diastolic</th>
-                            <th>Pulse</th>
-                            <th>IMEI</th>
-                            <th>IMSI</th>
-                            <th>Tel</th>
-                            <th>ICCID</th>
-                            <th>Created at</th>
-                            <th>Action</th>
-                        </tr>
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th>Systolic</th>
+                                <th>Diastolic</th>
+                                <th>Pulse</th>
+                                <th>IMEI</th>
+                                <th>IMSI</th>
+                                <th>Tel</th>
+                                <th>ICCID</th>
+                                <th>Created at</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
                         @if($bps->count()>0)
                             @foreach($bps as $bp)
-                            <tr>
-                                <td>{{ $bp->systolic }}</td>
-                                <td>{{ $bp->diastolic }}</td>
-                                <td>{{ $bp->pulse }}</td>
-                                <td>{{ $bp->imei }}</td>
-                                <td>{{ $bp->imsi }}</td>
-                                <td>{{ $bp->tel }}</td>
-                                <td>{{ $bp->iccid }}</td>
-                                <td>{{\App\Http\Utility::dateToWords($bp->created_at)}}</td>
-                                <td><button data-id="{{$bp->id}}" class="btn btn-sm btn-primary fa fa-pencil edit-bp" onclick=""></button>
-                                    <button data-id="{{$bp->id}}" class="btn btn-sm btn-danger fa fa-trash del-bp"></button></td>
-                            </tr>
+                            <tbody>
+                                <tr>
+                                    <td>{{ $bp->systolic }}</td>
+                                    <td>{{ $bp->diastolic }}</td>
+                                    <td>{{ $bp->pulse }}</td>
+                                    <td>{{ $bp->imei }}</td>
+                                    <td>{{ $bp->imsi }}</td>
+                                    <td>{{ $bp->tel }}</td>
+                                    <td>{{ $bp->iccid }}</td>
+                                    <td>{{\App\Http\Utility::dateToWords($bp->created_at)}}</td>
+                                    <td><button data-id="{{$bp->id}}" class="btn btn-sm btn-primary fa fa-pencil edit-bp" onclick=""></button>
+                                        <button data-id="{{$bp->id}}" class="btn btn-sm btn-danger fa fa-trash del-bp"></button></td>
+                                </tr>
+                            </tbody>
                             @endforeach
                         @else
                             <tr>
@@ -101,43 +94,43 @@ black
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <label>Systolic</label>
-                                    <input class="form-control" value="{{old('systolic')}}" name="systolic" type="text">
+                                    <input class="form-control shadow" value="{{old('systolic')}}" name="systolic" type="text">
                                 </div>
                                 <div class="col-md-6 form-group ">
                                     <label>Diastolic</label>
-                                    <input class="form-control"  value="{{old('diastolic')}}" name="diastolic" type="text">
+                                    <input class="form-control shadow"  value="{{old('diastolic')}}" name="diastolic" type="text">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-6">
                                     <label>Pulse</label>
-                                    <input class="form-control"  value="{{old('pulse')}}" name="pulse" type="text">
+                                    <input class="form-control shadow"  value="{{old('pulse')}}" name="pulse" type="text">
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Tel</label>
-                                    <input class="form-control"  value="{{old('tel')}}" name="tel" type="text">
+                                    <input class="form-control shadow"  value="{{old('tel')}}" name="tel" type="text">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <label>IMEI</label>
-                                    <input class="form-control" value="{{old('imei')}}"  name="imei" type="text">
+                                    <input class="form-control shadow" value="{{old('imei')}}"  name="imei" type="text">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label>IMSI</label>
-                                    <input class="form-control"  value="{{old('imsi')}}" name="imsi" type="text">
+                                    <input class="form-control shadow"  value="{{old('imsi')}}" name="imsi" type="text">
                                 </div>
                             
                                 <div class="form-group col-md-4">
                                     <label>ICCID</label>
-                                    <input class="form-control" value="{{old('iccd')}}" name="iccid" type="text">
+                                    <input class="form-control shadow" value="{{old('iccd')}}" name="iccid" type="text">
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <div class="form-group">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Add New Blood Pressure</button>
+                                <button type="button" class="btn btn2 button shadow mx-auto red" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn2 button shadow mx-auto activeBPLink">Add New Blood Pressure</button>
                             </div>
                         </div>
                         
@@ -154,27 +147,33 @@ black
             <div class="row">
                 <div class="col-md-8">
                     <h5 class="text-center">Blood Glucose Records</h5>
-                    <table class="table table-striped">
-                        <tr>
+                    <table class="table">
+                        <thead>
+                            <tr>
                             <th>Blood Glucose</th>
                             <th>Created at</th>
                             <th>Action</th>
                         </tr>
+                        </thead>
                         @if($bgs->count()>0)
                         @foreach($bgs as $bg)
-                        <tr>
+                        <tbody>
+                            <tr>
                             <td>{{$bg->bg}}</td>
                             <td>{{\App\Http\Utility::dateToWords($bg->created_at)}}</td>
                             <td><button data-id="{{$bg->id}}" class="btn btn-sm btn-primary fa fa-pencil edit-bg" onclick=""></button>
                                 <button data-id="{{$bg->id}}" class="btn btn-sm btn-danger fa fa-trash del-bg"></button></td>
                         </tr>
+                        </tbody>
                         @endforeach
                     @else
-                        <tr>
+                        <thead>
+                            <tr>
                             <td colspan="8">
                                 <div class="alert alert-warning">There are no BG readings</div>
                             </td>
                         </tr>
+                        </thead>
                     @endif
                     </table>
                     
@@ -197,10 +196,10 @@ black
                         {{csrf_field()}}
                         <div class="form-group">
                             <label>Blood Glucose</label>
-                            <input class="form-control" value="{{old('BP')}}" name="bp" type="text">
+                            <input class="form-control shadow" value="{{old('BP')}}" name="bp" type="text">
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn2 button shadow mx-auto activeBPLink">Submit</button>
                         </div>
                     </form>
                     <!-- /row-->
@@ -210,8 +209,6 @@ black
           <!-- /row-->
          
         </div>
-        <!-- /.container-fluid-->
-    </div>
 @endsection
 
 @section('scripts')

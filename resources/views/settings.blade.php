@@ -8,6 +8,9 @@
 @section('settings-active')
 black
 @endsection
+@section('header')
+    Settings
+@endsection
 
 @section('content')
     <div class="content-wrapper">

@@ -284,9 +284,20 @@ class SubscriberController extends Controller
     public function getRecords(){
        
             $id = session('subscriber_id');
-            $bps = Subscriber::findOrFail($id)->bloodPressure()->paginate(10);
-            $bgs = Subscriber::findOrFail($id)->bloodGlucose()->paginate(10);
-            return view('records',['bps'=>$bps,'bgs'=>$bgs]);
+            $subscriber = User::findOrFail($id);
+
+            // $bps = Subscriber::findOrFail($id)->bloodPressure()->paginate(10);
+            // $bgs = Subscriber::findOrFail($id)->bloodGlucose()->paginate(10);
+
+            $bps = User::findOrFail($id)->bloodPressure()->paginate(10);
+            $bgs = User::findOrFail($id)->bloodGlucose()->paginate(10);
+
+            // dd($bps);
+            return view('records',[
+                'bps'=>$bps,
+                'bgs'=>$bgs,
+                'subscriber' => $subscriber
+            ]);
    
     }
 

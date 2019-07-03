@@ -44,16 +44,6 @@
 </head>
 
 <body>
-  @if(session('success'))
-  <script type="text/javascript">
-      toastr.success("{{ session('success') }}");
-  </script>
-  @endif
-  @if(session('error'))
-      <script type="text/javascript">
-      toastr.error("{{ session('error') }}");
-      </script>
-  @endif
   
   @yield('content')
 

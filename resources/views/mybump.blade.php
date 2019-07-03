@@ -1,14 +1,14 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Welcome
+    MYBUMP
+@endsection
+@section('header')
+    MYBUMP
 @endsection
 @section('content')
     <div class="content-wrapper">
       <div class="container-fluid">
-        <!-- Breadcrumbs-->
-        @include('layouts.service_menu')
-        <!-- Icon Cards-->
         <div class="box_general padding_bottom">
           <div class="row my-auto">
                <div class="col-xl-3 col-sm-6 mb-3 offset-sm-1">
@@ -131,10 +131,7 @@
                   </form>
               </div>
             </div>
-          </form> 
-      </div>
-  </div>
-</div>
+          </form>
 
 
 @endsection

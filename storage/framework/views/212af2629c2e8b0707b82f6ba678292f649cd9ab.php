@@ -9,13 +9,6 @@ black
 <?php $__env->startSection('content'); ?>
     <div class="content-wrapper">
         <div class="container-fluid">
-          <!-- Breadcrumbs-->
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="#">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item active">Medical Personals</li>
-          </ol>
           <div class="box_general">
                 <div class="header_box">
                     <h2 class="d-inline-block">Medical Personals</h2>
@@ -31,14 +24,14 @@ black
                     <ul>
                         <?php if(count($users) > 0): ?>
                             <?php $__currentLoopData = $users; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $user): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <li>
-                                
+                            <li class="box">
+                                <center><img class="rounded" style="width: 50px; height: 50px; margin: auto;" src="img/avatar.png" alt=""></center>
                                 <small></small>
-                                <h4><?php echo e($user->name); ?></h4>
-                                <p><?php echo e($user->email); ?></p>
-                                <p><?php echo e($user->phone); ?></p>
-                                <ul class="buttons">
-                                    <li><a href="javascript:void(0);" onclick="addUserToCareTeam(<?php echo e($user->id); ?>)" class="btn_1 gray approve wishlist_close"><i class="fa fa-fw fa-times-circle-o"></i> Add to Care Team</a></li>
+                                <h4 class="text-center"><?php echo e($user->name); ?></h4>
+                                <p class="text-center"><?php echo e($user->email); ?></p>
+                                <p class="text-center"><?php echo e($user->phone); ?></p>
+                                <ul class="buttons text-center">
+                                    <li class="text-center"> <a href="javascript:void(0);" onclick="addUserToCareTeam(<?php echo e($user->id); ?> )" class="btn_1 gray approve wishlist_close btn2 activeLink shadow text-center"><i class="fa fa-fw fa-times-circle-o"></i> Add to Care Team </a></li>
                                 </ul>
                             </li>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
