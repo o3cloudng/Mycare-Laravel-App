@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Dashboard
+    Blood Glucose
 @endsection
 @section('header')
     Blood Glucose

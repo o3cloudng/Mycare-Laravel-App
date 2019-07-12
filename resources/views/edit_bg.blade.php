@@ -1,35 +1,26 @@
-
 @extends('layouts.dashboard')
 
 @section('title')
     Edit Blood Glucose - Personal Profile
 @endsection
-
-@section('medical-active')
-black
+@section('header')
+    <i class="fa fa-user"></i> Edit Blood Glucose 
 @endsection
-
 @section('content')
-    <div class="content-wrapper">
-        <div class="container-fluid">
-          <!-- Breadcrumbs-->
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="#">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item active"><a href="{{ url('/blood_glucoses') }}">Blood Glucoses</a></li>
-          </ol>
-          <div class="box_general padding_bottom">
-            <div class="header_box version_2">
-              <h2>
-                <i class="fa fa-user"></i>Medical Records</h2>
-            </div>
-           
-            <div class="row">
+    <div class="container">  
+    <div class="row heading">
+        <h5 class="">Update Blood Glucose</h5>
+    </div>         
+            <div class="card">
+                <div class="card-header">
+                    Glucose
+                </div>
+                <div class="car-body">
+                    <div class="row">
             
-                <div class="col-md-6 col-md-offset-3">
+                <div class="col-md-6">
                         
-                    <h5 class="text-center">Update Blood Glucose</h5>
+                    
                     @if($errors->update_bg->all())
                     <div class="alert alert-danger">
                         <ul>
@@ -45,17 +36,19 @@ black
                     <form action="{{ url('updateBG') }}" method="POST">
                             {{csrf_field()}}
                             <div class="form-group">
-                                <label>Glucose</label>
-                                <input class="form-control" value="{{$bg->bg}}" name="blood_glucose" type="text">
+                                <label></label>
+                                <input class="form-control shadow" value="{{$bg->bg}}" name="blood_glucose" type="text">
                             </div>
                             <input type="hidden" name="id" value="{{ $bg->id }}">
                             
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Update</button>
+                                <button type="submit" class="btn btn2 shadow activeBPLink">Update</button>
                             </div>
                         </form>
                 </div>
                 
+            </div>
+                </div>
             </div>
             <hr>
             

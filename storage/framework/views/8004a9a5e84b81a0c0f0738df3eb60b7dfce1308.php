@@ -1,25 +1,22 @@
 <?php $__env->startSection('title'); ?>
-  Blood Glucose
+    Blood Glucose
 <?php $__env->stopSection(); ?>
-
+<?php $__env->startSection('header'); ?>
+    <i class="fa fa-user"></i> Medical Record 
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-    <div class="content-wrapper">
-        <div class="container-fluid">
-          <!-- Breadcrumbs-->
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="dashboard">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item active">Blood Glucose 
-            </li>
-          </ol>
-         
+    <div class="container">         
           <!-- /Blood Pressure -->
           <div class="box_general padding_bottom">
             <div class="row">
+                <h4 class="heading">Blood Glucose</h4>
+            </div>
+            <div class="card">
+                <div class="card-header"><i class="fa fa-table"></i> Blood Glucose</div>
+                <div class="card-body">
+                    <div class="row">
                 <div class="col-md-8">
-                    <h5 class="text-center">Blood Glucose Records</h5>
-                    <table class="table table-striped" id="bloodGlucoseTable" width="100%" cellspacing="0">
+                    <table class="table table-condensed table-bordered" id="bloodGlucoseTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Blood Glucose</th>
@@ -39,8 +36,11 @@
                             <tr>
                                 <td><?php echo e($bg->bg); ?></td>
                                 <td><?php echo e(\App\Http\Utility::dateToWords($bg->created_at)); ?></td>
-                                <td><button data-id="<?php echo e($bg->id); ?>" class="btn btn-sm btn-primary fa fa-pencil edit-bg"></button>
-                                    <button data-id="<?php echo e($bg->id); ?>" class="btn btn-sm btn-danger fa fa-trash del-bg"></button></td>
+                                <!-- <td><button data-id="<?php echo e($bg->id); ?>" class="btn btn-sm btn-primary fa fa-pencil edit-bg"></button> -->
+                                   <td> <a href="editBG/<?php echo e($bg->id); ?>" class="btn btn-sm btn-primary fa fa-pencil edit-bg"></a>
+                                    <a href="deleteBG/<?php echo e($bg->id); ?>" class="btn btn-sm btn-danger fa fa-trash del-bg"></a>
+                                    <!-- <button data-id="<?php echo e($bg->id); ?>" class="btn btn-sm btn-danger fa fa-trash del-bg"></button></td> -->
+                                </td>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
@@ -48,7 +48,7 @@
                     
                 </div>
                 <div class="col-md-4">
-                    <h5 class="text-center">Add Blood Glucose</h5>
+                    <h5 class="">Add Blood Glucose</h5>
                     <?php if($errors->add_bg->all()): ?>
                         <div class="alert alert-danger">
                             <ul>
@@ -63,14 +63,17 @@
 
                         <div class="form-group">
                             <label>Blood Glucose</label>
-                            <input class="form-control" value="<?php echo e(old('bp')); ?>" name="bp" type="number" placeholder="Blood Glucose">
+                            <input class="form-control shadow" value="<?php echo e(old('bp')); ?>" name="bp" type="number" placeholder="Blood Glucose">
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn_1 gray approve">Submit</button>
+                            <button type="submit" class="btn_1 gray approve btn btn2 button shadow activeBPLink">Submit</button>
                         </div>
                     </form>
                     <!-- /row-->
                 </div>
+            </div>
+                </div>
+                <!-- <div class="card-footer"></div> -->
             </div>
           </div> 
           <!-- /row-->

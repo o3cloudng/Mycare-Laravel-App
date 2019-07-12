@@ -61,6 +61,7 @@ class BloodPressureController extends Controller
         $id = session('subscriber_id');
         $subscriber = User::findOrfail($id);
         $bps = User::findOrFail($id)->bloodPressure()->get();
+        // $bps = User::findOrFail($id)->bloodPressure()->get()->sortByDesc('bloodPressure.created_at');
         // return $bps;
         
         return view('subscriber.records.blood_pressure.index', [
@@ -114,12 +115,18 @@ class BloodPressureController extends Controller
      * edit bp
      */
     public function edit($id){
+
+        $user_id = session('subscriber_id');
+        $subscriber = User::findOrfail($user_id);
     
         $bp = BloodPressure::find($id);
         if(is_null($bp)){
             return back()->with('error','Blood Pressure reading does not exist');
         }
-        return view('edit_bp',['bp'=>$bp]);
+        return view('edit_bp',[
+            'bp'=>$bp,
+            'subscriber' => $subscriber
+        ]);
         
     }
 

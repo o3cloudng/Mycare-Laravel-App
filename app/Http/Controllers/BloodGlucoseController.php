@@ -79,8 +79,8 @@ class BloodGlucoseController extends Controller
      * get edit page
      */
     public function edit($id){
-        $id = session('subscriber_id');
-        $subscriber = User::findOrFail($id);
+        $user_id = session('subscriber_id');
+        $subscriber = User::findOrFail($user_id);
      
         $bg = BloodGlucose::find($id);
         if(is_null($bg)){

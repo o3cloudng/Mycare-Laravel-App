@@ -1,5 +1,5 @@
 <?php $__env->startSection('title'); ?>
-    Dashboard
+    Blood Glucose
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('header'); ?>
     Blood Glucose

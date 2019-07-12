@@ -7,17 +7,7 @@
 
 @section('content')
     <div class="content-wrapper">
-        <div class="container-fluid">
-          <!-- Breadcrumbs-->
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="{{ url('/') }}">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a href="{{ url('/diagnosis/') }}">All Diagnosis </a>
-            </li>
-            
-          </ol>
+        <div class="container">
           <div class="box_general padding_bottom">
             <div class="header_box version_2">
               <h2>
@@ -43,7 +33,12 @@
           </div>
             
           <div class="box_general padding_bottom">
-            <!-- Medication -->
+            <div class="card">
+                <div class="card-header">
+                    Medications
+                </div>
+                <div class="card-body">
+                                <!-- Medication -->
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-striped table-bordered" id="medicationTable" width="100%" cellspacing="0">
@@ -91,6 +86,8 @@
                             @endforeach
                         </tbody>
                     </table>
+                </div>
+            </div>
                 </div>
             </div>
           </div>

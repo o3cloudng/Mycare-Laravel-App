@@ -1,22 +1,17 @@
 <?php $__env->startSection('title'); ?>
     Goals
 <?php $__env->stopSection(); ?>
-
+<?php $__env->startSection('header'); ?>
+   <i class="fa fa-user"></i> Goals
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-    <div class="content-wrapper">
-        <div class="container-fluid">
-          <!-- Breadcrumbs-->
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="#">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item active">Goals</li>
-          </ol>
-            <div class="box_general padding_bottom">
+
+    <div class="container">
+            <!-- <div class="box_general padding_bottom">
                 <a href="#defaultBloodPGoal" class="btn_1 gray"><i class="fa fa-user"></i> Default Blood Pressure Goal</a>
                 <a href="#setBloodPGoal" class="btn_1 gray"><i class="fa fa-user"></i> Custom Blood Pressure Goal</a>
                 <a href="#setBodyMGoal" class="btn_1 gray"><i class="fa fa-deviantart"></i> Body Mass Goal</a>
-            </div>
+            </div> -->
             <div class="row">
                 <div class="col-md-12">
                     <?php if($errors->all()): ?>
@@ -30,36 +25,188 @@
                     <?php endif; ?>
                 </div>
             </div>
+            <div class="row heading">
+                <h2 class="d-inline-block">Default Blood Pressure Goals</h2>
+            </div>
 
             <div class="box_general" id="defaultBloodPGoal">
-                    <div class="header_box">
-                        <h2 class="d-inline-block">Default Blood Pressure Goals</h2>
-                    </div>
-                    <div class="list_general">
+                    <div class="list_general goal_list">
                         <ul>
                             <li>
+                                <p style="display: block;">
+                                    <h5>Systolic > 120 but < 129 and Diastolic < 80</h5>
+                                    <br/>
+                                    <a href="#0" class="btn_1 shadow btn gray approve wishlist_close"><i class="fa fa-fw fa-times-circle-o"></i> Approve</a>
+                                </p>
                                 
                                 <small></small>
-                                <h6>Systolic > 120 but < 129 and Diastolic < 80</h6>
                                 
-                                <ul class="buttons">
-                                    <li><a href="#0" class="btn_1 gray approve wishlist_close"><i class="fa fa-fw fa-times-circle-o"></i> Approve</a></li>
-                                </ul>
+                                
+                                <p>
+                                    
+                                </p>
                             </li>
                             <li>
                                 
                                 <small></small>
-                                <h6>Systolic > 120 and Diastolic < 80</h6>
-                                <p>Time: <br></p>
+                                <p>
+                                    <h5>Systolic > 120 and Diastolic < 80</h5>
+                                    <br/>
+                                    <a href="#0" class="btn_1 btn shadow gray approve wishlist_close"><i class="fa fa-fw fa-times-circle-o"></i> Approve</a>
+                                </p>
+                                <!-- <p>Time: <br></p> -->
                                 
-                                <ul class="buttons">
-                                    <li><a href="#0" class="btn_1 gray approve wishlist_close"><i class="fa fa-fw fa-times-circle-o"></i> Approve</a></li>
-                                </ul>
+                                <!-- <ul class="buttons">
+                                    <li></li>
+                                </ul> -->
                             </li>
                            
                         </ul>
                     </div>
                 </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card shadow corner">
+                        <div class="card-body">
+                            <div class="row my-5">
+                                <!-- <div class="col-md-4"></div> -->
+                                <div class="col-md-12 text-center">
+                                    <h2>Blood Pressure Goal</h2>
+                                </div>
+                            </div>
+                            <p>&nbsp;</p>
+                            <div class="row mt-5">
+                                <div class="col-md-6">
+                                    <div class="round_box d-flex justify-content-center">
+                                        <h3 class="my-auto"><?php echo e($bloodPressureGoal->systolic); ?></h3> 
+                                    </div>
+                                    <br/><br/><h5 class="text-center">Systolic</h5>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="round_box d-flex justify-content-center">
+                                        <h3 class="my-auto"><?php echo e($bloodPressureGoal->diastolic); ?></h3> 
+                                    </div>
+                                    <br/><br/><h5 class="text-center">Diastolic</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-md-6 top_mobile_margin">
+                    <div class="card corner">
+                        <div class="card-body">
+                            <div class="header_box">
+                        <h5>
+                            <i class="fa fa-user"></i> Body Mass Index Goal 
+                        </h5>
+                </div>
+                <div class="list_general">
+                    <ul>
+                        <li style="margin-left: -30px;">
+                            <a href="" class="btn_1 activeBPLink approve btn btn2 shadow" data-toggle="modal" data-target="#setBMIGoal"><i class="fa fa-fw fa-pencil"></i> Set Goal</a>
+                            <ul class="booking_details list-group bg-white mt-2 list-group-items">
+                                <li class="list-group-item" style="background: #ffffff !important; color: #333 !important;"><small>Underweight:  Less than 18.5</small></li>
+                                <li class="list-group-item" style="background: #ffffff !important; color: #333 !important;"><small>Normal weight: 18.5 - 24.9</small></li>
+                                <li class="list-group-item" style="background: #ffffff !important; color: #333 !important;"><small>Overweight: 25 - 29.9</small></li>
+                                <li class="list-group-item" style="background: #ffffff !important; color: #333 !important;"><small>Obesity: BMI of 30 or greater</small></li>
+                            </ul>
+                            <hr>
+                            <h6>Current Body Mass Index Goal Details</h6>
+                            <?php if(isset($bmiGoal)): ?>
+                                <table class="table table-bordered table-stripped">
+                                    <tr><th><strong>Weight</strong></th><td> <?php echo e($bmiGoal->weight); ?></td></tr>
+                                    <tr><th><strong>Height</strong></th><td> <?php echo e($bmiGoal->height); ?></td></tr>
+                                    <tr><th><strong>Body Mass Index</strong></th><td><?php echo e($bmiGoal->bmi); ?></td></tr>
+                                    <tr><th><strong>Frequency</strong></th><td> <?php echo e(ucfirst($bmiGoal->frequency)); ?></td></tr>
+                                    <tr><th><strong>Time</strong></th><td> <?php echo e($bmiGoal->hour.':00:00'); ?></td></tr>
+                                    <?php if($bmiGoal->frequency == 'weekly'): ?> 
+                                        <tr><th><strong>Week Day</strong></th><td> <?php echo e(ucfirst($weekMap[$bmiGoal->weekDay])); ?></td></tr>
+                                    <?php elseif($bmiGoal->frequency == 'monthly'): ?>
+                                        <tr><th><strong>Month Day</strong></th><td> <?php echo e($bmiGoal->monthDay); ?></td></tr>
+                                    <?php else: ?>
+                                    <?php endif; ?>
+                                <?php else: ?>
+                                </table>
+                                <table class="table table-bordered table-stripped">
+                                    <thead>
+                                        <tr><th><strong>Weight</strong></th><td>No Weight Recorded Yet</td></tr>
+                                        <tr><th><strong>Height</strong></th><td>No Height Recorded Yet</td></tr>
+                                        <tr><th><strong>Body Mass Index</strong></th><td>No Goal Set Yet</td></tr>
+                                        <tr><th><strong>Frequency</strong></th><td>Nothing</td></tr>
+                                        <tr><th><strong>Frequency</strong></th><td>Nothing</td></tr>
+                                    </thead>
+                                </table>
+                                    <!-- <li><strong>Weight</strong> No Weight Recorded Yet</li>
+                                    <li><strong>Height</strong> No Height Recorded Yet</li>
+                                    <li><strong>Body Mass Index</strong> No Goal Set Yet</li>
+                                    <li><strong>Frequency</strong> Nothing</li>
+                                    <li><strong>Time</strong> </li> -->
+                                
+                                <?php endif; ?>
+
+                            <ul class="buttons">
+                                    <?php if(isset($bmiGoal)): ?>
+                                    <?php if($bmiGoal->status == 'activate'): ?>
+                                        <li><button id="activateOrDeactivateBMI" data-id=<?php echo e($bmiGoal->id); ?> class="btn_1 gray delete"><i class="fa fa-fw fa-times-circle-o"></i> Deactivate</button></li> 
+                                    <?php else: ?>
+                                         <li><button id="activateOrDeactivateBMI" data-id=<?php echo e($bmiGoal->id); ?>  class="btn_1 gray approve"><i class="fa fa-fw fa-check-circle-o"></i> Activate</button></li>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row my-5">
+                <div class="col-md-6">
+                    <div class="card shadow corner my-5">
+                        <div class="card-body">
+                            <div class="box_general padding_bottom" id="setBloodPGoal">
+                    <div class="header_box">
+                        <h5><i class="fa fa-user"></i> Blood Pressure Goal </h5>
+                    </div>
+                    <div class="list_general">
+                        <ul>
+                            <li>
+                                <a href="" class="btn_1 btn btn2 shadow activeBPLink approve" data-toggle="modal" data-target="#setBloodLimitGoal"><i class="fa fa-fw fa-pencil"></i>Set Goal</a>
+                                <ul class="booking_details">
+                                    <li><small>Normal Blood Pressure Rate: Systolic < 120 and Diastolic < 80</small></li>
+                                    <li><small>At Risk (Prehypertension): Systolic >= 120 and Diastolic >= 80</small></li>
+                                    <li><small>High: Systolic >= 140 and Diastolic <= 90</small></li>
+                                </ul>
+                                
+                                <ul class="booking_details">
+                                        <li><strong>Systolic</strong> <?php if(isset($bloodPressureGoal)): ?> <?php echo e($bloodPressureGoal->systolic); ?> <?php else: ?> No Value <?php endif; ?> </li>
+                                        <li><strong>Diastolic</strong> <?php if(isset($bloodPressureGoal)): ?> <?php echo e($bloodPressureGoal->diastolic); ?> <?php else: ?> No Value <?php endif; ?></li>
+                                        <li><strong>Frequency</strong> <?php if(isset($bloodPressureGoal)): ?> <?php echo e(ucfirst($bloodPressureGoal->frequency)); ?> <?php else: ?> No Value <?php endif; ?></li>
+                                    </ul>
+                                <ul class="buttons">
+                                    <?php if(isset($bloodPressureGoal)): ?>
+                                        <?php if($bloodPressureGoal->status == 'activate'): ?>
+                                            <li><br><a href="#0" class="btn_1 btn btn-inverse btn2 shadow gray delete"><i class="fa fa-fw fa-times-circle-o"></i> Deactivate</a></li> 
+                                        <?php else: ?>
+                                             <li><a href="#0" class="btn_1 btn btn2 shadow gray approve"><i class="fa fa-fw fa-check-circle-o"></i> Activate</a></li>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+
+
                 <?php
                     $weekMap = [
                     1 => 'Sunday',
@@ -72,7 +219,7 @@
                 ];
                 ?>  
              <!-- Blood Pressure -->
-             <div class="box_general padding_bottom" id="setBloodPGoal">
+             <!-- <div class="box_general padding_bottom" id="setBloodPGoal">
                     <div class="header_box">
                         <h5><i class="fa fa-user"></i> Blood Pressure Goal </h5>
                     </div>
@@ -103,11 +250,11 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
     
                 
             <!-- Body Mass -->
-            <div class="box_general padding_bottom" id="setBodyMGoal">
+            <!-- <div class="box_general padding_bottom" id="setBodyMGoal">
                 <div class="header_box">
                     <h5><i class="fa fa-user"></i> Body Mass Index Goal </h5>
                 </div>
@@ -158,7 +305,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div> -->
           <!-- /row-->
 
              
@@ -186,12 +333,12 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label>Height</label>
-                                        <input class="form-control" value="" name="height" type="number" step="any">
+                                        <input class="form-control shadow" value="" name="height" type="number" step="any">
                                         <!-- value = <?php echo e("$ bmiGoal->height"); ?> -->
                                     </div>
                                     <div class="col-sm-6">
                                         <small>Measurement Unit (ft/cm)</small>
-                                            <select name="height_unit" class="form-control" style="font-size: 80%; font-weight: 400;" required>
+                                            <select name="height_unit" class="form-control shadow" style="font-size: 80%; font-weight: 400;" required>
                                                 <option value="" selected="selected" disabled="disabled">-- Select One --</option>
                                                 <option value="feet">Feet</option>
                                                 <option value="cm">Centimeter</option>
@@ -207,11 +354,11 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label>Weight</label>
-                                        <input name="weight" type="number" value=" $bmiGoal->weight" class="form-control" step="any">
+                                        <input name="weight" type="number" value=" $bmiGoal->weight" class="form-control shadow" step="any">
                                     </div>
                                     <div class="col-sm-6">
                                         <small>Measurement Unit (lbs/kg)</small>
-                                            <select name="weight_unit" class="form-control" style="font-size: 80%; font-weight: 400;" required>
+                                            <select name="weight_unit" class="form-control shadow" style="font-size: 80%; font-weight: 400;" required>
                                                <option value="" selected="selected" disabled="disabled">-- Select One --</option>
                                                <option value="lbs">Pounds</option>
                                                <option value="kg">Kilogram</option>
@@ -225,7 +372,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label>Frequency</label>
-                                        <select class="form-control" name="frequency" onchange="changePlan(value);" required>
+                                        <select class="form-control shadow" name="frequency" onchange="changePlan(value);" required>
                                             <option value="daily">Daily</option>
                                             <option value="weekly">Weekly</option>
                                             <option value="monthly">Monthly</option>
@@ -233,11 +380,11 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label>Hour</label>
-                                        <input type="time" name="hour" id="" value="$bmiGoal->hour }}" class="form-control" required>
+                                        <input type="time" name="hour" id="" value="$bmiGoal->hour }}" class="form-control shadow" required>
                                     </div>
                                     <div class="col-md-4 hideCol" id="dayOfWeek">
                                         <label for="">Day of the week </label>
-                                        <select class="form-control" name="weekDay">
+                                        <select class="form-control shadow" name="weekDay">
                                             <option value="" selected="selected" disabled="disabled">-- Select One --</option>
                                             <option value="1">Sunday</option>
                                             <option value="2">Monday</option>
@@ -250,7 +397,7 @@
                                     </div>
                                     <div class="col-md-4 hideCol" id="dayOfMonth">
                                             <label for="">Day of the Month</label>
-                                            <select class="form-control" name="monthDay">
+                                            <select class="form-control shadow" name="monthDay">
                                                 <option value="" selected="selected" disabled="disabled">-- Select One --</option>
                                                 <option value="1">Day 1</option>
                                                 <option value="2">Day 2</option>
@@ -286,8 +433,8 @@
                         </div>
                         <div class="modal-footer">
                             <div class="form-group">
-                                <button type="button" class="btn_1 gray delete" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn_1 gray approve">Set BMI Goal</button>
+                                <button type="button" class="btn_1 btn btn2 shadow default gray delete" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn_1 btn btn2 shadow activeBPLink gray approve">Set BMI Goal</button>
                             </div>
                         </div>
                         
@@ -320,11 +467,11 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label>Systolic</label>
-                                        <input class="form-control" value="<?php echo e(old('systolic')); ?>" name="systolic" type="number" step="any">
+                                        <input class="form-control shadow" value="<?php echo e(old('systolic')); ?>" name="systolic" type="number" step="any">
                                     </div>
                                     <div class="col-sm-6">
                                         <label>Diastolic</label>
-                                        <input class="form-control" value="<?php echo e(old('diastolic')); ?>" name="diastolic" type="number" step="any">
+                                        <input class="form-control shadow" value="<?php echo e(old('diastolic')); ?>" name="diastolic" type="number" step="any">
                                     </div>
                                 </div>
                             </div>
@@ -332,7 +479,7 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label>Frequency</label>
-                                        <select class="form-control" name="frequency" onchange="changeBPGoalPlan(value)" required>
+                                        <select class="form-control shadow" name="frequency" onchange="changeBPGoalPlan(value)" required>
                                             <option value="daily">Daily</option>
                                             <option value="weekly">Weekly</option>
                                             <option value="monthly">Monthly</option>
@@ -340,11 +487,11 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label>Hour</label>
-                                        <input type="time" name="hour" id="" class="form-control" required>
+                                        <input type="time" name="hour" id="" class="form-control shadow" required>
                                     </div>
                                     <div class="col-md-4 hideCol" id="dayOfWeekBP">
                                         <label for="">Day of the week </label>
-                                        <select class="form-control" name="weekDay">
+                                        <select class="form-control shadow" name="weekDay">
                                             <option value="" selected="selected" disabled="disabled">-- Select One --</option>
                                             <option value="1">Sunday</option>
                                             <option value="2">Monday</option>
@@ -357,7 +504,7 @@
                                     </div>
                                     <div class="col-md-4 hideCol" id="dayOfMonthBP">
                                             <label for="">Day of the Month</label>
-                                            <select class="form-control" name="monthDay">
+                                            <select class="form-control shadow" name="monthDay">
                                                 <option value="" selected="selected" disabled="disabled">-- Select One --</option>
                                                 <option value="1">Day 1</option>
                                                 <option value="2">Day 2</option>
@@ -393,8 +540,8 @@
                         </div>
                         <div class="modal-footer">
                             <div class="form-group">
-                                <button type="button" class="btn_1 gray delete" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn_1 gray approve">Set Blood Pressure Goal</button>
+                                <button type="button" class="btn_1 btn btn2 shadow default gray delete" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn_1 btn btn2 shadow activeBPLink gray approve">Set Blood Pressure Goal</button>
                             </div>
                         </div>
                         

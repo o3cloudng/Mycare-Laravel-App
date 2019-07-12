@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="css/style/bootstrap-select.min.css">
    
     <!-- Custom styles for this template -->
-    <link href="css/style/style.css" rel="stylesheet">
-    <link href="sticky-footer-navbar.css" rel="stylesheet">
+    <link href="{{asset('css/style/style.css')}}" rel="stylesheet">
+    <link href="{{asset('sticky-footer-navbar.css')}}" rel="stylesheet">
 
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" type="text/css">
 
@@ -33,18 +33,29 @@
     <div class="row">
         <div class="col-md-2 h-100 sticky-top hidden-md-down" id="sidebar">
             <div class="text-center">
-                <a href="/subscription"><img class="img-rounded rounded mt-4" src="img/svg/logo.svg" /></a>
+                <a href="/subscription"><img class="img-rounded rounded mt-4" style="width: 200px; margin-left: -20px !important;" src="{{ asset('img/svg/logo.svg') }}" /></a>
                 <br>
-                <a href="/personal_profile"><img class="profile mt-3" src="img/profile.png" /></a><br/><br/>
-                <span>Profile</span>
+                <a href="/personal_profile">
+                  <a href="/personal_profile">
+                  @isset($subscriber->avatar)
+                  <img src="{{asset('/storage/')}}/{{ $subscriber->avatar }} " class="m-1 w-75 h-75 mt-4 profile1" style="margin-left: -15px !important;" />
+                  <!-- <img src="/storage/{{ $subscriber->avatar }}" class="m-1 w-75 h-75 mt-4 profile1" style="margin-left: -15px !important;" /> -->
+                  <!-- <img class="img-thumbnail" src="{{ asset('/storage/'.$subscriber->avatar) }}" /> -->
+                  @else
+                  <img class="m-1 w-75 h-75 profile1" src="{{ asset('img/avatar.png') }}" />
+                  @endisset
+                  <br/><br/>
+                  <!-- <span>Profile</span> -->
+                </a>
                 <div class="text-left ml-2">
-                    <a href="/dashboard" class="list-group-item"><img src="img/svg/icons/dashboard.svg" class="menu_icon" /> Dashboard</a>
-                    <a href="/records" class="list-group-item"><img src="img/svg/icons/medical_records.svg" class="menu_icon" /> Medical Records</a>
-                    <a href="/contact-team" class="list-group-item"><img src="img/svg/icons/contact_team.svg" class="menu_icon" /> Care Team</a>
-                    <a href="/medical_personel" class="list-group-item"><img src="img/svg/icons/medical_personel.svg" class="menu_icon" /> Medical Personal</a>
-                    <a href="medications" class="list-group-item"><img src="img/svg/icons/medication.svg" class="menu_icon" /> Medication</a>
-                    <a href="/goals" class="list-group-item"><img src="img/svg/icons/goals.svg" class="menu_icon" /> Goal</a>
-                    <a href="/subscriptions" class="list-group-item"><img src="img/svg/icons/subscription.svg" class="menu_icon" /> Subscription</a>
+                    <a href="/dashboard" class="list-group-item"><img src="{{asset('img/svg/icons/dashboard.svg')}}" class="menu_icon" /> Dashboard</a>
+                    <a href="/records" class="list-group-item"><img src="{{asset('img/svg/icons/medical_records.svg')}}" class="menu_icon" /> Records</a>
+                    <a href="/med_records" class="list-group-item"><img src="{{asset('img/svg/icons/medical_records.svg')}}" class="menu_icon" /> Medical Records</a>
+                    <a href="/contact-team" class="list-group-item"><img src="{{asset('img/svg/icons/contact_team.svg')}}" class="menu_icon" /> Care Team</a>
+                    <a href="/medical_personel" class="list-group-item"><img src="{{asset('img/svg/icons/medical_personel.svg')}}" class="menu_icon" /> Medical Personal</a>
+                    <a href="medications" class="list-group-item"><img src="{{ asset('img/svg/icons/medication.svg') }}" class="menu_icon" /> Medication</a>
+                    <a href="/goals" class="list-group-item"><img src="{{ asset('img/svg/icons/goals.svg') }}" class="menu_icon" /> Goal</a>
+                    <a href="/subscriptions" class="list-group-item"><img src="{{ asset('img/svg/icons/subscription.svg') }}" class="menu_icon" /> Subscription</a>
                 </div>
             </div>
             <!-- <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> -->
@@ -52,7 +63,7 @@
         <div class="col-md-10 w-100" style="height:100%;">
             <nav class="navbar navbar-expand-md bg-dark navbar-dark d-sm-block d-md-none">
               <!-- <a class="navbar-brand" href="/subscription">MYCAREPLUS</a> -->
-              <a class="navbar-brand" href="/subscription"><img style="width: 70px; height:30px;" src="img/logo.jpeg" /></a>
+              <a class="navbar-brand" href="/subscription"><img style="width: 70px; height:30px;" src="{{ asset('img/logo.jpeg') }}" /></a>
               <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
               </button> -->
@@ -61,31 +72,31 @@
               <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav">
                   <li class="nav-item">
-                    <a href="/personal_profile">
-                      <img class="profile mt-3 align-sm-center mx-auto" src="img/profile.png" /><br/><br/>
-                      <span class="mx-auto align-sm-center">Profile</span>
-                    </a>
+                    <a href="/personal_profile" class="nav-link" style="margin-left: 5px;"><i class="fa fa-user"></i> &nbsp;&nbsp;&nbsp;&nbsp;Profile</a>
                   </li>
                   <li class="nav-item">
-                    <a href="/dashboard" class="nav-link"><img src="img/svg/icons/dashboard.svg" class="menu_icon" /> Dashboard</a>
+                    <a href="/dashboard" class="nav-link"><img src="{{asset('img/svg/icons/dashboard.svg')}}" class="menu_icon" /> Dashboard</a>
                   </li>
                   <li class="nav-item">
-                    <a href="/records" class="nav-link"><img src="img/svg/icons/medical_records.svg" class="menu_icon" /> Medical Records</a>
+                    <a href="/records" class="nav-link"><img src="{{asset('img/svg/icons/medical_records.svg')}}" class="menu_icon" /> Records</a>
                   </li>
                   <li class="nav-item">
-                    <a href="/contact-team" class="nav-link"><img src="img/svg/icons/contact_team.svg" class="menu_icon" /> Care Team</a>
+                    <a href="/med_records" class="nav-link"><img src="{{asset('img/svg/icons/medical_records.svg')}}" class="menu_icon" /> Medical Records</a>
                   </li>
                   <li class="nav-item">
-                    <a href="medical_personel" class="nav-link"><img src="img/svg/icons/medical_personel.svg" class="menu_icon" /> Medical Personal</a>
+                    <a href="/contact-team" class="nav-link"><img src="{{asset('img/svg/icons/contact_team.svg')}}" class="menu_icon" /> Care Team</a>
                   </li>
                   <li class="nav-item">
-                    <a href="/medications" class="nav-link"><img src="img/svg/icons/medication.svg" class="menu_icon" /> Medication</a>
+                    <a href="medical_personel" class="nav-link"><img src="{{asset('img/svg/icons/medical_personel.svg')}}" class="menu_icon" /> Medical Personal</a>
                   </li>
                   <li class="nav-item">
-                    <a href="/goals" class="nav-link"><img src="img/svg/icons/goals.svg" class="menu_icon" /> Goal</a>
+                    <a href="/medications" class="nav-link"><img src="{{asset('img/svg/icons/medication.svg')}}" class="menu_icon" /> Medication</a>
                   </li>
                   <li class="nav-item">
-                    <a href="/subscriptions" class="nav-link"><img src="img/svg/icons/subscription.svg" class="menu_icon" /> Subscription</a>
+                    <a href="/goals" class="nav-link"><img src="{{asset('img/svg/icons/goals.svg')}}" class="menu_icon" /> Goal</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/subscriptions" class="nav-link"><img src="{{asset('img/svg/icons/subscription.svg')}}" class="menu_icon" /> Subscription</a>
                   </li>
 
                 </ul>
@@ -106,11 +117,12 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-8">
-                                    <a href="/dashboard" class="btn btn2 button shadow mr-2 activeBPLink">MYBP</a>
-                                    <a href="/mybg" class="btn btn2 button shadow mr-2 blue">MYBG</a>
-                                    <a href="/mybump" class="btn btn2 button shadow mr-2 green">MYBUMP</a>
+                                    <a href="/blood_pressures" class="btn btn2 button shadow mr-2 activeBPLink">MYBP</a>
+                                    <a href="/blood_glucoses" class="btn btn2 button shadow mr-2 activeBPLink">MYBG</a>
+                                    <a href="/mybump" class="btn btn2 button shadow mr-2 activeBPLink">MYBUMP</a>
 
-                                    <span class="float-right"><a href="#"><small id="settings"><img src="img/svg/icons/settings.svg" id="cog" />  Settings</small></a>
+                                   <a href="/signout" class="float-right" style="color: #F8A602;"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>&nbsp;</a>
+                                    <span class="float-right mr-4"><a href="settings" style="color: #F8A602;"><small id="settings"><img src="img/svg/icons/settings.svg" id="cog" />  Settings</small></a></span>
                                     <!-- <a href="#" class="ml-5"><small id="settings"><i class=""></i> Bell</small></a></span> -->
                                 </div>
                                 <!-- <div class="col-xs-4 col-sm-4 col-sm-4 col-md-4 text-right"><a href="#"><small id="settings"><img src="img/svg/icons/settings.svg" id="cog" />  Settings</small></a></</div> -->
@@ -149,7 +161,7 @@
         </div>
     </div>
 </div>
-  @yield('script')
+  @yield('scripts')
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -176,5 +188,6 @@
   <script src="{{asset('admin/js/admin.js')}}"></script>
   <script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
   <script src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+  <script src="{{asset('/js/scripts.js')}}"></script>
     </body>
 </html>

@@ -299,6 +299,27 @@ class SubscriberController extends Controller
                 'subscriber' => $subscriber
             ]);
    
+    }/**
+     * get records page
+     */
+    public function medRecords(){
+       
+            $id = session('subscriber_id');
+            $subscriber = User::findOrFail($id);
+
+            // $bps = Subscriber::findOrFail($id)->bloodPressure()->paginate(10);
+            // $bgs = Subscriber::findOrFail($id)->bloodGlucose()->paginate(10);
+
+            $bps = User::findOrFail($id)->bloodPressure()->paginate(10);
+            $bgs = User::findOrFail($id)->bloodGlucose()->paginate(10);
+
+            // dd($bps);
+            return view('med_records',[
+                'bps'=>$bps,
+                'bgs'=>$bgs,
+                'subscriber' => $subscriber
+            ]);
+   
     }
 
     /** Medical Personals Page */
@@ -643,7 +664,7 @@ class SubscriberController extends Controller
         if($user)
         {
             session(['subscriber_id'=>$user->id]);
-            return redirect('subscription');
+            return redirect('dashboard');
         } else {
             return redirect()->back()->withErrors('User does not exist')->withInput();
         }
@@ -785,6 +806,7 @@ class SubscriberController extends Controller
 
 
     public function signout(Request $request) {
+        // dd(session('subscriber_id'));
 
         $request->session()->forget(['subscriber_id']);
        

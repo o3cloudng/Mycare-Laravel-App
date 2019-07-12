@@ -129,7 +129,7 @@ black
                         </div>
                         <div class="modal-footer">
                             <div class="form-group">
-                                <button type="button" class="btn btn2 button shadow mx-auto red" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn2 button shadow mx-auto default" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn2 button shadow mx-auto activeBPLink">Add New Blood Pressure</button>
                             </div>
                         </div>

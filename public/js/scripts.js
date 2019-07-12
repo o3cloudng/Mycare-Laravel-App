@@ -287,4 +287,14 @@
     });
 
 
+function editBP() {
+    alert('Good, we are here.');
+  }
+
+  $('.edit-bp').on('click', function(){
+    var data = $(this).data("id");
+    // alert(data);
+  });
+
+
 })(jQuery);

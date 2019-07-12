@@ -21,26 +21,25 @@
         <div class="row justify-content-around">
             <div class="col-sm-12 col-xs-12 col-md-5">
                 <div class="row">
-                  <div class="col-sm-10 col-xs-10 mx-auto col-md-10 mybox shadow py-4">
+                  <div class="col-sm-12 col-xs-12 mx-auto col-md-12 mybox shadow py-4">
                       <div class="row">
                             <div class="col-4">
                             <form method="POST" action="{{ url('/profile/avatar') }}" enctype="multipart/form-data">
                                 @csrf
                                 @isset($subscriber->avatar)
-
-                                <img src="img/avatar.png" class="m-1 w-100 h-100 mt-4 mx-auto profile1" />
+                                <img src="/storage/{{ $subscriber->avatar }}" class="m-1 w-100 h-100 mt-4 mx-auto profile1" />
                                 <!-- <img class="img-thumbnail" src="{{ asset('/storage/'.$subscriber->avatar) }}" /> -->
                                 @else
                                 <img class="m-1 w-100 h-100 profile1" src="{{ asset('img/avatar.png') }}" />
                                 @endisset
                                 <!-- <label>Upload Profile Picture</label> -->
-                                    <input type="file" class="form-control {{ $errors->has('avatar') ? ' is-invalid' : '' }}" name="avatar">
+                                    <input type="file" class="form-control foo {{ $errors->has('avatar') ? ' is-invalid' : '' }}" name="avatar">
                                     @if ($errors->has('avatar'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('avatar') }}</strong>
                                     </span>
                                     @endif
-                                    <!-- <button type="submit" class="btn_1 small">Upload</button> -->
+                                    <button type="submit" class="btn_1 btn btn2 shadow activeBPLink small">Upload</button>
                                 </form>
                             </div>
                             <div class="col-8 p-4">
@@ -67,7 +66,7 @@
                         </div>
                     </div>
                     <div class="row ml-3">
-                        <button type="submit" class="btn btn2 button shadow mx-auto activeBPLink">Upload</button>
+                        <button type="submit" class="btn btn2 button shadow mx-auto activeBPLink">Update</button>
                     </div>
                   </div>
 
@@ -126,7 +125,7 @@
                     <div class="header_box version_2">
                         <h5><span><img style="width: 50px; height: 50px;" src="{{ asset('img/diagnosis.png') }}"></span> Diagnosis</h5>
                     </div>
-                    <table class="table table-striped" id="diagnosisTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="diagnosisTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>S/N</th>
@@ -149,8 +148,8 @@
                                 <td>{{ $d->id }}</td>
                                 <td>{{ $d->name }}</td>
                                 <td>None</td>
-                                <td><button data-id="{{$d->id}}" class="btn btn-sm btn-primary fa fa-pencil" id="edit-diagnosis"></button>
-                                    <button data-id="{{$d->id}}" class="btn btn-sm btn-danger fa fa-trash del-diagnosis"></button>
+                                <td><button data-id="{{$d->id}}" class="btn btn-sm btn-primary fa fa-pencil d-flex" id="edit-diagnosis"></button>
+                                    <button data-id="{{$d->id}}" class="btn btn-sm btn-danger fa fa-trash del-diagnosis d-flex"></button>
                                 </td>
                             </tr>
                             @endforeach

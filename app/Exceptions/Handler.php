@@ -85,9 +85,11 @@ class Handler extends ExceptionHandler
     protected function prepareException(Exception $e)
     {
         if ($e instanceof ModelNotFoundException) {
-            $e = new NotFoundHttpException($e->getMessage(), $e);
+            // $e = new NotFoundHttpException($e->getMessage(), $e);
+            return redirect('/phonesignin');
         } elseif ($e instanceof AuthorizationException) {
-            $e = new AccessDeniedHttpException($e->getMessage(), $e);
+            // $e = new AccessDeniedHttpException($e->getMessage(), $e);
+            return redirect('/phonesignin');
         } elseif ($e instanceof TokenMismatchException) {
               return redirect()->route('phonesignin');
         }

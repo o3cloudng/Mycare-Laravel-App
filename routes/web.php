@@ -11,19 +11,23 @@
 |
 */
 Auth::routes();
+Route::get('/', 'Subscriber\SubscriberController@phoneSignin');
+Route::get('/phonesignin', 'Subscriber\SubscriberController@phoneSignin')->name('phonesignin');
+Route::get('/signout', 'Subscriber\SubscriberController@signout')->name('subscriberLogout');
+// Route::post('/signout', 'Subscriber\SubscriberController@signout')->name('subscriberLogout');
+// Route::get('/', 'Subscriber\SubscriberController@phoneSignin');
 
 //-------------------get signup page------------//
-// Route::group( [ 'middleware' => 'web', 'role:subscriber'], function () {
+Route::group( [ 'middleware' => 'checksession', 'Auth'], function () {
     // Route::get('/', 'Subscriber\SubscriberController@getSignin');
-    Route::get('/', 'Subscriber\SubscriberController@phoneSignin');
 
-    Route::get('/phonesignin', 'Subscriber\SubscriberController@phoneSignin');
-    Route::post('/phonesignin', 'Subscriber\SubscriberController@processPhoneSignin');
-    Route::get('/signup', 'Subscriber\SubscriberController@getSignup');
+    Route::get('/phonesignin', 'Subscriber\SubscriberController@phoneSignin')->name('phonesignin');
+    Route::post('/phonesignin', 'Subscriber\SubscriberController@processPhoneSignin')->name('phonesignin');
+    Route::get('/signup', 'Subscriber\SubscriberController@getSignup')->name('signup');
     //--------------------------get sign in page---------//
     // Route::get('/signin', 'Subscriber\SubscriberController@getSignin');
     //----------------------process user signup------------------//
-    Route::post('/signup', 'Subscriber\SubscriberController@processSignup');
+    Route::post('/signup', 'Subscriber\SubscriberController@processSignup')->name('signup');
     //-----------------------------process signin=-------------------//
     // Route::post('/signin', 'Subscriber\SubscriberController@processSignin');
 
@@ -59,7 +63,7 @@ Auth::routes();
 
         
         /* Logout */
-        Route::post('/signout', 'Subscriber\SubscriberController@signout')->name('subscriberLogout');
+        // Route::post('/signout', 'Subscriber\SubscriberController@signout')->name('signout');
 
         /* Diagonis */
         Route::get('/diagnosis', 'Subscriber\DiagnosisController@index');
@@ -71,7 +75,8 @@ Auth::routes();
 
         /* Medication */
         Route::get('/medications', 'Subscriber\MedicationController@index');
-        Route::get('/medications/new', 'Subscriber\MedicationController@addMedication');
+        Route::get('/add_medications', 'Subscriber\MedicationController@addMedication');
+        // Route::get('/medications/new', 'Subscriber\MedicationController@addMedication');
         Route::post('/medications/new', 'Subscriber\MedicationController@create');
         Route::post('/medications/edit', 'Subscriber\MedicationController@edit');
         Route::post('/medications/delete', 'Subscriber\MedicationController@delete');
@@ -142,6 +147,8 @@ Auth::routes();
         // Route::get('/medical_profile', 'Subscriber\SubscriberController@getmedicalProfile');
         //------------------------------get records page-------------------------//
         Route::get('/records', 'Subscriber\SubscriberController@getRecords');
+
+        Route::get('/med_records', 'Subscriber\SubscriberController@medRecords');
         //------------------------------get subscription page-------------------------//
         Route::get('/subscriptions', 'Subscriber\SubscriberController@getSubscriptions');
         //------------------------------get emergency contact page----------------------//
@@ -192,7 +199,7 @@ Auth::routes();
         Route::get('/updateBmi', 'BmiController@edit');
         Route::post('/updateBmi', 'BmiController@update');
 
-        Route::get('/deleteBMI/{id}/delete', 'BmiController@delete');
+        Route::get('/deleteBMI/{id}', 'BmiController@delete');
         
         Route::post('/enableNotification','SettingsController@enableNotification');
         Route::post('/disableNotification', 'SettingsController@disableNotification');
@@ -266,3 +273,4 @@ Route::post('/blog/add', 'Blog\BlogsController@store');
 Route::get('/blog/{id}', 'Blog\BlogsController@show');    
 Route::get('/blog/{id}/edit', 'Blog\BlogsController@edit');    
 
+});

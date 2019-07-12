@@ -174,6 +174,7 @@ class BmiController extends Controller
      * updadte
      */
     public function update(){
+        // dd($request);
 
         $bmi = Bmi::findOrFail($this->id);
         $data = $this->requestData();
@@ -202,15 +203,28 @@ class BmiController extends Controller
      * delete
      */
     public function delete($id){
-        $subscriber_id = session('subscriber_id');
+        // $subscriber_id = session('subscriber_id');
         $bmi = Bmi::findOrFail($id);
         
-        if ($bmi->subscriber_id  == $subscriber_id):
+        // if ($bmi->subscriber_id  == $subscriber_id):
+        //     $bmi->delete();
+        //     return back()->with('error','Body Mass Index deleted successfully');
+        // else:
+        //     return back()->with('error','An error was encountered');
+        // endif;
+
+
+        // $bp = BloodPressure::find($id);
+        if(is_null($bmi)){
+            return back()->with('error','Blood Pressure does not exist');
+        }else{
             $bmi->delete();
-            return back()->with('error','Body Mass Index deleted successfully');
-        else:
-            return back()->with('error','An error was encountered');
-        endif;
+            return back()->with('success','Blood Pressure deleted successfully');
+        }
+
+
+        Utility::errorLog($e);
+        return back();
     }
 
     

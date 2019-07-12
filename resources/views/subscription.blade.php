@@ -26,11 +26,18 @@
             <div class="col-md-1 mt-2 pull-right"><small>3 Services </small></div>
             <div class="col-md-1 mt-1">
                 <span class="pull-right">
-                    <select class="selectpicker bg-light list-inline" style="width: 60px !important;">
+                  <form name="form1">
+                    <select name="jumpmenu" class="selectpicker bg-light list-inline" onChange="jumpto(document.form.jumpmenu.options[document.form1.jumpmenu.options.selectedIndex].value)" style="width: 60px !important;">
+                      <option value="mybp">MYBP</option>
+                      <option value="mybg">MYBG</option>
+                      <option value="mybump">MYBUMP</option>
+                    </select>
+                  </form>
+                    <!-- <select name="menu" id="menu_jump" class="selectpicker bg-light list-inline" style="width: 60px !important;" OnChange="location.href=menu.options[selectedIndex].value">
                       <option value="/mybp">MYBP</option>
                       <option value="/mybg">MYBG</option>
                       <option value="/mybump">MYBUMP</option>
-                    </select>
+                    </select> -->
                 </span>
             </div>
             <div class="col-md-3 text-right mt-2"><img src="img/svg/icons/settings.svg" id="cog" />  <small>Settings</small></div>
@@ -55,7 +62,7 @@
                 <p class="p-2">My Blood Glucose (MYBG) 
                     Monitor your blood glucose level and avoid the risk of Diabetes</p>
                     <p>
-                        <a href="dashboard" class="btn btn1 btn-info">Continue</a>
+                        <a href="mybg" class="btn btn1 btn-info">Continue</a>
                       </p>
               </div>
               <div class="col-md-3 shadow offset-md-1 text-center my-3 mybox">
@@ -65,7 +72,7 @@
                       Important and regular updates for you during pregnancy.
                     </p>
                     <p>
-                      <a href="dashboard" class="btn btn1 btn-success mt-2">Continue</a>
+                      <a href="mybump" class="btn btn1 btn-success mt-2">Continue</a>
                     </p>
                 </div>
             </div>
@@ -90,5 +97,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="js/bootstrap-select.min.js"></script>
+
+
     </body>
 </html>

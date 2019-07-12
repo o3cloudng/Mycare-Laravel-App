@@ -105,7 +105,6 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('scripts'); ?>
 
-
 <?php $__env->stopSection(); ?>
 <!-- Begin page content -->
 <!-- <main role="main" class="flex-shrink-0">

@@ -1,41 +1,57 @@
 <?php $__env->startSection('title'); ?>
-    Personal Profile
+    Subscriptions
 <?php $__env->stopSection(); ?>
-
-<?php $__env->startSection('subscription-active'); ?>
-black
+<?php $__env->startSection('header'); ?>
+   <i class="fa fa-user"></i> Subscription Data
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
-    <div class="content-wrapper">
-        <div class="container-fluid">
-          <!-- Breadcrumbs-->
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="dashboard">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item active">Subscriptions</li>
-          </ol>
-          <div class="box_general padding_bottom">
-            <div class="header_box version_2">
-              <h2>
-                <i class="fa fa-user"></i>Subscription Data</h2>
+    <div class="container">
+            <div class="row heading">
+              <div class="col-md-9">
+                <h4 class="">Subscriptions</h4>
+              </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <h5 class="text-center">Subscriptions</h5>
-                    <table class="table table-striped">
-                        <tr>
+            <div class="card">
+              <div class="card-header">
+                <div class="">Subscriptions</div>
+              </div>
+              <div class="card-body">
+                <div class="row">
+                <div class="col-md-8">
+                    <!-- <h5 class="text-center"></h5> -->
+                    <table class="table table-bordered" id="medicationTable">
+                        <thead>
+                          <tr>
                             <th>Pull</th>
                             <th>User</th>
-                            <th>Last Charge</th
+                            <th>Last Charge</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
+                            <th>&nbsp;</th>
                         </tr>
+                        </tbody>
+                        <thead>
+                          <tr>
+                            <th>Pull</th>
+                            <th>User</th>
+                            <th>Last Charge</th>
+                          </tr>
+                        </thead>
                     </table>
                     
                 </div>
+                <div class="col-md-4">&nbsp;</div>
                 
             </div>
           </div>
+          <div class="card-footer">&nbsp;</div>
+              </div>
+            </div>
           <!-- /box_general-->
           <div class="box_general padding_bottom">
                 

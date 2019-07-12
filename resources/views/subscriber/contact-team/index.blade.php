@@ -22,8 +22,8 @@
                     </script>
                 @endif
             <!-- Doctor -->
-            <div class="row mt-3">
-                <div class="col-2">
+            <div class="row mt-3 heading">
+                <!-- <div class="col-2">
                     <div class="input-group">
                         <input type="search" class="form-control" name="search" placeholder="Search" />
                         <div class="input-group-append btn-warning"><span class="input-group-text"><i class="fa fa-search"></i></span></div>
@@ -32,24 +32,29 @@
                 <div class="col-4">
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Entries">
-                        <!-- <select class="form-control dropdown" name="entries">
+                        <select class="form-control dropdown" name="entries">
                             <option value="">10</option>
                             <option value="">25</option>
                             <option value="">50</option>
                             <option value="">100</option>
-                        </select> -->
+                        </select>
                     </div>
                 </div>
                 <div class="col-2">
                     <a href="#" class="btn"><img style="width: 35px;" src="{{ asset('img/pencil.png') }}"></a>
                     <a href="#" class="btn"><img style="width: 35px;" src="{{ asset('img/delete.png') }}"></a>
-                </div>
-                <div class="col-3">
-                    <div class="text-right"> <button type="button" class="btn_1 btn btn2 button shadow mx-auto blue" data-toggle="modal" data-target="#addContact">Add New Contact Member  &nbsp; &#43;</button>
+                </div> -->
+                <div class="col-12">
+                    <div class="text-right"> <button type="button" class="btn_1 btn btn2 button shadow mx-auto activeBPLink" data-toggle="modal" data-target="#addContact">Add New Contact Member  &nbsp; &#43;</button>
                     </div>
                 </div>
             </div>
-            <div class="row">
+           <div class="card">
+               <div class="card-header">
+                   Contact Team
+               </div>
+               <div class="card-body">
+                    <div class="row">
                 <div class="col-md-8">
                     @if($errors->all())
                         <div class="alert alert-danger">
@@ -60,7 +65,7 @@
                             </ul>
                         </div>
                     @endif
-                    <table class="table table-condensed" id="contactTeamTable" cellspacing="0" width="100%">
+                    <table class="table table-condensed table-bordered" id="contactTeamTable" cellspacing="0" width="100%">
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -95,6 +100,8 @@
                     </table>
                 </div>
             </div>
+               </div>
+           </div>
 
           </div>
           <!-- /box_general-->
@@ -159,8 +166,8 @@
                             </div>
                             
                             <div class="modal-footer">
-                                <button type="button" class="btn_1  btn btn2 button shadow red gray delete" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn_1  btn btn2 button shadow blue gray approve">Add Contact</button>
+                                <button type="button" class="btn_1  btn btn2 button shadow default gray delete" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn_1  btn btn2 button shadow activeBPLink gray approve">Add Contact</button>
                             </div>
                         </form> 
                     </div>

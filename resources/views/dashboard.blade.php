@@ -107,7 +107,6 @@
 @endsection
 @section('scripts')
 
-
 @endsection
 <!-- Begin page content -->
 <!-- <main role="main" class="flex-shrink-0">

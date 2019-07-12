@@ -10,11 +10,13 @@
     </div>
     <div class="col-md-1 mt-2">3 Services</div>
     <div class="col-md-1">
-      <select class="selectpicker bg-light list-inline" style="width: 60px !important;">
-        <option value="mybp">MYBP</option>
-        <option value="mybg">MYBG</option>
-        <option value="mybump">MYBUMP</option>
-      </select>
+      <form name="form">
+        <select name="jumpmenu" class="selectpicker bg-light list-inline" onChange="jumpto(document.form.jumpmenu.options[document.form1.jumpmenu.options.selectedIndex].value)" style="width: 60px !important;">
+          <option value="mybp">MYBP</option>
+          <option value="mybg">MYBG</option>
+          <option value="mybump">MYBUMP</option>
+        </select>
+      </form>
     </div>
     <div class="col-md-1"></div>
     <div class="col-md-3">

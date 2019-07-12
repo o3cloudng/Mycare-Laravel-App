@@ -1,30 +1,23 @@
-
 @extends('layouts.dashboard')
 
 @section('title')
-  Cholesterol
+    Medical Records
 @endsection
-
+@section('header')
+    <i class="fa fa-user"></i> Medical Records
+@endsection
 @section('content')
-    <div class="content-wrapper">
-        <div class="container-fluid">
-          <!-- Breadcrumbs-->
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="dashboard">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item active">Cholesterol
-                
-            </li>
-          </ol>
-         
-          <!-- /Cholesterol -->
+    <div class="container">
           <div class="box_general padding_bottom">
-                
             <div class="row">
+                <h4 class="heading shadow">Cholesterol Records</h4>
+            </div>
+            <div class="card">
+                <div class="card-header"><i class="fa fa-table"></i> Cholesterol</div>
+                <div class="card-body">
+                    <div class="row">
                 <div class="col-md-8">
-                    <h5 class="text-center">Cholesterol Records</h5>
-                    <table class="table table-striped" id="cholesterolTable" width="100%" cellspacing="0">
+                    <table class="table table-condensed table-bordered" id="cholesterolTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Total Cholesterol Value (md/dl)</th>
@@ -58,7 +51,7 @@
                 </div>
                 <div class="col-md-4">
                    
-                    <h5 class="text-center"> 
+                    <h5> 
                         @isset($cholesterol) 
                             Update 
                         @else 
@@ -89,18 +82,21 @@
                         {{csrf_field()}}
                         <div class="form-group">
                             <label>Total Cholesterol (mg/dl)</label>
-                            <input class="form-control" value="@isset ($cholesterol) {{ $cholesterol->total_cholesterol }} @endisset" name="total_cholesterol" type="number" placeholder="Your Total Cholesterol">
+                            <input class="form-control shadow" value="@isset ($cholesterol) {{ $cholesterol->total_cholesterol }} @endisset" name="total_cholesterol" type="number" placeholder="Your Total Cholesterol">
                         </div>
                         <div class="form-group">
                             <label>High Density Lipoprotein (mg/dl)</label>
-                            <input class="form-control" value="@isset ($cholesterol) {{ $cholesterol->high_density_lipoprotein }} @endisset" name="high_density_lipoprotein" type="number" placeholder="Your High Density Lipoprotein">
+                            <input class="form-control shadow" value="@isset ($cholesterol) {{ $cholesterol->high_density_lipoprotein }} @endisset" name="high_density_lipoprotein" type="number" placeholder="Your High Density Lipoprotein">
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn_1 medium">Submit</button>
+                            <button type="submit" class="btn_1 medium btn btn2 shadow activeBPLink">Submit</button>
                         </div>
                     </form>
                     <!-- /row-->
                 </div>
+            </div>
+                </div>
+                <div class="card-footer"></div>
             </div>
           </div> 
           <!-- /row-->

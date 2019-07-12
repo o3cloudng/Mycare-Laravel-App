@@ -2,27 +2,14 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Medication
+    Medications
 @endsection
-
+@section('header')
+   <i class="fa fa-user"></i> Medications
+@endsection
 @section('content')
-    <div class="content-wrapper">
-        <div class="container-fluid">
-          <!-- Breadcrumbs-->
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="{{ url('/') }}">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item">
-                <a href="{{ url('/diagnosis/') }}">All Diagnosis </a>
-            </li>
-            
-          </ol>
-          <div class="box_general padding_bottom">
-            <div class="header_box version_2">
-              <h2>
-                <i class="fa fa-user"></i>Profile details</h2>
-            </div>
+        <div class="container">
+            <div class="box_general padding_bottom">
             @if($errors->all())
                 <div class="alert alert-danger">
                     <ul>
@@ -32,21 +19,36 @@
                     </ul>
                 </div>
             @endif
+            <div class="header_box version_2">
+                <div class="row heading">
+                    <div class="col-md-9">
+                      <h4 class="">Medication</h4>
+                    </div>
+                    <div class="col-md-3">
+                      <a href="{{ url('add_medications') }}" class="btn_1 approve activeBPLink shadow btn btn2 button float-right">
+                            Add New Medication
+                        </a>
+                        {{-- <button href="" class="btn_1 approve" data-toggle="modal" data-target="#addMedication">
+                                Add New Medication
+                        </button> --}}
+                    </div>    
+                </div>
+            </div>
             <div class="text-left">
-                <a href="{{ url('medications/new') }}" class="btn_1 approve">
-                    Add New Medication
-                </a>
-                {{-- <button href="" class="btn_1 approve" data-toggle="modal" data-target="#addMedication">
-                        Add New Medication
-                </button> --}}
+                
             </div>
           </div>
             
-          <div class="box_general padding_bottom">
-            <!-- Medication -->
+          
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-table"></i> Medications</h5>
+                </div>
+                <div class="card-body">
+                                <!-- Medication -->
             <div class="row">
                 <div class="col-md-12">
-                    <table class="table table-striped table-bordered" id="medicationTable" width="100%" cellspacing="0">
+                    <table class="table table-bordered" id="medicationTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>S/N</th>
@@ -93,7 +95,9 @@
                     </table>
                 </div>
             </div>
-          </div>
+                </div>
+            </div>
+        </div>
              <!-- Add Medication Modal -->
             <div class="modal fade" id="addMedication" tabindex="-1" role="dialog" aria-labelledby="addMedicationLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -147,8 +151,8 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn_1 delete" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn_1 approve">Add New Medication</button>
+                                <button type="button" class="btn_1 btn btn2 shadow default delete" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn_1 btn btn2 shadow activeBPLink approve">Add New Medication</button>
                             </div>
                         </form> 
                     </div>
@@ -224,8 +228,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Edit Medication</button>
+                            <button type="button" class="btn btn2 shadow default btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn2 shadow activeBPLink btn-primary">Edit Medication</button>
                         </div>
                     </form>
                     </div>
@@ -240,5 +244,4 @@
          
         </div>
         <!-- /.container-fluid-->
-    </div>
 @endsection
