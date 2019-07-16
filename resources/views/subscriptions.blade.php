@@ -32,9 +32,10 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <th>&nbsp;</th>
-                            <th>&nbsp;</th>
-                            <th>&nbsp;</th>
+                            <th colspan="3">{{ $subscriber->phone }}</th>
+                        </tr>
+                          <tr>
+                            <th colspan="3">{{ $sub }}</th>
                         </tr>
                         </tbody>
                         <thead>

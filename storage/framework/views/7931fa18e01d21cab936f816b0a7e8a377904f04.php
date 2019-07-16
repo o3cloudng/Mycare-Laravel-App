@@ -30,9 +30,10 @@
                         </thead>
                         <tbody>
                           <tr>
-                            <th>&nbsp;</th>
-                            <th>&nbsp;</th>
-                            <th>&nbsp;</th>
+                            <th colspan="3"><?php echo e($subscriber->phone); ?></th>
+                        </tr>
+                          <tr>
+                            <th colspan="3"><?php echo e($sub); ?></th>
                         </tr>
                         </tbody>
                         <thead>

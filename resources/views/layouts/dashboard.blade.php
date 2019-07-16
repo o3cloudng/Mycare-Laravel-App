@@ -67,7 +67,7 @@
               <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
               </button> -->
-              <span class="align-items-center align-middle">Hi +234 8045654325,</span>
+              <span class="align-items-center align-middle">Hi {{ $subscriber->phone }},</span>
                 <i class="navbar-toggler-icon glyphicon glyphicon-align-right mr-3" data-toggle="collapse" data-target="#collapsibleNavbar"></i>
               <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav">
@@ -112,7 +112,14 @@
                                   <a id="mlogo" href="/subscription"><img class="w-50" src="img/logo.jpeg" /></a>  
                                   </div>
                                   <div class="col-6">
-                                      <span class="align-items-center align-middle">Hi +234 8045654325,</span>
+                                      <span class="align-items-center">Hi
+                                        @if($subscriber->name)
+                                           {{ $subscriber->name }}
+                                        @else
+                                           {{ $subscriber->phone }} 
+                                        @endif                                    
+                                          ,
+                                        </span>
                                   </div>
                                     </div>
                                 </div>

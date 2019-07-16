@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Auth;
 // use Auth;
 
 use Illuminate\Support\Facades\Hash;
+// require 'Illuminate/vendor/autoload.php';
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Client;
 
 use Session;
 
@@ -262,7 +265,18 @@ class SubscriberController extends Controller
 
         $subscriber = User::findOrFail($id);
 
+        $client = new \GuzzleHttp\Client();
+        $request = $client->get('http://spexweb.atp-sevas.com:8585/sevas/api/v1/subscription/search',[
+            'header' => [
+                'msisdn' => [$subscriber->phone],
+                'service_id' => ['3705']
+            ]
+        ]);
+        $response = $request->getBody()->getContents();
+       
+        // dd($response);
         return view('subscriptions',[
+            'sub' => $response,
             'subscriber' => $subscriber
         ]);
     }
@@ -274,7 +288,8 @@ class SubscriberController extends Controller
         $id = session('subscriber_id');
         $subscriber = User::findOrFail($id);
         return view('settings',[
-            'subscriber' => $subscriber
+            'subscriber' => $subscriber,
+            ''
         ]);
     }
 
