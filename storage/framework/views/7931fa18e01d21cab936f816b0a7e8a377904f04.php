@@ -33,7 +33,7 @@
                             <th colspan="3"><?php echo e($subscriber->phone); ?></th>
                         </tr>
                           <tr>
-                            <th colspan="3"><?php echo e($sub); ?></th>
+                            <th colspan="3"><?php echo e($subscription[0]->subscriptionServiceName); ?></th>
                         </tr>
                         </tbody>
                         <thead>

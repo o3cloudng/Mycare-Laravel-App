@@ -9,7 +9,7 @@
           <!-- /Blood Pressure -->
           <div class="box_general padding_bottom">
             <div class="row">
-                <h4 class="heading">Blood Glucose</h4>
+                <h4 class="heading shadow-sm">Blood Glucose</h4>
             </div>
             <div class="card">
                 <div class="card-header"><i class="fa fa-table"></i> Blood Glucose</div>

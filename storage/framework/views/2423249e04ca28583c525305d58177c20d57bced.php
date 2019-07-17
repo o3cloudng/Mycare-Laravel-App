@@ -1,3 +1,7 @@
+<?php $__env->startSection('header'); ?>
+    <h2><i class="fa fa-user"></i> Contact Team</h2>
+<?php $__env->stopSection(); ?>
+
 <?php $__env->startSection('title'); ?>
     Contact Team
 <?php $__env->stopSection(); ?>
@@ -5,8 +9,7 @@
         <div class="container">
           <div class="box_general padding_bottom">
             <div class="header_box version_2">
-              <h2>
-                <i class="fa fa-user"></i> Contact Team</h2>
+              
             </div>
                 <?php if(session('success')): ?>
                     <script type="text/javascript">
@@ -19,7 +22,7 @@
                     </script>
                 <?php endif; ?>
             <!-- Doctor -->
-            <div class="row mt-3 heading">
+            <div class="row mt-3 heading shadow-sm">
                 <!-- <div class="col-2">
                     <div class="input-group">
                         <input type="search" class="form-control" name="search" placeholder="Search" />
@@ -52,7 +55,7 @@
                </div>
                <div class="card-body">
                     <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-10">
                     <?php if($errors->all()): ?>
                         <div class="alert alert-danger">
                             <ul>
@@ -62,7 +65,8 @@
                             </ul>
                         </div>
                     <?php endif; ?>
-                    <table class="table table-condensed table-bordered" id="contactTeamTable" cellspacing="0" width="100%">
+                    <div class="table-responsive">
+                        <table class="table table-condensed table-bordered" id="contactTeamTable" cellspacing="0" width="100%">
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -88,13 +92,15 @@
                                     <td><?php echo e(ucfirst($contactTeam->description)); ?></td>
                                     <td><?php echo e($contactTeam->email); ?></td>
                                     <td><?php echo e($contactTeam->phone); ?></td>
-                                    <!-- <td>
-                                        <button class="btn_1 gray delete del-contactTeam btn btn2 button shadow mx-auto blue" data-id="<?php echo e($contactTeam->id); ?>" ><i class="fa fa-fw fa-times-circle-o"></i> Remove as Contact Team Member</button>
-                                    </td> -->
+                                    <!-- <td> -->
+                                        <!-- <button class="btn_1 gray delete del-contactTeam btn btn2 button shadow mx-auto activeBPLink" data-id="<?php echo e($contactTeam->id); ?>" ><i class="fa fa-fw fa-times-circle-o"></i></button> -->
+                                        <!-- <a href="contact-team/delete/<?php echo e($contactTeam->id); ?>" class="btn btn-danger"><i class="fa fa-fw fa-times-circle-o"></i></a> -->
+                                    <!-- </td> -->
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
                     </table>
+                    </div>
                 </div>
             </div>
                </div>
@@ -164,8 +170,10 @@
                             </div>
                             
                             <div class="modal-footer">
-                                <button type="button" class="btn_1  btn btn2 button shadow default gray delete" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn_1  btn btn2 button shadow activeBPLink gray approve">Add Contact</button>
+                                <div class="form-group">
+                                    <button type="button" class="btn_1 btn btn2 button shadow default gray delete" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn_1 btn btn2 button shadow activeBPLink gray approve">Add Contact</button>
+                                </div>
                             </div>
                         </form> 
                     </div>

@@ -9,7 +9,7 @@
     <div class="container">
           <div class="box_general padding_bottom">
             <div class="header_box version_2">
-                <div class="row heading">
+                <div class="row heading shadow-sm">
                     <div class="col-md-9">
                       <h4 class="">Body Mass Index (Profile details)</h4>
                     </div>
@@ -36,7 +36,8 @@
                         </ul>
                     </div>
                 <?php endif; ?>
-                    <table class="table table-condensed table-bordered" id="bodyMassIndexTable" width="100%" cellspacing="0">
+                    <div class="table-responsive">
+                        <table class="table table-condensed table-bordered" id="bodyMassIndexTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Weight (kg)</th>
@@ -78,6 +79,7 @@
                         </tbody>
                        
                     </table>
+                    </div>
                 </div>
             </div>
                 </div>

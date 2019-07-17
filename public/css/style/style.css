@@ -494,6 +494,15 @@ input:checked + .slider:before {
     background-color: lightblue;
   }
 
+  .cover-width {
+    margin: 0px !important;
+    padding: 0px !important;
+  }
+  .settings, .logout {
+    display: none;
+    visibility: hidden;
+  }
+
   #sidebar {
     display: none !important;
     /* width: 0px !important; */
@@ -502,6 +511,23 @@ input:checked + .slider:before {
     display: inline-block !important;
     text-align: center !important;
     margin-bottom: 40px !important;
+    border-radius: 5px;
+  }
+  .top-link {
+    width: 100% !important;
+    margin-left: 25px !important;
+  }
+  .col-md-6 {
+    width: 50% !important;
+  }
+  button {
+    display: inline-block;
+    width: 100% !important;
+    margin-bottom: 4px !important;
+  }
+  .text-sm-center {
+    width: 100% !important;
+    margin-left: 25px !important;
   }
   #img-logo {
     width: 250px !important;

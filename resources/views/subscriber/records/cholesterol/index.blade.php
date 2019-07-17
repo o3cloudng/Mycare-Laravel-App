@@ -17,7 +17,8 @@
                 <div class="card-body">
                     <div class="row">
                 <div class="col-md-8">
-                    <table class="table table-condensed table-bordered" id="cholesterolTable" width="100%" cellspacing="0">
+                   <div class="table-responsive">
+                        <table class="table table-condensed table-bordered" id="cholesterolTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Total Cholesterol Value (md/dl)</th>
@@ -48,6 +49,7 @@
                             @endisset
                         </tbody>
                     </table>
+                   </div>
                 </div>
                 <div class="col-md-4">
                    

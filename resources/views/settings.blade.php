@@ -12,7 +12,7 @@
           <div class="box_general padding_bottom">
             <div class="header_box version_2">
                 <div class="row">
-                    <h4 class="heading">Settings</h4>
+                    <h4 class="heading shadow-sm">Settings</h4>
                 </div>
             </div>
             <div class="row">

@@ -25,17 +25,19 @@
                     <table class="table table-bordered" id="medicationTable">
                         <thead>
                           <tr>
-                            <th>Pull</th>
-                            <th>User</th>
-                            <th>Last Charge</th>
+                            <th>Phone </th>
+                            <th>Services</th>
+                            <th>Sub Status</th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <th colspan="3">{{ $subscriber->phone }}</th>
+                            <th>{{ $subscriber->phone }}</th>
+                            <th>{{ $subscriber->phone }}</th>
+                            <th>{{ $subscriber->phone }}</th>
                         </tr>
                           <tr>
-                            <th colspan="3">{{ $sub }}</th>
+                            <th colspan="3">{{ $subscription[0]->subscriptionServiceName  }}</th>
                         </tr>
                         </tbody>
                         <thead>

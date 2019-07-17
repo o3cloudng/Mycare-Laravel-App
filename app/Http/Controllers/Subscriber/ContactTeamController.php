@@ -45,8 +45,8 @@ class ContactTeamController extends Controller
 
     public function delete(Request $request) {
 
+        dd('Something here...');
         $subscriber_id = session('subscriber_id');
-        // dd($request->id);
         // return ['success' => 'has been removed from your contact team', 'id' => $request->id]);
         $contactTeam = ContactTeam::findOrFail($request->id);
         

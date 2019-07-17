@@ -1,6 +1,10 @@
 
 @extends('layouts.dashboard')
 
+@section('header')
+<h2 class="d-inline-block">Medical Personals</h2>
+@endsection
+
 @section('title')
     Care Team
 @endsection
@@ -11,18 +15,11 @@ black
 
 @section('content')
     <div class="content-wrapper">
-        <div class="container-fluid">
-          <div class="box_general">
-                <div class="header_box">
-                    <h2 class="d-inline-block">Medical Personals</h2>
-                    <div class="filter">
-                        <select name="orderby" class="selectbox">
-                            <option value="Any time">Any time</option>
-                            <option value="Latest">Latest</option>
-                            <option value="Oldest">Oldest</option>
-                        </select>
-                    </div>
-                </div>
+        <div class="container">
+            <div class="row">
+                <h4 class="heading shadow-sm">Medical Personels</h4>
+            </div>
+
                 <div class="list_general">
                     <ul>
                         @if (count($users) > 0)
@@ -34,7 +31,7 @@ black
                                 <p class="text-center">{{ $user->email }}</p>
                                 <p class="text-center">{{ $user->phone }}</p>
                                 <ul class="buttons text-center">
-                                    <li class="text-center"> <a href="javascript:void(0);" onclick="addUserToCareTeam({{ $user->id }} )" class="btn_1 gray approve wishlist_close btn2 activeLink shadow text-center"><i class="fa fa-fw fa-times-circle-o"></i> Add to Care Team </a></li>
+                                    <li class="text-center"> <a href="javascript:void(0);" onclick="addUserToCareTeam({{ $user->id }});" class="btn_1 gray approve wishlist_close btn2 activeLink shadow text-center"><i class="fa fa-fw fa-times-circle-o"></i> Add to Care Team </a></li>
                                 </ul>
                             </li>
                             @endforeach
@@ -72,15 +69,17 @@ $(function(){
         if(confirm("Do you want to delete this Medical Personal, and all his/her diagnosis and medications ?")){
             location = 'user/' + $(this).data('id') + '/delete';
         }
-    })
-})
+    });
 
-function addUserToCareTeam(userID) {
-        $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+
+
+    function addUserToCareTeam(userID) {
+    // alert(userID);
+        // $.ajaxSetup({
+        //         headers: {
+        //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        //         }
+        //     });
             $.ajax({
                 url: "{{ url('/care-team/member/new') }}",
                 type: 'POST',
@@ -98,6 +97,9 @@ function addUserToCareTeam(userID) {
                 }
               });
     }
+});
+
+
 
 </script>
 @endsection

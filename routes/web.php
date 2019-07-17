@@ -90,7 +90,7 @@ Route::group( [ 'middleware' => 'checksession', 'Auth'], function () {
         /* Contact Team: To Replace Care Team Implementation */
         Route::get('/contact-team', 'Subscriber\ContactTeamController@index');
         Route::post('/contact-team/new', 'Subscriber\ContactTeamController@store');
-        Route::post('/contact-team/delete', 'Subscriber\ContactTeamController@delete');
+        Route::get('/contact-team/delete/{$id}', 'Subscriber\ContactTeamController@delete');
             
         /* Care Team */
         Route::get('/care-team', 'Subscriber\SubscriberController@getCareTeam');

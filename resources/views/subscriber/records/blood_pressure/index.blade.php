@@ -10,12 +10,12 @@
     <div class="container">
           <div class="box_general padding_bottom">
             <div class="header_box version_2">
-              <div class="row heading">
-                <div class="col-md-9">
+              <div class="row heading shadow-sm">
+                <div class="col-sm-12 col-md-9 text-sm-center text-md-left">
                   <h4 class="">Blood Pressure</h4>
                 </div>
-                <div class="col-md-3">
-                  <button type="button" class="btn_1 btn btn2 button shadow activeBPLink float-right" data-toggle="modal" data-target="#addBloodPressure">
+                <div class="col-sm-12 col-md-3">
+                  <button type="button" class="btn_1 btn btn2 button shadow activeBPLink float-right text-sm-center" data-toggle="modal" data-target="#addBloodPressure">
                         Add New Blood Pressure <i class="fa fa-plus"></i>
                     </button>
                 </div>    

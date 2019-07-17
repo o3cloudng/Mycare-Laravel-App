@@ -10,15 +10,8 @@ black
 @endsection
 
 @section('content')
-    <div class="content-wrapper">
-        <div class="container-fluid">
-          <!-- Breadcrumbs-->
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
-              <a href="#">Dashboard</a>
-            </li>
-            <li class="breadcrumb-item active">Body Mass Index 
-          </ol>
+    <!-- <div class="content-wrapper"> -->
+        <div class="container">
           <div class="box_general padding_bottom">
             <div class="header_box version_2">
               <h2>
@@ -43,7 +36,8 @@ black
                         </ul>
                     </div>
                 @endif
-                    <table class="table table-striped table-bordered" id="bodyMassIndexTable" width="100%" cellspacing="0">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered" id="bodyMassIndexTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Weight (kg)</th>
@@ -83,6 +77,7 @@ black
                         </tbody>
                        
                     </table>
+                    </div>
                 </div>
             </div>
             <hr>
@@ -153,8 +148,8 @@ black
                             </div>
                             <div class="modal-footer">
                                 <div class="form-group">
-                                    <button type="button" class="btn_1 gray delete" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn_1 gray approve">Submit</button>
+                                    <button type="button" class="btn_1 btn btn2 button shadow default gray delete" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn_1 btn btn2 button shadow activeBPLink gray approve">Submit</button>
                                 </div>
                             </div>
                         </form> 

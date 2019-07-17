@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Hash;
 // require 'Illuminate/vendor/autoload.php';
-use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Client;
+// use GuzzleHttp\Exception\GuzzleException;
+// use GuzzleHttp\Client;
 
 use Session;
 
@@ -264,19 +264,36 @@ class SubscriberController extends Controller
         $id = session('subscriber_id');
 
         $subscriber = User::findOrFail($id);
+        $phone = (int)$subscriber->phone;
 
-        $client = new \GuzzleHttp\Client();
-        $request = $client->get('http://spexweb.atp-sevas.com:8585/sevas/api/v1/subscription/search',[
-            'header' => [
-                'msisdn' => [$subscriber->phone],
-                'service_id' => ['3705']
-            ]
-        ]);
-        $response = $request->getBody()->getContents();
-       
+        $curl = curl_init();
+        $url = 'http://spexweb.atp-sevas.com:8585/sevas/api/v1/subscription/search';
+
+        $fields = array(
+                    'msisdn' => '08060617790',
+                    'service_id' => 3705
+                );
+
+        //url-ify the data for the POST
+        $fields_string = http_build_query($fields);
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HTTPHEADER => [
+                "accept: application/json"
+            ],
+            CURLOPT_POSTFIELDS => $fields_string
+        ));
+
+        //execute post
+        $result = curl_exec($curl);
+        $result = json_decode($result);
+        //close connection
+        curl_close($curl);
         // dd($response);
         return view('subscriptions',[
-            'sub' => $response,
+            'subscription' => $result,
             'subscriber' => $subscriber
         ]);
     }

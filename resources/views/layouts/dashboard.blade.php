@@ -31,6 +31,7 @@
   <body class="d-flex flex-column h-100">
 <div class="container-fliud h-100">
     <div class="row">
+      <!-- WEB NAVIGATION CODE -->
         <div class="col-md-2 h-100 sticky-top hidden-md-down" id="sidebar">
             <div class="text-center">
                 <a href="/subscription"><img class="img-rounded rounded mt-4" style="width: 200px; margin-left: -20px !important;" src="{{ asset('img/svg/logo.svg') }}" /></a>
@@ -49,25 +50,31 @@
                 </a>
                 <div class="text-left ml-2">
                     <a href="/dashboard" class="list-group-item"><img src="{{asset('img/svg/icons/dashboard.svg')}}" class="menu_icon" /> Dashboard</a>
-                    <a href="/records" class="list-group-item"><img src="{{asset('img/svg/icons/medical_records.svg')}}" class="menu_icon" /> Records</a>
+                    <!-- <a href="/records" class="list-group-item"><img src="{{asset('img/svg/icons/medical_records.svg')}}" class="menu_icon" /> Records</a> -->
                     <a href="/med_records" class="list-group-item"><img src="{{asset('img/svg/icons/medical_records.svg')}}" class="menu_icon" /> Medical Records</a>
-                    <a href="/contact-team" class="list-group-item"><img src="{{asset('img/svg/icons/contact_team.svg')}}" class="menu_icon" /> Care Team</a>
+                    <a href="/contact-team" class="list-group-item"><img src="{{asset('img/svg/icons/contact_team.svg')}}" class="menu_icon" /> Contact Team</a>
                     <a href="/medical_personel" class="list-group-item"><img src="{{asset('img/svg/icons/medical_personel.svg')}}" class="menu_icon" /> Medical Personal</a>
                     <a href="medications" class="list-group-item"><img src="{{ asset('img/svg/icons/medication.svg') }}" class="menu_icon" /> Medication</a>
                     <a href="/goals" class="list-group-item"><img src="{{ asset('img/svg/icons/goals.svg') }}" class="menu_icon" /> Goal</a>
                     <a href="/subscriptions" class="list-group-item"><img src="{{ asset('img/svg/icons/subscription.svg') }}" class="menu_icon" /> Subscription</a>
                 </div>
             </div>
-            <!-- <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> -->
         </div>
-        <div class="col-md-10 w-100" style="height:100%;">
+
+        <!-- MOBILE NAVIGATION CODE -->
+        <div class="col-md-10 w-100 cover-width" style="height:100%;">
             <nav class="navbar navbar-expand-md bg-dark navbar-dark d-sm-block d-md-none">
               <!-- <a class="navbar-brand" href="/subscription">MYCAREPLUS</a> -->
               <a class="navbar-brand" href="/subscription"><img style="width: 70px; height:30px;" src="{{ asset('img/logo.jpeg') }}" /></a>
               <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
               </button> -->
-              <span class="align-items-center align-middle">Hi {{ $subscriber->phone }},</span>
+              <span class="align-items-center align-middle">Hi 
+                                        @if($subscriber->name)
+                                           {{ $subscriber->name }}
+                                        @else
+                                           {{ $subscriber->phone }} 
+                                        @endif ,</span>
                 <i class="navbar-toggler-icon glyphicon glyphicon-align-right mr-3" data-toggle="collapse" data-target="#collapsibleNavbar"></i>
               <div class="collapse navbar-collapse" id="collapsibleNavbar">
                 <ul class="navbar-nav">
@@ -77,14 +84,14 @@
                   <li class="nav-item">
                     <a href="/dashboard" class="nav-link"><img src="{{asset('img/svg/icons/dashboard.svg')}}" class="menu_icon" /> Dashboard</a>
                   </li>
-                  <li class="nav-item">
+                  <!-- <li class="nav-item">
                     <a href="/records" class="nav-link"><img src="{{asset('img/svg/icons/medical_records.svg')}}" class="menu_icon" /> Records</a>
-                  </li>
+                  </li> -->
                   <li class="nav-item">
                     <a href="/med_records" class="nav-link"><img src="{{asset('img/svg/icons/medical_records.svg')}}" class="menu_icon" /> Medical Records</a>
                   </li>
                   <li class="nav-item">
-                    <a href="/contact-team" class="nav-link"><img src="{{asset('img/svg/icons/contact_team.svg')}}" class="menu_icon" /> Care Team</a>
+                    <a href="/contact-team" class="nav-link"><img src="{{asset('img/svg/icons/contact_team.svg')}}" class="menu_icon" /> Contact Team</a>
                   </li>
                   <li class="nav-item">
                     <a href="medical_personel" class="nav-link"><img src="{{asset('img/svg/icons/medical_personel.svg')}}" class="menu_icon" /> Medical Personal</a>
@@ -97,6 +104,13 @@
                   </li>
                   <li class="nav-item">
                     <a href="/subscriptions" class="nav-link"><img src="{{asset('img/svg/icons/subscription.svg')}}" class="menu_icon" /> Subscription</a>
+                  </li>
+                  <li class="nav-item">
+                    <!-- <a href="/subscriptions" class=""><img src="" class="menu_icon" /> Settings</a> -->
+                    <a href="settings" class="nav-link" style="color: #F8A602;"><small id="settings"><img src="{{asset('img/svg/icons/settings.svg')}}" id="cog" />  Settings</small></a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/signout" class="nav-link" style="color: #F8A602;"><i class="fa fa-sign-out fa-1x" aria-hidden="true"></i> Logout</a>
                   </li>
 
                 </ul>
@@ -123,13 +137,13 @@
                                   </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-12 col-md-8">
+                                <div class="col-xs-12 col-sm-12 col-md-8 top-link">
                                     <a href="/blood_pressures" class="btn btn2 button shadow mr-2 activeBPLink">MYBP</a>
                                     <a href="/blood_glucoses" class="btn btn2 button shadow mr-2 activeBPLink">MYBG</a>
-                                    <a href="/mybump" class="btn btn2 button shadow mr-2 activeBPLink">MYBUMP</a>
+                                    <a href="/mybump" class="btn btn2 button shadow activeBPLink">MYBUMP</a>
 
-                                   <a href="/signout" class="float-right" style="color: #F8A602;"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>&nbsp;</a>
-                                    <span class="float-right mr-4"><a href="settings" style="color: #F8A602;"><small id="settings"><img src="img/svg/icons/settings.svg" id="cog" />  Settings</small></a></span>
+                                   <a href="/signout" class="float-right settings" style="color: #F8A602;"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>&nbsp;</a>
+                                    <span class="float-right mr-4 logout"><a href="settings" style="color: #F8A602;"><small id="settings"><img src="img/svg/icons/settings.svg" id="cog" />  Settings</small></a></span>
                                     <!-- <a href="#" class="ml-5"><small id="settings"><i class=""></i> Bell</small></a></span> -->
                                 </div>
                                 <!-- <div class="col-xs-4 col-sm-4 col-sm-4 col-md-4 text-right"><a href="#"><small id="settings"><img src="img/svg/icons/settings.svg" id="cog" />  Settings</small></a></</div> -->
@@ -137,10 +151,10 @@
                             </div>
                                 <div class="container mt-4 mb-2">
                                     <div class="row justify-content-center">
-                                        <div class="col-xs-10 col-sm-10 mx-auto col-md-4 h3 text-md-left text-xs-center">
+                                        <div class="col-xs-12 col-sm-12 mx-auto col-md-4 h3 text-md-left text-sm-center">
                                           @yield('header')
                                         </div>
-                                        <div class="col-xs-10 col-sm-10 col-md-8 mx-auto px-auto">
+                                        <div class="col-xs-10 col-sm-10 col-md-8 mx-sm-auto px-auto">
                                                 @yield('week')
                                                 <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                                     <li class="pl-3"><a href="#">One Week</a></li>
