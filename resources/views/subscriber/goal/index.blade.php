@@ -81,13 +81,13 @@
                             <div class="row mt-5">
                                 <div class="col-md-6">
                                     <div class="round_box d-flex justify-content-center">
-                                        <h3 class="my-auto">{{ $bloodPressureGoal->systolic }}</h3> 
+                                        <h3 class="my-auto">@isset($bloodPressure){{ $bloodPressureGoal->systolic }} @endisset</h3> 
                                     </div>
                                     <br/><br/><h5 class="text-center">Systolic</h5>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="round_box d-flex justify-content-center">
-                                        <h3 class="my-auto">{{ $bloodPressureGoal->diastolic }}</h3> 
+                                        <h3 class="my-auto">@isset($bloodPressure){{ $bloodPressureGoal->diastolic }} @endisset</h3> 
                                     </div>
                                     <br/><br/><h5 class="text-center">Diastolic</h5>
                                 </div>
