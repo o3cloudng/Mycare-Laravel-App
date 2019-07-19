@@ -94,9 +94,15 @@ class SubscriberController extends Controller
             $id = session('subscriber_id');
             // $id = Auth::user()->id;
             $subscriber = User::findOrFail($id);
+
+            if(!$subscriber){
+                return redirect('activate');
+            }
            $bps = BloodPressure::where('subscriber_id',$id)->orderBy('id', 'desc')->take(7)->get();
             
             $bgs = BloodGlucose::where('subscriber_id',$id)->orderBy('id', 'desc')->take(7)->get();
+
+            // dd($bps);
             
             $bp_systole_today = BloodPressure::where('subscriber_id',$id)->pluck('systolic');
             $bp_diastole_today = BloodPressure::where('subscriber_id',$id)->pluck('diastolic');
@@ -264,14 +270,16 @@ class SubscriberController extends Controller
         $id = session('subscriber_id');
 
         $subscriber = User::findOrFail($id);
-        $phone = (int)$subscriber->phone;
+        // $phone = (int)$subscriber->phone;
+        $phone = $subscriber->phone;
+        $service_id = 3705;
 
         $curl = curl_init();
         $url = 'http://spexweb.atp-sevas.com:8585/sevas/api/v1/subscription/search';
 
         $fields = array(
-                    'msisdn' => '08060617790',
-                    'service_id' => 3705
+                    'msisdn' => $phone,
+                    'service_id' => $service_id
                 );
 
         //url-ify the data for the POST
@@ -289,6 +297,38 @@ class SubscriberController extends Controller
         //execute post
         $result = curl_exec($curl);
         $result = json_decode($result);
+
+        $currentDate = Carbon::now(); // 2019-07-18 10:27:29.262325 Africa/Lagos (+01:00)
+
+        // Subscription request date Time
+        $subDateTime = $result[0]->subscriptionReqTime; // 2019-07-12 15:58:14.081212
+
+        $subDateTime = explode(" ",$subDateTime);
+        $date = $subDateTime[0];
+        $date =  explode("-",$date);
+        $year = $date[0];
+        $month = $date[1];
+        $day = $date[2];
+
+        $time = $subDateTime[1];
+        $time =  explode(":",$time);
+        $hour = $time[0];
+        $minute = $time[1];
+        $sec = $time[2];
+
+        $sec = explode(".", $sec);
+        $second = $sec[0];
+        $subscriptionPeriod = $result[0]->subscriptionPeriod;
+
+        //  Using Carbon
+        $expiryDateTime = Carbon::create($year, $month, $day, $hour, $minute, $second, 'GMT');
+        // Sub Expiry date & Time calculated
+        $expiryDateTime = $expiryDateTime->addDays($subscriptionPeriod);
+
+        if($expiryDateTime->lessThan($currentDate)) {
+            // dd($expiryDateTime);
+            // return redirect('activate')->with('status','Your subscription has expired.');
+        }
         //close connection
         curl_close($curl);
         // dd($response);
@@ -298,6 +338,117 @@ class SubscriberController extends Controller
         ]);
     }
 
+
+    public function activation(Request $request){
+        // dd($request->phone);
+        
+        $phone = $request->phone;
+        $email = $request->phone;
+        $service_id = $request->service_id;
+        $ServiceAmount = $request->amount;
+        $sub_source = "web";
+        $period = 1;
+        $age = 1;
+        // $service_id = 3705;
+
+        $curl = curl_init();
+        $url = 'http://spexweb.atp-sevas.com:8585/sevas/api/v1/subscription/activate';
+
+        $fields = array(
+                    'msisdn' => $phone,
+                    'service_id' => $service_id,
+                    'sub_source' => $sub_source,
+                    'period' => $period,
+                    'age' => $age
+                );
+
+        //url-ify the data for the POST
+        $fields_string = http_build_query($fields);
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_POST => 1,
+            CURLOPT_HTTPHEADER => [
+                "accept: application/json"
+            ],
+            CURLOPT_POSTFIELDS => $fields_string
+        ));
+
+        //execute post
+        $result = curl_exec($curl);
+        $result = json_decode($result);
+
+        if(!$result) {
+            return redirect('activate')->with('status','Subscription failed, try again later.');
+        } else {
+            // Payment, after Activation
+            $curl = curl_init();
+            $url = 'http://spexweb.atp-sevas.com:8585//sevas/api/v1/service/pay';
+
+            $fields = array(
+                        'msisdn' => $phone,
+                        'service_id' => $service_id
+                    );
+
+            //url-ify the data for the POST
+            $fields_string = http_build_query($fields);
+
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => $url,
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_POST => 1,
+                CURLOPT_HTTPHEADER => [
+                    "accept: application/json"
+                ],
+                CURLOPT_POSTFIELDS => $fields_string
+            ));
+
+            //execute post
+            $result = curl_exec($curl);
+            $result = json_decode($result);
+
+            if (curl_errno($curl)) {
+                return redirect()->back()->with('error','Something went wrong while billing.'); 
+            }
+            if($result) {
+                $subscriber = User::where('phone', $request->phone)->first();
+
+
+                if(!$subscriber){
+                    $subscriber = new User();
+                    $subscriber->email = $email;
+                    $subscriber->phone = $phone;
+                    $subscriber->password = $phone;
+                    $subscriber->token = base64_encode($email);
+                    $subscriber->save();
+
+                    $subscriber = User::where('phone', $request->phone)->first();
+                    // dd($subscriber);
+
+                    session(['subscriber_id'=>$subscriber->id]);
+                    // dd($subscriber);
+                    return redirect('dashboard')->with('success','Subscription activation successful.');
+                    
+                }else {
+
+                    // dd("Old".$subscriber);
+                    $subscriber = User::where('phone', $request->phone)->first();
+                    session(['subscriber_id'=>$subscriber->id]);
+                    return redirect('dashboard')->with('success','Subscription renewal successful.');
+                    // return redirect()->back()->withErrors('Something went wrong.')->withInput();                    
+                }
+
+            } else {
+                return redirect()->back()->with('error','Something went wrong.'); 
+                // return redirect('activate')->with('status','Subscription failed.');                
+            }
+
+        }
+        //close connection
+        curl_close($curl);
+    }
+
     /**
      * get subscriptions page
      */
@@ -305,8 +456,7 @@ class SubscriberController extends Controller
         $id = session('subscriber_id');
         $subscriber = User::findOrFail($id);
         return view('settings',[
-            'subscriber' => $subscriber,
-            ''
+            'subscriber' => $subscriber
         ]);
     }
 
@@ -842,7 +992,7 @@ class SubscriberController extends Controller
 
         $request->session()->forget(['subscriber_id']);
        
-        return redirect('phonesignin')->with('success', 'You have been log out');
+        return redirect('activate')->with('success', 'You have been log out');
     }
 
     public function uploadAvatar (Request $request) {
@@ -1106,6 +1256,13 @@ class SubscriberController extends Controller
         return view('mybump', [
             'subscriber' => $subscriber
         ]);
+    }
+
+    public function activate() {
+        // $subscriber_id = session('subscriber_id');
+
+        // $subscriber = User::findOrFail($subscriber_id);
+        return view('activate');        
     }
 
  

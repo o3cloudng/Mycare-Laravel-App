@@ -20,7 +20,7 @@
                 </div>
             @endif
             <div class="header_box version_2">
-                <div class="row heading">
+                <div class="row heading shadow-sm">
                     <div class="col-md-9">
                       <h4 class="">Medication</h4>
                     </div>
@@ -46,7 +46,7 @@
                 </div>
                 <div class="card-body">
                                 <!-- Medication -->
-            <div class="row">
+            <div class="row table-responsive">
                 <div class="col-md-12">
                     <table class="table table-bordered" id="medicationTable" width="100%" cellspacing="0">
                         <thead>

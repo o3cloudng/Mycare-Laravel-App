@@ -27,6 +27,7 @@
                                             <h5>Systolic</h5>
                                         </div>
                                         <div class="col-xs-12 col-sm-12 col-md-8">
+                                            <!-- data-units="(@isset( $currentBP->systolic ){{ $currentBP->systolic }} @endisset) Km/h" -->
                                            
                                            <p style="height: 160px; overflow: hidden; margin-top: 20px;">
                                              <canvas data-type="radial-gauge"
@@ -36,7 +37,11 @@
                                             animationRule= 'cycle'
                                             data-width="230"
                                             data-height="230"
-                                            data-units="(@isset( $bps ){{ $currentBP->systolic }} @endisset) Km/h"
+                                            data-units="@if(!empty($currentBP->systolic))
+                                                            {{ $currentBP->systolic }}
+                                                        @else
+                                                            {{ 0 }}
+                                                        @endif"
                                             data-min-value="0"
                                             data-start-angle="90"
                                             data-ticks-angle="180"
@@ -62,7 +67,11 @@
                                             data-needle-circle-inner="false"
                                             data-animation-duration="1500"
                                             data-animation-rule="linear"
-                                            data-value="@isset( $bps ){{ $currentBP->systolic }} @endisset"
+                                            data-value="@if(!empty($currentBP->systolic))
+                                                            {{ $currentBP->systolic }}
+                                                        @else
+                                                            {{ 0 }}
+                                                        @endif"
                                         ></canvas>
                                            </p>
                                         </div>
@@ -79,7 +88,11 @@
                                              <canvas data-type="radial-gauge"
                                             data-width="230"
                                             data-height="230"
-                                            data-units="@isset( $bps ){{ $currentBP->diastolic }} @endisset Km/h"
+                                            data-units="@if(!empty($currentBP->diastolic))
+                                                            {{ $currentBP->diastolic }}
+                                                        @else
+                                                            {{ 0 }}
+                                                        @endif"
                                             data-min-value="0"
                                             data-start-angle="90"
                                             data-ticks-angle="180"
@@ -106,7 +119,11 @@
                                             data-needle-circle-inner="false"
                                             data-animation-duration="1500"
                                             data-animation-rule="linear"
-                                            data-value="@isset( $bps ){{ $currentBP->diastolic }} @endisset"
+                                            data-value="@if(!empty($currentBP->diastolic))
+                                                            {{ $currentBP->diastolic }}
+                                                        @else
+                                                            {{ 0 }}
+                                                        @endif"
                                         ></canvas>
                                            </p>
                                   <!-- <div class="w-70"><span class="float-left">0</span><span class="float-right">200</span></div> -->
@@ -128,7 +145,12 @@
                                     <div class="card-body">
                                       <div class="row">
                                        <div class="col-xl-12 col-sm-12 mb-3" >
-                                        <p class="text-center mt-1 pt-0">(@isset( $bps ){{ $currentBP->created_at->diffForHumans() }} @endisset)</p>
+                                        <p class="text-center mt-1 pt-0">
+                                                        @if(!empty($currentBP->diastolic))
+                                                            {{ $currentBP->created_at->diffForHumans() }}
+                                                        @else
+                                                            {{ 0 }}
+                                                        @endif</p>
                                       </div>
                                         <!-- </div> -->
                                         <div class="col-xl-12 col-sm-12" focusin="bloodPressure()">

@@ -71,7 +71,7 @@ class Handler extends ExceptionHandler
 
         }
         if ($exception instanceof \Spatie\Permission\Exceptions\UnauthorizedException) {
-                  return redirect('/phonesignin');
+                  return redirect('activate');
             } 
             // elseif ($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException){
 
@@ -82,19 +82,19 @@ class Handler extends ExceptionHandler
             return parent::render($request, $exception);
         }
 
-    protected function prepareException(Exception $e)
-    {
-        if ($e instanceof ModelNotFoundException) {
-            // $e = new NotFoundHttpException($e->getMessage(), $e);
-            return redirect('/phonesignin');
-        } elseif ($e instanceof AuthorizationException) {
-            // $e = new AccessDeniedHttpException($e->getMessage(), $e);
-            return redirect('/phonesignin');
-        } elseif ($e instanceof TokenMismatchException) {
-              return redirect()->route('phonesignin');
-        }
-        return $e;
-    }
+    // protected function prepareException(Exception $e)
+    // {
+    //     if ($e instanceof ModelNotFoundException) {
+    //         // $e = new NotFoundHttpException($e->getMessage(), $e);
+    //         return redirect('/phonesignin');
+    //     } elseif ($e instanceof AuthorizationException) {
+    //         // $e = new AccessDeniedHttpException($e->getMessage(), $e);
+    //         return redirect('/phonesignin');
+    //     } elseif ($e instanceof TokenMismatchException) {
+    //           return redirect()->route('phonesignin');
+    //     }
+    //     return $e;
+    // }
 
 }
 
