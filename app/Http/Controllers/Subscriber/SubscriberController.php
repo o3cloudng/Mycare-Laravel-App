@@ -92,6 +92,10 @@ class SubscriberController extends Controller
      */
     public function getDashboard(){
             $id = session('subscriber_id');
+
+            if(!$id){
+                return redirect('phonesignin');
+            }
             // $id = Auth::user()->id;
             $subscriber = User::findOrFail($id);
 
@@ -1259,10 +1263,11 @@ class SubscriberController extends Controller
     }
 
     public function activate() {
-        // $subscriber_id = session('subscriber_id');
-
-        // $subscriber = User::findOrFail($subscriber_id);
-        return view('activate');        
+        if (session('subscriber_id')) {
+            return redirect('dashboard');
+        } else {
+            return view('activate');
+        }      
     }
 
  

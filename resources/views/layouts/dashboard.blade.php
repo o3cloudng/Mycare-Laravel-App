@@ -43,7 +43,7 @@
                   <!-- <img src="/storage/{{ $subscriber->avatar }}" class="m-1 w-75 h-75 mt-4 profile1" style="margin-left: -15px !important;" /> -->
                   <!-- <img class="img-thumbnail" src="{{ asset('/storage/'.$subscriber->avatar) }}" /> -->
                   @else
-                  <img class="m-1 w-75 h-75 profile1" src="{{ asset('img/avatar.png') }}" />
+                  <img class="m-1 w-75 h-75 mt-4 profile1" src="{{ asset('img/avatar.png') }}" style="margin-left: -15px !important;" />
                   @endisset
                   <br/><br/>
                   <!-- <span>Profile</span> -->

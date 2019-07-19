@@ -3,8 +3,18 @@
 <html lang="en" class="h-100">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Find easily a doctor and book online an appointment">
+  <meta name="author" content="Ansonika">
     <title>MYCARE ADMIN</title>
+
+    <!-- Favicons-->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/sticky-footer-navbar/">
 
@@ -14,36 +24,30 @@
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" type="text/css">
    
     <!-- Custom styles for this template -->
-    <link href="css/style/style.css" rel="stylesheet">
     <link href="sticky-footer-navbar.css" rel="stylesheet">
     <script src="{{asset('admin/vendor/jquery/jquery.min.js')}}"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+
+
+  <link href="{{asset('css/icon_fonts/css/all_icons_min.css')}}" rel="stylesheet">
+
+
+  <link href="css/style/style.css" rel="stylesheet">
+
   </head>
   <body class="d-flex flex-column h-100">
-<div id="main" class="mt-5">
+<div id="main" class="mt-5 mt-sm-2">
     <section>
-        <div class="container">
+        <div class="container mt-md-5">
           <div class="row">
-            <div class="col-md-4 ml-5"><a href="/"><img class="rounded mr-5" src="img/svg/logo.svg" /></a>  Hi Guest</div>
-            <div class="col-md-2 mt-2"></div>
-            <div class="col-md-1 mt-2 pull-right"><small>3 Services </small></div>
+            <div class="col-md-4 ml-5 ml-sm-1"><a href="/"><img class="rounded mr-5" src="img/svg/logo.svg" /></a> <span>Hi Guest</span></div>
+            <div class="col-md-3 mt-2 pull-right d-none d-sm-block"><small> Services </small></div>
             <div class="col-md-1 mt-1">
                 <span class="pull-right">
-                  <!-- <form name="form1">
-                    <select name="jumpmenu" class="selectpicker bg-light list-inline" onChange="jumpto(document.form.jumpmenu.options[document.form1.jumpmenu.options.selectedIndex].value)" style="width: 60px !important;">
-                      <option value="mybp">MYBP</option>
-                      <option value="mybg">MYBG</option>
-                      <option value="mybump">MYBUMP</option>
-                    </select>
-                  </form> -->
-                    <!-- <select name="menu" id="menu_jump" class="selectpicker bg-light list-inline" style="width: 60px !important;" OnChange="location.href=menu.options[selectedIndex].value">
-                      <option value="/mybp">MYBP</option>
-                      <option value="/mybg">MYBG</option>
-                      <option value="/mybump">MYBUMP</option>
-                    </select> -->
                 </span>
             </div>
-            <div class="col-md-3 text-right mt-2"><img src="img/svg/icons/settings.svg" id="cog" />  <small>Settings</small></div>
+            <div class="col-md-3 text-md-right text-center mt-2"><a href="/phonesignin" class="btn btn-success btn-large shadow-sm"> Already subscribed?</a> </div>
           </div>
         </div>
       </section>
@@ -72,14 +76,14 @@
                                 </script>
                               @endif
             <div class="row">
-              <div class="col-md-3 shadow text-center my-3 ml-5 mybox">
+              <div class="col-md-3 shadow text-center my-3 mybox">
                 <img src="img/svg/mybp.svg" class="my-4" />
                 <h3>My Blood Pressure</h3>
                 <p class="p-2">My Blood Pressure (MYBP) 
                     Monitor your blood pressure and avoid the risk of Hypertension</p>
                     <p>
                         <!-- <a href="dashboard" class="btn btn1 btn-warning">Subscribe Now</a> -->
-                        <button type="button" class="btn_1 btn btn2 button shadow activeBPLink text-sm-center" data-toggle="modal" data-target="#addBloodPressure">Subscribe Now</button>
+                        <button type="button" class="btn btn2 button shadow activeBPLink text-sm-center" data-toggle="modal" data-target="#addBloodPressure">Subscribe Now</button>
                       </p>
               </div>
               <div class="col-md-3 shadow offset-md-1 text-center my-3 mybox">
@@ -88,17 +92,17 @@
                 <p class="p-2">My Blood Glucose (MYBG) 
                     Monitor your blood glucose level and avoid the risk of Diabetes</p>
                     <p>
-                        <button type="button" class="btn_1 btn btn2 button shadow activeBPLink text-sm-center" data-toggle="modal" data-target="#addBloodPressure">Subscribe Now</button>
+                        <button type="button" class="btn btn2 button shadow activeBPLink text-sm-center" data-toggle="modal" data-target="#addBloodPressure">Subscribe Now</button>
                       </p>
               </div>
               <div class="col-md-3 shadow offset-md-1 text-center my-3 mybox">
-                <img src="img/svg/mybump.svg" class="my-4" />
+                <img src="img/svg/mybump.svg" class="my-4"/>
                   <h3>MYBUMP</h3>
                   <p class="p-2">My BUMP 
                       Important and regular updates for you during pregnancy.
                     </p>
                     <p>
-                      <button type="button" class="btn_1 btn btn2 button shadow activeBPLink text-sm-center" data-toggle="modal" data-target="#addBloodPressure">Subscribe Now</button>
+                      <button type="button" class="btn btn2 button shadow activeBPLink text-sm-center" data-toggle="modal" data-target="#addBloodPressure">Subscribe Now</button>
                     </p>
                 </div>
             </div>
@@ -124,8 +128,8 @@
                   {{csrf_field()}}
                   <div class="row">
                       <div class="col-md-12 form-group">
-                          <label>Phone Number</label>
-                          <input class="form-control shadow" value="{{old('systolic')}}" name="phone" type="number" placeholder="08012345678">
+                          <label>Phone Number (0809xxxxxxx)</label>
+                          <input class="form-control shadow" required value="{{old('systolic')}}" name="phone" type="number" placeholder="08012345678">
                       </div>
                   </div>
                   <div class="row">
@@ -181,6 +185,28 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="js/bootstrap-select.min.js"></script>
 
+
+<script src="{{asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- Core plugin JavaScript-->
+<script src="{{asset('admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+<!-- Page level plugin JavaScript-->
+{{-- <script src="{{asset('admin/vendor/chart.js/Chart.js')}}"></script> --}}
+<script src="{{asset('admin/vendor/datatables/jquery.dataTables.js')}}"></script>
+<script src="{{asset('admin/vendor/datatables/dataTables.bootstrap4.js')}}"></script>
+<script src="{{asset('admin/vendor/jquery.selectbox-0.2.js')}}"></script>
+<script src="{{asset('admin/vendor/retina-replace.min.js')}}"></script>
+<script src="{{asset('admin/vendor/jquery.magnific-popup.min.js')}}"></script>
+<!-- Custom scripts for all pages-->
+<script src="{{asset('admin/js/admin.js')}}"></script>
+<!-- Custom scripts for this page-->
+<script src="{{asset('admin/js/admin-charts.js')}}"></script>
+
+<!-- Javascript Functions-->
+<script src="{{asset('admin/js/functions.js')}}"></script>
+<!-- COMMON SCRIPTS -->
+
+<script src="{{asset('js/common_scripts.min.js')}}"></script>
+<script src="{{asset('js/functions.js')}}"></script>
 
     </body>
 </html>

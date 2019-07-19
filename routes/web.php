@@ -11,7 +11,8 @@
 |
 */
 Auth::routes();
-Route::get('/', 'Subscriber\SubscriberController@phoneSignin');
+// Route::get('/', 'Subscriber\SubscriberController@phoneSignin');
+Route::get('/', 'Subscriber\SubscriberController@activate')->name('activate');
 Route::get('/phonesignin', 'Subscriber\SubscriberController@phoneSignin')->name('phonesignin');
 Route::get('/signout', 'Subscriber\SubscriberController@signout')->name('subscriberLogout');
 

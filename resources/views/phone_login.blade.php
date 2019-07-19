@@ -30,97 +30,76 @@
 	<!-- YOUR CUSTOM CSS -->
 	<link href="{{asset('admin/css/custom.css')}}" rel="stylesheet">
 
+	<link href="css/style/style.css" rel="stylesheet">
+
 </head>
 
 <body>
 
-	<div id="preloader" class="Fixed">
+	<!-- <div id="preloader" class="Fixed">
 		<div data-loader="circle-side"></div>
-	</div>
+	</div> -->
 	<!-- /Preload-->
-
-	<div id="page">
-		
-		<!-- /header -->
-		<style>
-			.margin_60_35 {
-				padding: 20px !important;
-			}
-		</style>
-
-		<main>
-			<div class="bg_color_2">
-				<div class="container margin_60_35 h-100">
-					<div id="login">
-						<div class="container margin_60_35 col-md-offset-4 text-center"><img src="{{asset('img/logo.jpeg')}}" width="150px" class="img-responsive"></div>
-						<div class="box_form">
-                            @if($errors->all())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                @foreach($errors->all() as $error)
-                                    <li>{{$error}}</li>
-                                @endforeach
-                                    </ul>
-                              </div>
-							@endif
-							@if(session('status'))
-                            <div class="alert alert-success">{{session('status')}}</div>
-							@endif
-							@if(session('success'))
-								<script type="text/javascript">
-									toastr.success("{{ session('success') }}");
-								</script>
-							@endif
-							@if(session('error'))
-								<script type="text/javascript">
-									toastr.error("{{ session('error') }}");
-								</script>
-							@endif
-							<form action="{{ url('phonesignin') }}" method="POST">
-                                {{csrf_field()}}
-								<div class="divider">
-									<span>Or</span>
-								</div>
-								<div class="form-group">
-									<input type="number" value="{{ old('phone') }}" name="phone" class="form-control" placeholder="Enter phone number">
-								</div>
-								<!-- <div class="form-group">
-									<input type="password" value="" name="password" class="form-control" placeholder="Password">
-								</div>
-								<div class="row">
-									<div class="col-md-5">
-										<a href="{{ url('/verifyEmailPage') }}" class="text-left">
-											<small class="text-left">Forgot password?</small>
-										</a>
-									</div>
-									<div class="col-md-7">
-										<a href="{{ route('login') }}" class="text-right">
-											<small class="text-right">Login as a Medical Personnal</small>
-										</a>
-									</div>
-								</div> -->
-								<div class="form-group text-center add_top_20">
-									<input class="btn_1 medium" type="submit" value="Login">
-								</div>
-							</form>
-								
+<div id="main" class="mt-5 d-flex flex-column h-100">
+    <section>
+        <div class="container mt-md-5">
+          <div class="row">
+            <div class="col-md-4 ml-5 ml-sm-1"><a href="/"><img class="rounded mr-5" src="img/svg/logo.svg" /></a> <span>Hi Guest</span></div>
+            <div class="col-md-3 mt-2 pull-right d-none d-sm-block"><small> Services </small></div>
+            <div class="col-md-1 mt-1">
+                <span class="pull-right">
+                </span>
+            </div>
+            <div class="col-md-3 text-md-right text-center mt-2"><a href="/" class="btn btn-success btn-large shadow-sm"> Subscription expired?</a> </div>
+          </div>
+        </div>
+      <section>
+        <div class="container">
+        	<div id="login">
+				<div class="box_form">
+	                @if($errors->all())
+	                    <div class="alert alert-danger">
+	                        <ul>
+	                    @foreach($errors->all() as $error)
+	                        <li>{{$error}}</li>
+	                    @endforeach
+	                        </ul>
+	                  </div>
+					@endif
+					@if(session('status'))
+	                <div class="alert alert-success">{{session('status')}}</div>
+					@endif
+					@if(session('success'))
+						<script type="text/javascript">
+							toastr.success("{{ session('success') }}");
+						</script>
+					@endif
+					@if(session('error'))
+						<script type="text/javascript">
+							toastr.error("{{ session('error') }}");
+						</script>
+					@endif
+					<form action="{{ url('phonesignin') }}" method="POST">
+	                    {{csrf_field()}}
+						<div class="divider">
+							<span>Or</span>
 						</div>
-						<!-- <p class="text-center link_bright">Do not have an account yet?
-							<a href="signup">
-								<strong>Register now!</strong>
-							</a>
-						</p> -->
-					</div>
-					<!-- /login -->
+						<div class="form-group">
+							<input type="number" value="{{ old('phone') }}" name="phone" class="form-control box_form" placeholder="Enter phone number" style="padding: 10px 20px !important;">
+						</div>
+						<div class="form-group text-center add_top_20">
+							<input class="btn_1 medium btn btn2 button activeBPLink" style="padding: 10px 20px; !important" type="submit" value="Login">
+						</div>
+					</form>
+						
 				</div>
 			</div>
-		</main>
-		<!-- /main -->
-
-		
-		<!--/footer-->
-	</div>
-	<!-- page -->
+			<!-- /login -->
+                             
+        </div>
+        
+      </section>
+</div>
 
 	<div id="toTop"></div>
 	<!-- Back to top button -->
