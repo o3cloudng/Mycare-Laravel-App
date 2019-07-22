@@ -120,7 +120,7 @@
                   </div>
               </div>
               <div class="col-sm-12 col-xs-12 col-md-12 mybox shadow py-4 mb-5 mx-auto">
-                  <div class="box_general padding_bottom" id="checkDiagnosis">
+                  <div class="box_general padding_bottom table-responsive" id="checkDiagnosis">
                     <div class="header_box version_2">
                         <h5><span><img style="width: 50px; height: 50px;" src="<?php echo e(asset('img/diagnosis.png')); ?>"></span> Diagnosis</h5>
                     </div>
