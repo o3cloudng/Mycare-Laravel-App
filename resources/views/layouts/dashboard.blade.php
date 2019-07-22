@@ -140,7 +140,7 @@
                                 <div class="col-xs-12 col-sm-12 col-md-8 top-link">
                                     <a href="/blood_pressures" class="btn btn2 button shadow mr-2 activeBPLink">MYBP</a>
                                     <a href="/blood_glucoses" class="btn btn2 button shadow mr-2 activeBPLink">MYBG</a>
-                                    <a href="/mybump" class="btn btn2 button shadow activeBPLink">MYBUMP</a>
+                                    <a href="/dasboard" class="btn btn2 button shadow activeBPLink">MYBUMP</a>
 
                                    <a href="/signout" class="float-right settings" style="color: #F8A602;"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>&nbsp;</a>
                                     <span class="float-right mr-4 logout"><a href="settings" style="color: #F8A602;"><small id="settings"><img src="img/svg/icons/settings.svg" id="cog" />  Settings</small></a></span>
