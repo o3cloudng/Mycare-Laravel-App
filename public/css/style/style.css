@@ -493,6 +493,9 @@ input:checked + .slider:before {
   body {
     background-color: lightblue;
   }
+  #mybox_gauge {
+    height: 250px !important;
+  }
 
   .cover-width {
     margin: 0px !important;
