@@ -7,6 +7,7 @@ use App\{Diagnosis, User, Http\Controllers\Controller};
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 use Session;
+use Illuminate\Support\Facades\Validator;
 
 use App\Notifications\UserRegisteredSuccessfully;
 
@@ -99,9 +100,20 @@ class DiagnosisController extends Controller
 
     /** New Implementation */
     public function addDiagnosis (Request $request) {
-        $this->validate($request, [
-            'name' => 'required|string|max:255',
-        ]);
+        // $this->validate($request, [
+        //     'name' => 'required|string|max:255',
+        // ]);
+        // dd($request);
+
+
+        $validator = Validator::make($request->all(), [
+           'name' => 'required|string|max:255'
+           ]);
+            
+           if ($validator->fails()) {
+                // Session::flash('error', $validator->messages()->first());
+                return redirect()->back()->with('error', 'Name of Diagnosis is required.');
+           }
 
         $subscriber_id = session('subscriber_id');
 

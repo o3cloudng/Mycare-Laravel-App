@@ -15,6 +15,7 @@ class CreateDiagnosisTable extends Migration
     {
         Schema::create('diagnosis', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
             $table->unsignedInteger('subscriber_id');
             $table->unsignedInteger('user_id');
             $table->text('diagnosis');

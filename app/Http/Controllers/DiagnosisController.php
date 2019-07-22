@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\{Subscriber, Diagnosis, Medication, Http\Utility};
 use \Exception;
+use Illuminate\Support\Facades\Validator;
 
 class DiagnosisController extends Controller
 {
@@ -69,14 +70,26 @@ class DiagnosisController extends Controller
      * add diagnosis
      */
     public function addDiagnosis(Request $request){
-        $this->validate($request, [
-            'name' => 'required|string|max:255',
-        ]);
+        // $this->validate($request, [
+        //     'name' => 'required|string|max:255',
+        // ]);
+        dd($request);
+
+
+        $validator = Validator::make($request->all(), [
+           'name' => 'required|string|max:255'
+           ]);
+            
+           if ($validator->fails()) {
+                // Session::flash('error', $validator->messages()->first());
+                return redirect()->back()->with('error', 'Name of Diagnosis is required.)');
+           }
 
         $subscriber_id = session('subscriber_id');
 
         $diagnosis['name'] = $this->diagnosis;
         $diagnosis['subscriber_id'] = $subscriber_id;
+        // $diagnosis['user_id'] = $subscriber_id;
         $diagnosis = Diagnosis::create($diagnosis);
         if($diagnosis) {
             return redirect('personal_profile')->with('success',$diagnosis->name . ' Diagnosis added succesfully');
