@@ -1001,7 +1001,7 @@ class SubscriberController extends Controller
 
     public function uploadAvatar (Request $request) {
         $this->validate($request, [
-            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:3048',
         ]);
 
         $id = session('subscriber_id');
