@@ -1000,9 +1000,17 @@ class SubscriberController extends Controller
     }
 
     public function uploadAvatar (Request $request) {
-        $this->validate($request, [
-            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:3048',
-        ]);
+        // $this->validate($request, [
+        //     'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:3048',
+        // ]);
+         $validator = Validator::make($request->all(), [
+           'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+           ]);
+            
+           if ($validator->fails()) {
+                // Session::flash('error', $validator->messages()->first());
+                return redirect()->back()->with('error', 'Check image (< 2M, png, jpg, svg.)');
+           }
 
         $id = session('subscriber_id');
         
@@ -1016,7 +1024,7 @@ class SubscriberController extends Controller
 
             $subscriber->update();
 
-            return redirect('/personal_profile')->with('success', 'The avatar has been added successfully');
+            return redirect('/personal_profile')->with('success', 'Profile picture has been added successfully');
         else:
             return redirect('/personal_profile')->with('error', 'No image added');
         endif;
