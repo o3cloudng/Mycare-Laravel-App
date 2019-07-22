@@ -549,6 +549,9 @@ input:checked + .slider:before {
     background-color: #222 !important;
     transform: scale(1.01);
   }
+  .activate a {
+    color: white !important;
+  }
   .navbar-toggler-icon {
     cursor: pointer !important;
   }

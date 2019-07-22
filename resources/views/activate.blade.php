@@ -37,21 +37,31 @@
 
   </head>
   <body class="d-flex flex-column h-100">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top fixed-top"  style="border: 1px solid #efefef; box-shadow: 1px 2px 5px #eee;">
+      <div class="container">
+      <a href="/"><img style="width: 80px; height:40px;" src="{{ asset('img/logo.jpeg') }}" /></a>
+        <span style="color: black;">Hi Guest</span>
+      <div>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item"></li>
+          <li class="nav-item"></li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+          <a href="/phonesignin" class="nav-link btn btn-success btn-large float-right activate"> Already subscribed?</a>
+        </form>
+      </div>
+      </div>
+    </nav>
+<section>
+  <div class="container my-2 d-none d-md-block">
+    <div class="row">
+      &nbsp;
+    </div>
+  </div>
+</section>
+
 <div id="main" class="mt-5 mt-sm-2">
-    <section>
-        <div class="container mt-md-5">
-          <div class="row">
-            <div class="col-md-4 ml-5 ml-sm-1"><a href="/"><img class="rounded mr-5" src="img/svg/logo.svg" /></a> <span>Hi Guest</span></div>
-            <div class="col-md-3 mt-2 pull-right d-none d-sm-block"><small> Services </small></div>
-            <div class="col-md-1 mt-1">
-                <span class="pull-right">
-                </span>
-            </div>
-            <div class="col-md-3 text-md-right text-center mt-2"><a href="/phonesignin" class="btn btn-success btn-large shadow-sm"> Already subscribed?</a> </div>
-          </div>
-        </div>
-      </section>
-      <section>
+      <section class="my-5">
         <div class="container">
                               @if($errors->all())
                                 <div class="alert alert-danger">

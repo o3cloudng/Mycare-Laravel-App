@@ -34,27 +34,24 @@
 
 </head>
 
-<body>
-
-	<!-- <div id="preloader" class="Fixed">
-		<div data-loader="circle-side"></div>
-	</div> -->
-	<!-- /Preload-->
-<div id="main" class="mt-5 d-flex flex-column h-100">
-    <section>
-        <div class="container mt-md-5">
-          <div class="row">
-            <div class="col-md-4 ml-5 ml-sm-1"><a href="/"><img class="rounded mr-5" src="img/svg/logo.svg" /></a> <span>Hi Guest</span></div>
-            <div class="col-md-3 mt-2 pull-right d-none d-sm-block"><small> Services </small></div>
-            <div class="col-md-1 mt-1">
-                <span class="pull-right">
-                </span>
-            </div>
-            <div class="col-md-3 text-md-right text-center mt-2"><a href="/" class="btn btn-success btn-large shadow-sm"> Subscription expired?</a> </div>
-          </div>
-        </div>
-      <section>
-        <div class="container">
+<body class="d-flex flex-column h-100">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top" style="border: 1px solid #efefef; box-shadow: 1px 2px 5px #eee;">
+  <div class="container">
+  <a href="/"><img style="width: 80px; height:40px;" src="<?php echo e(asset('img/logo.jpeg')); ?>" /></a>
+    <span style="color: black;">Hi Guest</span>
+  <div>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item"></li>
+      <li class="nav-item"></li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <a href="/" class="btn btn-success btn-large activate"> Subscription expired?</a>
+    </form>
+  </div>
+  </div>
+</nav>
+<div id="main" class="mt-1 d-flex flex-column h-100">
+        <div class="container mt-5">
         	<div id="login">
 				<div class="box_form">
 	                <?php if($errors->all()): ?>
