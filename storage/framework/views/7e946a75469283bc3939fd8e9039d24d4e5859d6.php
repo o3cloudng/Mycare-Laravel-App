@@ -142,16 +142,18 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            <?php $__currentLoopData = $diagnosis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <tr>
-                                <td><?php echo e($d->id); ?></td>
-                                <td><?php echo e($d->name); ?></td>
-                                <td>None</td>
-                                <td><button data-id="<?php echo e($d->id); ?>" class="btn btn-sm btn-primary fa fa-pencil d-flex" id="edit-diagnosis"></button>
-                                    <button data-id="<?php echo e($d->id); ?>" class="btn btn-sm btn-danger fa fa-trash del-diagnosis d-flex"></button>
-                                </td>
-                            </tr>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php if(count($diagnosis) > 0): ?>
+                                <?php $__currentLoopData = $diagnosis; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <tr>
+                                    <td><?php echo e($d->id); ?></td>
+                                    <td><?php echo e($d->name); ?></td>
+                                    <td>None</td>
+                                    <td><button data-id="<?php echo e($d->id); ?>" class="btn btn-sm btn-primary fa fa-pencil d-flex" id="edit-diagnosis"></button>
+                                        <button data-id="<?php echo e($d->id); ?>" class="btn btn-sm btn-danger fa fa-trash del-diagnosis d-flex"></button>
+                                    </td>
+                                </tr>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>

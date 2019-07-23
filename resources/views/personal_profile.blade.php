@@ -143,16 +143,18 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach ($diagnosis as $d)
-                            <tr>
-                                <td>{{ $d->id }}</td>
-                                <td>{{ $d->name }}</td>
-                                <td>None</td>
-                                <td><button data-id="{{$d->id}}" class="btn btn-sm btn-primary fa fa-pencil d-flex" id="edit-diagnosis"></button>
-                                    <button data-id="{{$d->id}}" class="btn btn-sm btn-danger fa fa-trash del-diagnosis d-flex"></button>
-                                </td>
-                            </tr>
-                            @endforeach
+                            @if(count($diagnosis) > 0)
+                                @foreach ($diagnosis as $d)
+                                <tr>
+                                    <td>{{ $d->id }}</td>
+                                    <td>{{ $d->name }}</td>
+                                    <td>None</td>
+                                    <td><button data-id="{{$d->id}}" class="btn btn-sm btn-primary fa fa-pencil d-flex" id="edit-diagnosis"></button>
+                                        <button data-id="{{$d->id}}" class="btn btn-sm btn-danger fa fa-trash del-diagnosis d-flex"></button>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>

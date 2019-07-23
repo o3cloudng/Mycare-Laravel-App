@@ -114,7 +114,7 @@ class DiagnosisController extends Controller
                 // Session::flash('error', $validator->messages()->first());
                 return redirect()->back()->with('error', 'Name of Diagnosis is required.');
            }
-
+           // dd($request);
         $subscriber_id = session('subscriber_id');
 
         $diagnosis['name'] = $request->name;
