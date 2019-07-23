@@ -34,7 +34,7 @@
       <!-- WEB NAVIGATION CODE -->
         <div class="col-md-2 h-100 sticky-top hidden-md-down" id="sidebar">
             <div class="text-center">
-                <a href="/subscription"><img class="img-rounded rounded mt-4" style="width: 200px; margin-left: -20px !important;" src="{{ asset('img/svg/logo.svg') }}" /></a>
+                <a href="/"><img class="img-rounded rounded mt-4" style="width: 200px; margin-left: -20px !important;" src="{{ asset('img/svg/logo.svg') }}" /></a>
                 <br>
                 <a href="/personal_profile">
                   <a href="/personal_profile">
