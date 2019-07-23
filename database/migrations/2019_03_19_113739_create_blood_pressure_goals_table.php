@@ -19,7 +19,7 @@ class CreateBloodPressureGoalsTable extends Migration
             $table->integer('systolic');
             $table->integer('diastolic');
             $table->string('frequency');
-            $table->integer('hour')->change();
+            $table->integer('hour')->nullable();
             // $table->time('hour');
             $table->string('weekDay')->nullable();
             $table->integer('monthDay')->nullable();

@@ -17,6 +17,8 @@ class GoalController extends Controller
         $subscriber = User::findOrFail($subscriber_id);
         $bmiGoal = BmiGoal::where('subscriber_id', $subscriber_id)->first();
         $bloodPressureGoal = BloodPressureGoal::where('subscriber_id', $subscriber_id)->first();
+
+        // dd($bloodPressureGoal);
         
         return view('subscriber.goal.index', [
             'subscriber_id' => $subscriber_id,

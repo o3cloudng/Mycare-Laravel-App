@@ -79,13 +79,13 @@
                             <div class="row mt-5">
                                 <div class="col-md-6">
                                     <div class="round_box d-flex justify-content-center">
-                                        <h3 class="my-auto"><?php echo e($bloodPressureGoal->systolic); ?></h3> 
+                                        <h3 class="my-auto"><?php if(isset($bloodPressureGoal)): ?><?php echo e($bloodPressureGoal->systolic); ?> <?php endif; ?></h3> 
                                     </div>
                                     <br/><br/><h5 class="text-center">Systolic</h5>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="round_box d-flex justify-content-center">
-                                        <h3 class="my-auto"><?php echo e($bloodPressureGoal->diastolic); ?></h3> 
+                                        <h3 class="my-auto"><?php if(isset($bloodPressureGoal)): ?><?php echo e($bloodPressureGoal->diastolic); ?> <?php endif; ?></h3> 
                                     </div>
                                     <br/><br/><h5 class="text-center">Diastolic</h5>
                                 </div>
@@ -164,7 +164,7 @@
             </div>
 
             <div class="row my-5">
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="card shadow corner my-5">
                         <div class="card-body">
                             <div class="box_general padding_bottom" id="setBloodPGoal">

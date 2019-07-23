@@ -279,10 +279,10 @@ class BmiController extends Controller
                     'height' => $height,
                     'weight' => $weight,
                     'status' => $status,
-                    'frequency' => $request->frequency,
-                    'hour' => $hourTime,
-                    'weekDay' => $request->weekDay,
-                    'monthDay' => $request->monthDay
+                    'frequency' => $request->frequency
+                    // 'hour' => $hourTime,
+                    // 'weekDay' => $request->weekDay,
+                    // 'monthDay' => $request->monthDay
                 ]);
         if ( $bmi_goal ):
             return back()->with('success','You have set a Body Mass Index Goal');

@@ -19,7 +19,10 @@ class CheckSession
      */
     public function handle($request, Closure $next)
     {
-        if(session('subscriber_id')) {
+         // if (!$request->session()->exists('subscriber_id'))
+        // if(session('subscriber_id')) {
+        if ($request->session()->exists('subscriber_id')) {
+            // dd($request->session());
             // return redirect('/phonesignin');
 
             $id = session('subscriber_id');
@@ -67,11 +70,12 @@ class CheckSession
             $subDateTime = $result[0]['subscriptionReqTime']; // 2019-07-12 15:58:14.081212
 
             $subDateTime = explode(" ",$subDateTime);
-            $date = $subDateTime[0];
-            $date =  explode("-",$date);
-            $year = $date[0];
-            $month = $date[1];
-            $day = $date[2];
+            $mydate = $subDateTime[0];
+            $mydate =  explode("-",$mydate);
+            $year = $mydate[0];
+            $month = $mydate[1];
+            $day = $mydate[2];
+            // dd($day);
 
             $time = $subDateTime[1];
             $time =  explode(":",$time);
@@ -100,7 +104,7 @@ class CheckSession
             }
           // return redirect()->route('/');  
         } else {
-            // return redirect('dashboard')->with('error','Your subscription has expired.');
+            return redirect('/')->with('error','Your subscription has expired.');
             return $next($request);
         }
         // if (Auth::check())
