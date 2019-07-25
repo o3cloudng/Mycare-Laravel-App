@@ -15,7 +15,7 @@
                   <h4 class="">Blood Pressure</h4>
                 </div>
                 <div class="col-sm-12 col-md-3">
-                  <button type="button" class="btn_1 btn btn2 button shadow activeBPLink float-right text-sm-center" data-toggle="modal" data-target="#addBloodPressure">
+                  <button type="button" data-phone="{{ $subscriber->phone }}" class="btn_1 btn btn2 button shadow activeBPLink float-right text-sm-center" data-toggle="modal" data-target="#addBloodPressure">
                         Add New Blood Pressure <i class="fa fa-plus"></i>
                     </button>
                 </div>    
@@ -116,7 +116,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label>Tel</label>
-                                    <input class="form-control shadow"  value="{{old('tel')}}" name="tel" type="text">
+                                    <input class="form-control shadow"  value="@isset($subscriber){{ $subscriber->phone }}@endisset" name="tel" type="text">
                                 </div>
                             </div>
                             <div class="row">
@@ -154,4 +154,24 @@
         </div>
         <!-- /.container-fluid-->
     </div>
+@endsection
+@section('scripts')
+<script>
+    $(document).ready(function() {
+
+        // Edit within modal
+        $('#addBloodPressure').on('show.bs.modal', function(event) {
+            // console.log('Reading modal data'); 
+            var button = $(event.relatedTarget)
+            var phone = button.data('phone')
+
+            var modal = $(this)
+
+
+            modal.find('.modal-body #phone').val(phone)
+
+        });
+
+    });
+</script>
 @endsection
