@@ -83,7 +83,16 @@
                                 <td class="medical_personal_phone"><?php echo e($medication->medical_personal_phone); ?></td>
                                 <td class="start_date"><?php echo e($medication->start_date); ?></td>
                                 <td class="end_date"><?php echo e($medication->end_date); ?></td>
-                                <td><button data-id="<?php echo e($medication->id); ?>" class="btn btn-sm btn-primary fa fa-pencil" id="edit-medication"></button>
+                                <td><button 
+                                    data-id="<?php echo e($medication->id); ?>" 
+                                    data-name="<?php echo e($medication->name); ?>"
+                                    data-dosage="<?php echo e($medication->dosage); ?>"
+                                    data-frequency="<?php echo e($medication->frequency); ?>"
+                                    data-medical_personal="<?php echo e($medication->medical_personal); ?>"
+                                    data-medical_personal_phone="<?php echo e($medication->medical_personal_phone); ?>"
+                                    data-start_date="<?php echo e($medication->start_date); ?>"
+                                    data-end_date="<?php echo e($medication->end_date); ?>" 
+                                    class="btn btn-sm btn-primary fa fa-pencil" id="edit-medication"></button>
                                     <button data-id="<?php echo e($medication->id); ?>" class="btn btn-sm btn-danger fa fa-trash del-medication"></button>
                                 </td>
                             </tr>
@@ -267,5 +276,37 @@
          
         </div>
         <!-- /.container-fluid-->
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('scripts'); ?>
+<script>
+    $(document).ready(function() {
+        
+        // Edit within modal
+        $('#edit-modal').on('show.bs.modal', function(event) {
+            // console.log('Reading modal data'); 
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var name = button.data('name')
+            var dosage = button.data('dosage')
+            var frequency = button.data('frequency')
+            var medical_personal = button.data('medical_personal')
+            var medical_personal_phone = button.data('medical_personal_phone')
+            var start_date = button.data('start_date')
+            var end_date = button.data('end_date')
+
+            var modal = $(this)
+
+
+            modal.find('.modal-body #id').val(id)
+            modal.find('.modal-body #height').val(height)
+            modal.find('.modal-body #weight').val(weight)
+
+        });
+
+    });
+
+
+</script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.dashboard', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

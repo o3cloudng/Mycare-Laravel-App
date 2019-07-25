@@ -282,14 +282,7 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
-        data-id="{{$medication->id}}" 
-        data-name="{{ $medication->name }}"
-        data-dosage="{{ $medication->dosage }}"
-        data-frequency="{{ $medication->frequency }}"
-        data-medical_personal="{{ $medication->medical_personal }}"
-        data-medical_personal_phone="{{ $medication->medical_personal_phone  }}"
-        data-start_date="{{ $medication->start_date  }}"
-        data-end_date="{{ $medication->end_date  }}" 
+        
         // Edit within modal
         $('#edit-modal').on('show.bs.modal', function(event) {
             // console.log('Reading modal data'); 
