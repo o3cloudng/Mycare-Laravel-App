@@ -54,7 +54,7 @@ class LoginController extends Controller
 
         if ($user->active == 0) {
             Auth::logout();
-            return redirect()->route('login')->with('error', 'Please activate your account');
+            return redirect()->route('/')->with('error', 'Please activate your account');
         } elseif ($user->change_password == 0) {
             Auth::logout();
             return redirect()->route('password.request')->with('error', 'Please reset your password');

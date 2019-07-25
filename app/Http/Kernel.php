@@ -57,7 +57,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'subscriber' => \App\Http\Middleware\CheckIfSubscriberAuthenticated::class,
+        'checkSubAuth' => \App\Http\Middleware\CheckIfSubscriberAuthenticated::class,
         'checksession' => \App\Http\Middleware\CheckSession::class,
         // Adding Spatie Middleware
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,

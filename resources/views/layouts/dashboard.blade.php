@@ -65,11 +65,11 @@
         <div class="col-md-10 w-100 cover-width" style="height:100%;">
             <nav class="navbar navbar-expand-md bg-dark navbar-dark d-sm-block d-md-none">
               <!-- <a class="navbar-brand" href="/subscription">MYCAREPLUS</a> -->
-              <a class="navbar-brand" href="/subscription"><img style="width: 70px; height:30px;" src="{{ asset('img/logo.jpeg') }}" /></a>
+              <a class="navbar-brand" href="/"><img style="width: 70px; height:30px;" src="{{ asset('img/logo.jpeg') }}" /></a>
               <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
               </button> -->
-              <span class="align-items-center align-middle">Hi 
+              <span class="align-items-center align-middle" style="color: white;">Hi 
                                         @if($subscriber->name)
                                            {{ $subscriber->name }}
                                         @else
@@ -77,6 +77,7 @@
                                         @endif ,</span>
                 <i class="navbar-toggler-icon glyphicon glyphicon-align-right mr-3" data-toggle="collapse" data-target="#collapsibleNavbar"></i>
               <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <hr>
                 <ul class="navbar-nav">
                   <li class="nav-item">
                     <a href="/personal_profile" class="nav-link" style="margin-left: 5px;"><i class="fa fa-user"></i> &nbsp;&nbsp;&nbsp;&nbsp;Profile</a>

@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Auth::routes();
+// Auth::routes();
 // Route::get('/', 'Subscriber\SubscriberController@phoneSignin');
 Route::get('/', 'Subscriber\SubscriberController@activate')->name('activate');
 Route::get('/phonesignin', 'Subscriber\SubscriberController@phoneSignin')->name('phonesignin');
@@ -19,14 +19,14 @@ Route::get('/signout', 'Subscriber\SubscriberController@signout')->name('subscri
 Route::get('/activate', 'Subscriber\SubscriberController@activate')->name('activate');
 Route::post('/activate/new', 'Subscriber\SubscriberController@activation')->name('activate');
 // Route::post('/signout', 'Subscriber\SubscriberController@signout')->name('subscriberLogout');
+Route::post('/phonesignin', 'Subscriber\SubscriberController@processPhoneSignin')->name('phonesignin');
 // Route::get('/', 'Subscriber\SubscriberController@phoneSignin');
 
 //-------------------get signup page------------//
-Route::group( [ 'middleware' => 'checksession', 'Auth'], function () {
+Route::group( [ 'middleware' => 'checkSubAuth', 'checksession'], function () {
     // Route::get('/', 'Subscriber\SubscriberController@getSignin');
 
     // Route::get('/phonesignin', 'Subscriber\SubscriberController@phoneSignin')->name('phonesignin');
-    Route::post('/phonesignin', 'Subscriber\SubscriberController@processPhoneSignin')->name('phonesignin');
     Route::get('/signup', 'Subscriber\SubscriberController@getSignup')->name('signup');
     //--------------------------get sign in page---------//
     // Route::get('/signin', 'Subscriber\SubscriberController@getSignin');

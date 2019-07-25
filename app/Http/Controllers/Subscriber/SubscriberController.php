@@ -421,9 +421,9 @@ class SubscriberController extends Controller
 
                 if(!$subscriber){
                     $subscriber = new User();
-                    $subscriber->email = $email;
+                    $subscriber->email = $email."@mycareplus.com";
                     $subscriber->phone = $phone;
-                    $subscriber->password = $phone;
+                    $subscriber->password = 1234567;
                     $subscriber->token = base64_encode($email);
                     $subscriber->save();
 
@@ -840,17 +840,39 @@ class SubscriberController extends Controller
         return view('phone_login');
        
     }
+    /*
+       Login with phone number
+    */
     public function processPhoneSignin(Request $request){
-         $this->validate($request,[
-            'phone' => 'required',
-        ]);
-        $user = User::where('phone', $request->phone)->first();
 
-        // dd($user);
+        $validator = Validator::make($request->all(), [
+           'phone' => 'required|min:11',
+           ]);
+        if ($validator->fails()) {
+            // Session::flash('error', $validator->messages()->first());
+            return redirect()->back()->with('error', 'Provide a valid phone number (not less than 11 characters)');
+           }
+           $phone=$request->get('phone');
+           $user = User::where('phone', $request->phone)->first();
+           // dd($user);
+           // if (Auth::attempt([
+           //      'phone' => $user->email,
+           //      'password' => bcrypt(1234567),
+           //      ]))
+           //  {     
+           //      // $user = Auth::user();
+           //      $user = User::where('phone', $phone);
+           //      dd($user);
+           //      return redirect()->intended('/dashboard');   
+           //  }
+           //  else 
+           //  {
+           //      return redirect('/phonesignin');
+           //  }
         if($user)
         {
             session(['subscriber_id'=>$user->id]);
-            return redirect('dashboard');
+            return redirect('dashboard')->with('success','Welcome to MyCarePlus');
         } else {
             return redirect()->back()->withErrors('User does not exist')->withInput();
         }
@@ -996,7 +1018,7 @@ class SubscriberController extends Controller
 
         $request->session()->forget(['subscriber_id']);
        
-        return redirect('activate')->with('success', 'You have been log out');
+        return redirect('phonesignin')->with('success', 'You have been log out');
     }
 
     public function uploadAvatar (Request $request) {

@@ -22,7 +22,7 @@ class CheckSession
          // if (!$request->session()->exists('subscriber_id'))
         // if(session('subscriber_id')) {
         if ($request->session()->exists('subscriber_id')) {
-            // dd($request->session());
+            // dd($request->session('subscriber_id'));
             // return redirect('/phonesignin');
 
             $id = session('subscriber_id');
@@ -64,18 +64,21 @@ class CheckSession
                 // dd($result['actionResponseCode']);
             }
 
+
             $currentDate = Carbon::now(); // 2019-07-18 10:27:29.262325 Africa/Lagos (+01:00)
 
             // Subscription request date Time
             $subDateTime = $result[0]['subscriptionReqTime']; // 2019-07-12 15:58:14.081212
+            // $subDateTime = $result[0]['subscriptonLastCharged']; // 2019-07-12 15:58:14.081212
 
             $subDateTime = explode(" ",$subDateTime);
-            $mydate = $subDateTime[0];
+
+            $mydate = $result[0]['subscriptionExpiryDate'];
             $mydate =  explode("-",$mydate);
             $year = $mydate[0];
             $month = $mydate[1];
             $day = $mydate[2];
-            // dd($day);
+            // dd($mydate[0]);
 
             $time = $subDateTime[1];
             $time =  explode(":",$time);
@@ -91,16 +94,16 @@ class CheckSession
             $expiryDateTime = Carbon::create($year, $month, $day, $hour, $minute, $second, 'GMT');
             // Sub Expiry date & Time calculated
             $expiryDateTime = $expiryDateTime->addDays($subscriptionPeriod);
+            // dd($expiryDateTime);
             //close connection
             curl_close($curl);
 
             // dd($result);
-            if(!$expiryDateTime->lessThan($currentDate)) {
+            if($currentDate->lessThan($expiryDateTime)) {
                 // dd($expiryDateTime);
-                return redirect('activate')->with('error','Your subscription has expired.');
-                // return $next($request);
-            } else {
                 return $next($request);
+            } else {
+                return redirect('activate')->with('error','Your subscription has expired.');
             }
           // return redirect()->route('/');  
         } else {
