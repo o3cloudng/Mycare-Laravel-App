@@ -20,7 +20,7 @@
                     <p>You are not Currently Subscribed to this Service, Click the Button below to subscribe now</p>
                   </div>
                   <div class="row mx-auto"> 
-                    <a href="/subscription" class="btn btn2 button shadow mr-2 activeBPLink mx-auto">Subscriber Now</a>
+                    <a href="/activate" class="btn btn2 button shadow mr-2 activeBPLink mx-auto">Acitvate Account</a>
                   </div>
                   <div class="row justify-content-center"> 
                     <a href="javascript:history.back()" class="mt-1"><img style="width: 15px; height: 10px;" src="<?php echo e(asset('/img/back.png')); ?>" /> Back</a>
