@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Http\Utility;
-use Illuminate\Support\Facades\DB;
-use App\User;
-use App\Subscriber;
 use App\BloodPressure;
+use App\Http\Utility;
+use App\Subscriber;
+use App\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class BloodPressureController extends Controller
 {
@@ -60,8 +61,8 @@ class BloodPressureController extends Controller
     public function index() {
         $id = session('subscriber_id');
         $subscriber = User::findOrfail($id);
-        $bps = User::findOrFail($id)->bloodPressure()->get();
-        // $bps = User::findOrFail($id)->bloodPressure()->get()->sortByDesc('bloodPressure.created_at');
+        // $bps = User::findOrFail($id)->bloodPressure()->get();
+        $bps = User::findOrFail($id)->bloodPressure()->orderby('created_at', 'desc')->get(); //orderBy('created_at', 'desc')->get()
         // return $bps;
         
         return view('subscriber.records.blood_pressure.index', [
@@ -73,14 +74,27 @@ class BloodPressureController extends Controller
     /**
      * add blood pressure readings
      */
-    public function addBP(){
+    public function addBP(Request $request){
+
+            $validator = Validator::make($request->all(), [
+               'systolic' => 'required',
+               'diastolic' => 'required',
+               'imei' => 'max:5',
+               'imsi' => 'max:5',
+               'iccid' => 'max:5',
+               'tel' => 'min:11',
+               ]);
+            if ($validator->fails()) {
+                // Session::flash('error', $validator->messages()->first());
+                return redirect()->back()->with('error', 'Incorrect input(s). All fields are required.');
+               }
        
-            $data = $this->requestData();
-            $rules = $this->requestRules();
-            $v = Utility::validateData($data,$rules);
-            if($v->fails()){
-                return back()->withErrors($v->messages()->all(),'add_bp')->withInput();
-            }
+            // $data = $this->requestData();
+            // $rules = $this->requestRules();
+            // $v = Utility::validateData($data,$rules);
+            // if($v->fails()){
+            //     return back()->withErrors($v->messages()->all(),'add_bp')->withInput();
+            // }
             if (session('subscriber_id') == NULL ) 
             {
                 return back()->withErrors($v->messages()->all(),'add_bp')->withInput();

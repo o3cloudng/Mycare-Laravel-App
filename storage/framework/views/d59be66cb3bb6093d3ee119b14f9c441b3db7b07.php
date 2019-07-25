@@ -92,7 +92,7 @@
                                     data-medical_personal_phone="<?php echo e($medication->medical_personal_phone); ?>"
                                     data-start_date="<?php echo e($medication->start_date); ?>"
                                     data-end_date="<?php echo e($medication->end_date); ?>" 
-                                    class="btn btn-sm btn-primary fa fa-pencil" id="edit-medication"></button>
+                                    class="btn btn-sm btn-primary fa fa-pencil" id="edit-modal" data-toggle="modal" data-target="#edit-modal"></button>
                                     <button data-id="<?php echo e($medication->id); ?>" class="btn btn-sm btn-danger fa fa-trash del-medication"></button>
                                 </td>
                             </tr>
@@ -119,7 +119,7 @@
 
                             <div class="modal-body">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label>Name</label>
                                             <input class="form-control shadow <?php echo e($errors->has('name') ? ' is-invalid' : ''); ?>" value="<?php echo e(old('name')); ?>" name="name" type="text" id="drug_name">
@@ -130,7 +130,7 @@
                                             <?php endif; ?>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label>Dosage</label>
                                             <input class="form-control shadow" value="<?php echo e(old('dosage')); ?>" name="dosage" type="text">
@@ -138,13 +138,13 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label>Duration(Days)</label>
                                             <input type="number" name="duration" class="form-control shadow" >
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label>Frequency(per day)</label>
                                             <input class="form-control shadow" value="<?php echo e(old('frequency')); ?>" name="frequency"  type="text">
@@ -152,14 +152,14 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label>Who prescribed it</label>
                                             <input type="text" name="medical_personal"  class="form-control shadow" value="<?php echo e(old('medical_personal')); ?>" placeholder="Dr. Victor ...">
                                         </div>
                     
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label>Prescriber phone</label>
                                             <input type="number" name="medical_personal_phone"  class="form-control shadow" value="<?php echo e(old('medical_personal_phone')); ?>" placeholder="+234812345678 ...">
@@ -260,8 +260,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn2 shadow default btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn2 shadow activeBPLink btn-primary">Edit Medication</button>
+                            <button type="button" class="btn_1 btn btn2 button shadow default gray delete" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn_1 btn btn2 button shadow activeBPLink gray approve">Edit Medication</button>
                         </div>
                     </form>
                     </div>
@@ -281,7 +281,7 @@
 <?php $__env->startSection('scripts'); ?>
 <script>
     $(document).ready(function() {
-        
+
         // Edit within modal
         $('#edit-modal').on('show.bs.modal', function(event) {
             // console.log('Reading modal data'); 
@@ -299,8 +299,13 @@
 
 
             modal.find('.modal-body #id').val(id)
-            modal.find('.modal-body #height').val(height)
-            modal.find('.modal-body #weight').val(weight)
+            modal.find('.modal-body #name').val(height)
+            modal.find('.modal-body #dosage').val(dosage)
+            modal.find('.modal-body #frequency').val(frequency)
+            modal.find('.modal-body #medical_personal').val(medical_personal)
+            modal.find('.modal-body #medical_personal_phone').val(medical_personal_phone)
+            modal.find('.modal-body #start_date').val(start_date)
+            modal.find('.modal-body #end_date').val(end_date)
 
         });
 

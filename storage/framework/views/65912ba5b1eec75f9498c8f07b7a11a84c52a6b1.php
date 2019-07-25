@@ -147,7 +147,7 @@
                                     <!-- <a href="/cholesterol" class="btn btn2 button shadow activeBPLink">MYCholesterol</a> -->
 
                                    <a href="/signout" class="float-right settings" style="color: #F8A602;"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>&nbsp;</a>
-                                    <span class="float-right mr-4 logout"><a href="settings" style="color: #F8A602;"><small id="settings"><img src="img/svg/icons/settings.svg" id="cog" />  Settings</small></a></span>
+                                    <span class="float-right mr-4 logout"><a href="settings" style="color: #F8A602;"><small id="settings"><img src="<?php echo e(asset('img/svg/icons/settings.svg')); ?>" id="cog" />  Settings</small></a></span>
                                     <!-- <a href="#" class="ml-5"><small id="settings"><i class=""></i> Bell</small></a></span> -->
                                 </div>
                                 </div>
