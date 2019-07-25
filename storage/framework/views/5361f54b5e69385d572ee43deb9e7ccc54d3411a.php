@@ -264,39 +264,6 @@
 
     });
 
-        // function heightCm() {
-        //     var feet_val = $('#feet_val').val();
-        //     var inches_val = $('#inches_val').val();
-        //     inches_val = parseInt(inches_val, 10);
-
-        //     var heightCm = feet_val * 12;
-        //     // console.log(typeof inches_val);
-        //     heightCm = heightCm + inches_val;
-        //     heightCm = heightCm * 2.54;
-        //     heightCm = Math.floor(heightCm);;
-        //     // alert(heightCm);
-        //     // console.log(typeof heightCm);
-
-        //     // $('#height_val').val() = heightCm;
-        //     document.getElementById('height_val').value = heightCm;
-        // }
-        // function heightFeet() {
-        //     var height_val = $('#height_val').val();
-
-        //     // Convert from cm to inches
-        //     var heightInches = height_val / 2.54;
-        //     // From inches to feet
-        //     heightFeet = heightInches / 12;
-        //     // Remainder inches
-        //     heightInches = heightInches % 12;
-        //     heightFeet = Math.floor(heightFeet);
-        //     // console.log("Feet: "+heightFeet);
-        //     document.getElementById('feet_val').value = heightFeet;
-        //     heightInches = Math.round(heightInches);
-        //     document.getElementById('inches_val').value = heightInches;
-        //     // console.log("Inches: " + heightInches);
-        // }
-
 
 </script>
 <?php $__env->stopSection(); ?>

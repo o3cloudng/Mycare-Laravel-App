@@ -25,12 +25,12 @@
                       <h4 class="">Medication</h4>
                     </div>
                     <div class="col-md-3">
-                      <a href="{{ url('add_medications') }}" class="btn_1 approve activeBPLink shadow btn btn2 button float-right">
+                      <!-- <a href="{{ url('add_medications') }}" class="btn_1 approve activeBPLink shadow btn btn2 button float-right">
                             Add New Medication
-                        </a>
-                        {{-- <button href="" class="btn_1 approve" data-toggle="modal" data-target="#addMedication">
+                        </a> -->
+                        <button href="" class="btn_1 approve activeBPLink shadow btn btn2 button float-right" data-toggle="modal" data-target="#addMedication">
                                 Add New Medication
-                        </button> --}}
+                        </button>
                     </div>    
                 </div>
             </div>
@@ -86,7 +86,16 @@
                                 <td class="medical_personal_phone">{{ $medication->medical_personal_phone  }}</td>
                                 <td class="start_date">{{ $medication->start_date }}</td>
                                 <td class="end_date">{{ $medication->end_date }}</td>
-                                <td><button data-id="{{$medication->id}}" class="btn btn-sm btn-primary fa fa-pencil" id="edit-medication"></button>
+                                <td><button 
+                                    data-id="{{$medication->id}}" 
+                                    data-name="{{ $medication->name }}"
+                                    data-dosage="{{ $medication->dosage }}"
+                                    data-frequency="{{ $medication->frequency }}"
+                                    data-medical_personal="{{ $medication->medical_personal }}"
+                                    data-medical_personal_phone="{{ $medication->medical_personal_phone  }}"
+                                    data-start_date="{{ $medication->start_date  }}"
+                                    data-end_date="{{ $medication->end_date  }}" 
+                                    class="btn btn-sm btn-primary fa fa-pencil" id="edit-medication"></button>
                                     <button data-id="{{$medication->id}}" class="btn btn-sm btn-danger fa fa-trash del-medication"></button>
                                 </td>
                             </tr>
@@ -108,14 +117,14 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                         </div>
-                        <form action="" method="post">
+                        <form action="{{ url('/medications/new') }}" method="post">
                                 {{ csrf_field() }}
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{old('name')}}" name="name" type="text" id="drug_name">
+                                            <input class="form-control shadow {{ $errors->has('name') ? ' is-invalid' : '' }}" value="{{old('name')}}" name="name" type="text" id="drug_name">
                                             @if ($errors->has('name'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('name') }}</strong>
@@ -126,7 +135,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Dosage</label>
-                                            <input class="form-control" value="{{old('dosage')}}" name="dosage" type="text">
+                                            <input class="form-control shadow" value="{{old('dosage')}}" name="dosage" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -134,20 +143,44 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Duration(Days)</label>
-                                            <input type="number" name="duration" class="form-control" >
+                                            <input type="number" name="duration" class="form-control shadow" >
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Frequency(per day)</label>
-                                            <input class="form-control" value="{{old('frequency')}}" name="frequency"  type="text">
+                                            <input class="form-control shadow" value="{{old('frequency')}}" name="frequency"  type="text">
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <div class="form-group">
-                                    <label for="start_date">Start Date</label>
-                                    <input class="form-control" value="{{ old('start_date') }}" name="start_date" type="date">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Who prescribed it</label>
+                                            <input type="text" name="medical_personal"  class="form-control shadow" value="{{old('medical_personal')}}" placeholder="Dr. Victor ...">
+                                        </div>
+                    
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Prescriber phone</label>
+                                            <input type="number" name="medical_personal_phone"  class="form-control shadow" value="{{old('medical_personal_phone')}}" placeholder="+234812345678 ...">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="start_date">Start Date</label>
+                                            <input class="form-control shadow" value="{{ old('start_date') }}" name="start_date" type="date">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="start_date">End Date</label>
+                                            <input type="date" name="end_date" id="end_date" class="form-control shadow" value="{{ old('end_date') }}">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -244,4 +277,43 @@
          
         </div>
         <!-- /.container-fluid-->
+@endsection
+
+@section('scripts')
+<script>
+    $(document).ready(function() {
+        data-id="{{$medication->id}}" 
+        data-name="{{ $medication->name }}"
+        data-dosage="{{ $medication->dosage }}"
+        data-frequency="{{ $medication->frequency }}"
+        data-medical_personal="{{ $medication->medical_personal }}"
+        data-medical_personal_phone="{{ $medication->medical_personal_phone  }}"
+        data-start_date="{{ $medication->start_date  }}"
+        data-end_date="{{ $medication->end_date  }}" 
+        // Edit within modal
+        $('#edit-modal').on('show.bs.modal', function(event) {
+            // console.log('Reading modal data'); 
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var name = button.data('name')
+            var dosage = button.data('dosage')
+            var frequency = button.data('frequency')
+            var medical_personal = button.data('medical_personal')
+            var medical_personal_phone = button.data('medical_personal_phone')
+            var start_date = button.data('start_date')
+            var end_date = button.data('end_date')
+
+            var modal = $(this)
+
+
+            modal.find('.modal-body #id').val(id)
+            modal.find('.modal-body #height').val(height)
+            modal.find('.modal-body #weight').val(weight)
+
+        });
+
+    });
+
+
+</script>
 @endsection

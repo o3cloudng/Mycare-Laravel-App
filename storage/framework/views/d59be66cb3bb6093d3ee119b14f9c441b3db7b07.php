@@ -22,10 +22,12 @@
                       <h4 class="">Medication</h4>
                     </div>
                     <div class="col-md-3">
-                      <a href="<?php echo e(url('add_medications')); ?>" class="btn_1 approve activeBPLink shadow btn btn2 button float-right">
+                      <!-- <a href="<?php echo e(url('add_medications')); ?>" class="btn_1 approve activeBPLink shadow btn btn2 button float-right">
                             Add New Medication
-                        </a>
-                        
+                        </a> -->
+                        <button href="" class="btn_1 approve activeBPLink shadow btn btn2 button float-right" data-toggle="modal" data-target="#addMedication">
+                                Add New Medication
+                        </button>
                     </div>    
                 </div>
             </div>
@@ -103,7 +105,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                         </div>
-                        <form action="" method="post">
+                        <form action="<?php echo e(url('/medications/new')); ?>" method="post">
                                 <?php echo e(csrf_field()); ?>
 
                             <div class="modal-body">
@@ -111,7 +113,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Name</label>
-                                            <input class="form-control <?php echo e($errors->has('name') ? ' is-invalid' : ''); ?>" value="<?php echo e(old('name')); ?>" name="name" type="text" id="drug_name">
+                                            <input class="form-control shadow <?php echo e($errors->has('name') ? ' is-invalid' : ''); ?>" value="<?php echo e(old('name')); ?>" name="name" type="text" id="drug_name">
                                             <?php if($errors->has('name')): ?>
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong><?php echo e($errors->first('name')); ?></strong>
@@ -122,7 +124,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Dosage</label>
-                                            <input class="form-control" value="<?php echo e(old('dosage')); ?>" name="dosage" type="text">
+                                            <input class="form-control shadow" value="<?php echo e(old('dosage')); ?>" name="dosage" type="text">
                                         </div>
                                     </div>
                                 </div>
@@ -130,20 +132,44 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Duration(Days)</label>
-                                            <input type="number" name="duration" class="form-control" >
+                                            <input type="number" name="duration" class="form-control shadow" >
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Frequency(per day)</label>
-                                            <input class="form-control" value="<?php echo e(old('frequency')); ?>" name="frequency"  type="text">
+                                            <input class="form-control shadow" value="<?php echo e(old('frequency')); ?>" name="frequency"  type="text">
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <div class="form-group">
-                                    <label for="start_date">Start Date</label>
-                                    <input class="form-control" value="<?php echo e(old('start_date')); ?>" name="start_date" type="date">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Who prescribed it</label>
+                                            <input type="text" name="medical_personal"  class="form-control shadow" value="<?php echo e(old('medical_personal')); ?>" placeholder="Dr. Victor ...">
+                                        </div>
+                    
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Prescriber phone</label>
+                                            <input type="number" name="medical_personal_phone"  class="form-control shadow" value="<?php echo e(old('medical_personal_phone')); ?>" placeholder="+234812345678 ...">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="start_date">Start Date</label>
+                                            <input class="form-control shadow" value="<?php echo e(old('start_date')); ?>" name="start_date" type="date">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="start_date">End Date</label>
+                                            <input type="date" name="end_date" id="end_date" class="form-control shadow" value="<?php echo e(old('end_date')); ?>">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">

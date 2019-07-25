@@ -65,6 +65,7 @@ class MedicationController extends Controller
         $medication['subscriber_id'] =  $subscriber_id;
         // $medication['diagnosis_id'] = $request->diagnosis_id; //TODO: Diagnosis should be added in the personal profile
         $medication['dosage'] = $request->dosage;
+        $medication['diagnosis_id'] = $request->dosage;
         $medication['frequency'] = $request->frequency;
         $medication['medical_personal'] = $request->medical_personal;
         $medication['medical_personal_phone'] = $request->medical_personal_phone;
