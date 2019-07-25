@@ -6,7 +6,7 @@
     <title><?php echo $__env->yieldContent('title'); ?> - MyCarePlus</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/sticky-footer-navbar/">
-
+    <link rel="shortcut icon" href="<?php echo e(asset('img/logo.jpeg')); ?>">
 
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
