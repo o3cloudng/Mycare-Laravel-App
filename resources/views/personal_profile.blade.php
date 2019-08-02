@@ -55,7 +55,7 @@
                         <div class="col-md-7">
                             <div class="form-group">
                                 <label>Email</label>
-                                <input name="email" value="{{ $subscriber->email }}" type="email" class="form-control shadow" placeholder="Email" readonly>
+                                <input name="email" value="{{ $subscriber->email }}" type="email" class="form-control shadow" placeholder="Email">
                             </div>
                         </div>
                         <div class="col-md-5">
@@ -149,8 +149,8 @@
                                     <td>{{ $d->id }}</td>
                                     <td>{{ $d->name }}</td>
                                     <td>None</td>
-                                    <td><button data-id="{{$d->id}}" class="btn btn-sm btn-primary fa fa-pencil d-flex" id="edit-diagnosis"></button>
-                                        <button data-id="{{$d->id}}" class="btn btn-sm btn-danger fa fa-trash del-diagnosis d-flex"></button>
+                                    <td><button data-id="{{$d->id}}" class="btn btn-sm d-flex" id="edit-diagnosis"><i class="fa fa-pencil"></i></button>
+                                        <button data-id="{{$d->id}}" class="btn btn-sm del-diagnosis d-flex"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -169,7 +169,7 @@
             </div>
             <div class="col-sm-12 col-xs-12 col-md-7">
                 <div class="col-md-12 py-4 mybox shadow">
-                        <h5> <i class="fa fa-user"></i>Update Profile</h5>
+                        <h5> <i class="fa fa-user"></i>&nbsp;Update Profile</h5>
                         <form action="{{ url('updateProfile') }}" method="post">
                             {{csrf_field()}}
                             <!-- /row-->

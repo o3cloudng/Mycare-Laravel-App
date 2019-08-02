@@ -43,10 +43,29 @@ class ContactTeamController extends Controller
         }
     }
 
+
+
+    // public function delete($id){
+  
+    //     $contactTeam = ContactTeam::find($id);
+    //     if(is_null($contactTeam)){
+    //         return back()->with('error','Blood Pressure does not exist');
+    //     }else{
+    //         $contactTeam->delete();
+    //         return back()->with('success','Blood Pressure deleted successfully');
+    //     }
+
+
+    //     Utility::errorLog($e);
+    //     return back();
+   
+    // }
+
+
     public function delete(Request $request) {
 
-        dd('Something here...');
-        $subscriber_id = session('subscriber_id');
+        print_r($request);
+        // $subscriber_id = session('subscriber_id');
         // return ['success' => 'has been removed from your contact team', 'id' => $request->id]);
         $contactTeam = ContactTeam::findOrFail($request->id);
         

@@ -5,7 +5,7 @@
     Medications
 @endsection
 @section('header')
-   <i class="fa fa-user"></i> New Medications
+   <!-- <i class="fa fa-user"></i> --> New Medications
 @endsection
 @section('content')
 
@@ -23,9 +23,6 @@
                 @endif
             </div>
             <div class="card">
-                <div class="card-header">
-                    <i class="fa fa-table"></i> Medications
-                </div>
                 <div class="card-body">
                     <form action="{{ url('/medications/new') }}" method="post">
                     {{ csrf_field() }}

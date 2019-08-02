@@ -250,6 +250,11 @@ class BmiController extends Controller
                 $weight = round($request->weight, 2);
             }
 
+            $this->validate($request, [
+                'start_date'    => 'required|date',
+                'end_date' => 'required|date|after:start_date'
+            ]);
+
             //TODO: Convert Height From Inches to Centimetre
             if ($height_unit == 'feet') {
                 $this->validate($request, [

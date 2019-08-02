@@ -4,7 +4,7 @@
     Subscriptions
 @endsection
 @section('header')
-   <i class="fa fa-user"></i> Subscription Data
+   <!-- <i class="fa fa-user"></i> --> Subscription Data
 @endsection
 
 @section('content')
@@ -15,18 +15,15 @@
               </div>
             </div>
             <div class="row">
-              @isset( $subscription )
+              {{--@isset( $subscription )
                 @if($subscription[0]->subscriptionExpiryDate)
                   {{ $subscription[0]->subscriptionExpiryDate  }} 
                 @else
                   now()->toDateTimeString('Y-m-d')        
                 @endif
-              @endisset
+              @endisset--}}
             </div>
             <div class="card">
-              <div class="card-header">
-                <div class="">Subscriptions</div>
-              </div>
               <div class="card-body">
                 <div class="row table-responsive">
                 <div class="col-md-8">

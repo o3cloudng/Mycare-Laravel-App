@@ -1,3 +1,8 @@
+<?php
+$active = 'mybp';
+?>
+
+
 <?php $__env->startSection('title'); ?>
     Dashboard
 <?php $__env->stopSection(); ?>
@@ -14,27 +19,27 @@
     <button class="btn button shadow dropdown-toggle ml-2" type="button" data-toggle="dropdown" id="dropdownMenu2">1 Week
     <span class="caret"></span></button> -->
 <?php $__env->stopSection(); ?>
-
 <?php $__env->startSection('content'); ?>
                <section>
-                    <div class="container">
+                    <div class="container" style="margin-top: -20px !important;">
                         <div class="row">
-                          <div class="col-sm-12 col-xs -12 col-md-5 text-center m-3 ml-md-4 mybox shadow" id="mybox_gauge">
+                          <div class="col-sm-12 col-xs-12 col-md-3 text-center py-3 m-3 mybox shadow" id="mybox_gauge">
                                   <div class="row justify-content-center">
-                                        <div class="col-xs-12 col-sm-12 col-md-4 my-auto pt-3">
+                                        <!-- <div class="col-xs-12 col-sm-12 col-md-4 my-auto pt-3">
                                             <h5>Systolic</h5>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-12 col-md-8">
+                                        </div> -->
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
                                             <!-- data-units="(<?php if(isset( $currentBP->systolic )): ?><?php echo e($currentBP->systolic); ?> <?php endif; ?>) Km/h" -->
+                                            <h5>Systolic</h5>
                                            
-                                           <p style="height: 160px; overflow: hidden; margin-top: 20px;">
+                                           <p style="height: 120px; overflow: hidden; margin-top: 20px;">
                                              <canvas data-type="radial-gauge"
                                              // animations
                                             animation= "true"
                                             animationDuration= "500"
                                             animationRule= 'cycle'
-                                            data-width="230"
-                                            data-height="230"
+                                            data-width="170"
+                                            data-height="170"
                                             data-units="<?php if(!empty($currentBP->systolic)): ?>
                                                             <?php echo e($currentBP->systolic); ?>
 
@@ -53,9 +58,9 @@
                                             data-minor-ticks="2"
                                             data-stroke-ticks="true"
                                             data-highlights='[
-                                                {"from": 181, "to": 220, "color": "#9D0000"},
-                                                {"from": 121, "to": 180, "color": "#F1BC4E"},
-                                                {"from": 0, "to": 120, "color": "#35843C"}
+                                                {"from": 181, "to": 220, "color": "red"},
+                                                {"from": 121, "to": 180, "color": "yellow"},
+                                                {"from": 0, "to": 120, "color": "green"}
                                             ]'
                                             data-color-plate="#fcfcfc"
                                             data-border-shadow-width="0"
@@ -79,17 +84,18 @@
                                         </div>
                                   </div>
                               </div>
-                          <div class="col-xs-10 col-sm-10 offset-sm-1 col-md-5 m-3 ml-md-4 text-center my-auto mybox shadow" id="mybox_gauge">
+                          <div class="col-xs-10 col-sm-10 offset-sm-1 col-md-3 m-3 py-3 text-center my-auto mybox shadow" id="mybox_gauge">
                             <div class="row justify-content-center">
-                                <div class="col-xs-12 col-sm-12 col-md-4 my-auto pt-3">
+                                <!-- <div class="col-xs-12 col-sm-12 col-md-4 my-auto pt-3">
                                    <h5>Diastolic</h5>
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-8">
+                                </div> -->
+                                <h5>Diastolic</h5>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
                                   <!-- <img src="img/diastolic.png" style="width: 200px !important;" class="img-fluid"/> -->
-                                  <p style="height: 160px; overflow: hidden; margin-top: 20px;">
+                                  <p style="height: 120px; overflow: hidden; margin-top: 20px;">
                                              <canvas data-type="radial-gauge"
-                                            data-width="230"
-                                            data-height="230"
+                                            data-width="170"
+                                            data-height="170"
                                             data-units="<?php if(!empty($currentBP->diastolic)): ?>
                                                             <?php echo e($currentBP->diastolic); ?>
 
@@ -132,9 +138,59 @@
                                                         <?php endif; ?>"
                                         ></canvas>
                                            </p>
-                                  <!-- <div class="w-70"><span class="float-left">0</span><span class="float-right">200</span></div> -->
-                                  <!-- <span class=""><small>0</small></span><span class="float-right"><small>200</small></span> -->
-                                  <!-- <p>&nbsp;</p> -->
+                                </div>
+                            </div>
+                          </div>
+                          <div class="col-xs-10 col-sm-10 offset-sm-1 col-md-4 m-3 py-3 text-center my-auto mybox shadow" id="mybox_gauge">
+                            <div class="row justify-content-center">
+                                <h5>BP Goal</h5>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                  <h1 style="height: 120px; overflow: hidden; margin-top: 20px; margin-bottom: -35px;">
+                                    <?php if(isset($bps)): ?><?php echo e($bps[0]->systolic); ?>/<?php echo e($bps[0]->diastolic); ?><?php endif; ?>
+                                  </h1>
+                                  <b>Current BP - <?php if(isset($bps)): ?><?php echo e($currentBP->systolic); ?>/<?php echo e($currentBP->diastolic); ?><?php endif; ?></b>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-xs-10 col-sm-10 offset-sm-1 col-md-3 m-3 py-3 text-center my-auto mybox shadow" id="mybox_gauge">
+                            <div class="row justify-content-center">
+                                <h5>Blood Glucose</h5>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                  <h1 style="height: 120px; overflow: hidden; margin-top: 20px; margin-bottom: -35px;">
+                                    <?php if(isset($bg_today)): ?><?php echo e($bg_today); ?><?php endif; ?> mg/dl
+                                           </h1>
+                                  <b>Current BG - <?php if(isset($bps)): ?><?php echo e($bgs[0]->bg); ?><?php endif; ?></b>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="col-xs-10 col-sm-10 offset-sm-1 col-md-3 m-3 py-3 text-center my-auto mybox shadow" id="mybox_gauge">
+                            <div class="row justify-content-center">
+                                <h5>Choleserol</h5>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                  <h1 style="height: 120px; overflow: hidden; margin-top: 20px; margin-bottom: -35px;">
+                                    <?php if(isset($cholesterol)): ?><?php echo e($cholesterol->total_cholesterol); ?><?php endif; ?>
+                                           </h1>
+                                     <b><?php if(isset($cholesterol)): ?><?php echo e($cholesterol->total_cholesterol_status); ?><?php endif; ?></b>
+                                           <!-- <b>Current Cholesterol - </b> -->
+                                </div>
+                            </div>
+                          </div>
+                          <div class="col-xs-10 col-sm-10 offset-sm-1 col-md-4 m-3 py-3 text-center my-auto mybox shadow" id="mybox_gauge">
+                            <div class="row justify-content-center">
+                                <h5>Body Mass Index</h5>
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                  <h1 style="height: 120px; overflow: hidden; margin-top: 20px; margin-bottom: -35px;">
+                                    <?php if(isset($bmi)): ?>
+                                      <?php echo e($bmi->bmi); ?>
+
+                                   </h1>
+                                  <b > 
+                                    BMI Goal - <?php echo e($bmi_goal->bmi); ?>
+
+                                  </b> 
+                                    <?php endif; ?>
                                 </div>
                             </div>
                           </div>
@@ -142,49 +198,113 @@
                     </div>
                     
                   </section>
-                  <section>
-                      <div class="container">
-                          <div class="row">
-                              <div class="col-md-11 my-auto">
-                                <div class="card shadow mt-4">
-                                    <div class="card-header"><h2><i class="fa fa-line-chart"></i> Blood Pressure Statistics </h2></div>
-                                    <div class="card-body">
-                                      <div class="row">
-                                       <div class="col-xl-12 col-sm-12 mb-3" >
-                                        <p class="text-center mt-1 pt-0">
-                                                        <?php if(!empty($currentBP->diastolic)): ?>
-                                                            <?php echo e($currentBP->created_at->diffForHumans()); ?>
-
-                                                        <?php else: ?>
-                                                            <?php echo e(0); ?>
-
-                                                        <?php endif; ?></p>
-                                      </div>
-                                        <!-- </div> -->
-                                        <div class="col-xl-12 col-sm-12" focusin="bloodPressure()">
-                                            <?php if(count($bps) > 0): ?>
-                                              <canvas id="bloodPressureGraph" width="100%" height="30" style="margin:45px 0 15px 0;"></canvas>
-                                              <div class="card-footer small text-muted">Last 7 Days</div>
-                                            <?php else: ?> 
-                                              <br>
-                                              <br>
-                                              <br>
-                                              <p class="text-center">No Blood Pressure Recorded Yet</p>
-                                            <?php endif; ?>
-                                          </div>
-                                    </div>
-                                        <!-- <img src="img/bloodPressure_Graph.png" alt="Blood Pressure Graph" class="w-100 img-fluid"> -->
-                                    </div>
-                                    <div class="card-footer">&nbsp;</div>
-                                </div>
-                              </div>
-                          </div>
+                  <section class="container">
+                    <div class="col-md-11">
+                      
+                      <div class="row m-4 p-4 d-flex justify-content-center">
+                        <button type="button" class="btn shadow default" data-toggle="modal" data-target="#BP">BP Recent History</button>&nbsp;
+                        <button type="button" class="btn shadow default" data-toggle="modal" data-target="#BG">Blood Glucose History</button>&nbsp;
+                        <button type="button" class="btn shadow default" data-toggle="modal" data-target="#BMI">Body MAss Index</button>&nbsp;
+                        <button type="button" class="btn shadow default">Cholesterol</button>&nbsp;
                       </div>
+                    </div>
                   </section>
             </div>
         </div>
     </div>
 </div>
+
+<!--  Modal begin here -->
+
+<!-- The Modal -->
+<div class="modal fade" id="BP" tabindex="-1" role="dialog" aria-labelledby="addBloodPressureLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title" id="addMedicationLabel"><i class="fa fa-line-chart"></i> Blood Pressure recent history</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <i class="fa fa-2x fa-times" aria-hidden="true"></i>
+          </button>
+          </div>
+          <div class="modal-body">
+            <section>
+                <!-- <p class="text-center">
+                  <?php if(!empty($currentBP->diastolic)): ?>
+                      <?php echo e($currentBP->created_at->diffForHumans()); ?>
+
+                  <?php else: ?>
+                      <?php echo e(0); ?>
+
+                  <?php endif; ?>
+                </p> -->
+                <!-- </div> -->
+                <div class="col-xl-12 col-sm-12" focusin="bloodPressure()">
+                    <?php if(count($bps) > 0): ?>
+                      <canvas id="bloodPressureGraph"></canvas>
+                      <div class="card-footer small text-muted">Last 7 Days</div>
+                    <?php else: ?> 
+                      <br/>
+                      <p class="text-center">No Blood Pressure Recorded Yet</p>
+                    <?php endif; ?>
+          </section>
+          </div>  
+      </div>
+  </div>
+</div> <!-- End Blood Pressure History -->
+
+<!-- Blood Glucose -->
+<div class="modal fade" id="BG" tabindex="-1" role="dialog" aria-labelledby="addBloodGlucoseLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title" id="addMedicationLabel"><i class="fa fa-line-chart"></i> Blood Glucose recent history</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <i class="fa fa-2x fa-times" aria-hidden="true"></i>
+          </button>
+          </div>
+          <div class="modal-body">
+            <section>
+                <div class="col-xl-12 col-sm-12" focusin="bloodPressure()">
+                    <?php if(count($bgs) > 0): ?>
+                      <canvas id="bloodGlucoseGraph"></canvas>
+                      <div class="card-footer small text-muted">Last 7 Days</div>
+                    <?php else: ?> 
+                      <br/>
+                      <p class="text-center">No Blood Glucose Recorded Yet</p>
+                    <?php endif; ?>
+          </section>
+          </div>  
+      </div>
+  </div>
+</div>
+
+<!-- Boby Mass Index Graph -->
+<div class="modal fade" id="BMI" tabindex="-1" role="dialog" aria-labelledby="addBloodGlucoseLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+          <h5 class="modal-title" id="addMedicationLabel"><i class="fa fa-line-chart"></i> Body Mass Index History</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <i class="fa fa-2x fa-times" aria-hidden="true"></i>
+          </button>
+          </div>
+          <div class="modal-body">
+            <section>
+                <div class="col-xl-12 col-sm-12" focusin="">
+                    
+                    <?php if($bmi_history): ?>
+                      <canvas id="bmi"></canvas>
+                      <div class="card-footer small text-muted">Last 7 Days</div>
+                    <?php else: ?> 
+                      <br/>
+                      <p class="text-center">No Body Mass Index Recorded Yet</p>
+                    <?php endif; ?>
+          </section>
+          </div>  
+      </div>
+  </div>
+</div>
+
 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('scripts'); ?>
@@ -231,7 +351,79 @@
         }
       }
     });
+
+//      Blood Glucose
+    var bgs = <?php echo json_encode($bgs); ?>
+
+    var bgData = [];
+    var date = [];
+    // console.log(bgs);
+
+    for (var x = 0; x < bgs.length; x++) {
+      bgData.push(bgs[x]['bg']);
+
+      var day = new Date(bgs[x]['created_at']);
+      var days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+
+      date.push(days[day.getDay()]);
+    }
+    let bgLine = document.getElementById('bloodGlucoseGraph');
+    let bgLineGraph = new Chart(bgLine, {
+      type: 'line',
+      data: {
+        labels: date,
+        datasets: [{ 
+            data: bgData,
+            label: "Blood Glucose",
+            borderColor: "#3e95cd",
+            fill: true
+          }
+        ]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'Blood Glucose'
+        }
+      }
+    });
+//      Body Mass Index
+    var bmi = <?php echo json_encode($bmi_history); ?>
+
+    var bmiData = [];
+    var date = [];
+
+    for (var x = 0; x < bmi.length; x++) {
+      bmiData.push(bmi[x]['bmi']);
+
+      var day = new Date(bmi[x]['created_at']);
+      var days = ["Sun", "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat"];
+
+      date.push(days[day.getDay()]);
+    }
+    // console.log(bmi);
+    let bmiLine = document.getElementById('bmi');
+    let bmiLineGraph = new Chart(bmiLine, {
+      type: 'line',
+      data: {
+        labels: date,
+        datasets: [{ 
+            data: bmiData,
+            label: "Body Mass Index",
+            borderColor: "#3e95cd",
+            fill: true
+          }
+        ]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'Body Mass Index'
+        }
+      }
+    });
 });
+
   
 </script>
 <?php $__env->stopSection(); ?>

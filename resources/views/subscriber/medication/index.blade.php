@@ -5,7 +5,7 @@
     Medications
 @endsection
 @section('header')
-   <i class="fa fa-user"></i> Medications
+   <!-- <i class="fa fa-user"></i> --> Medications
 @endsection
 @section('content')
         <div class="container">
@@ -28,22 +28,18 @@
                       <!-- <a href="{{ url('add_medications') }}" class="btn_1 approve activeBPLink shadow btn btn2 button float-right">
                             Add New Medication
                         </a> -->
-                        <button href="" class="btn_1 approve activeBPLink shadow btn btn2 button float-right" data-toggle="modal" data-target="#addMedication">
-                                Add New Medication
-                        </button>
+                        <a href="#" class="btn btn_1 approve  float-right" data-toggle="modal" data-target="#addMedication">
+                                Add New Medication &nbsp;<i class="fa fa-plus"></i>
+                        </a>
                     </div>    
                 </div>
             </div>
             <div class="text-left">
-                
             </div>
           </div>
             
           
             <div class="card">
-                <div class="card-header">
-                    <i class="fa fa-table"></i> Medications</h5>
-                </div>
                 <div class="card-body">
                                 <!-- Medication -->
             <div class="row table-responsive">
@@ -95,8 +91,8 @@
                                     data-medical_personal_phone="{{ $medication->medical_personal_phone  }}"
                                     data-start_date="{{ $medication->start_date  }}"
                                     data-end_date="{{ $medication->end_date  }}" 
-                                    class="btn btn-sm btn-primary fa fa-pencil" id="edit-modal" data-toggle="modal" data-target="#edit-modal"></button>
-                                    <button data-id="{{$medication->id}}" class="btn btn-sm btn-danger fa fa-trash del-medication"></button>
+                                    class="btn btn-sm" id="edit-modal" data-toggle="modal" data-target="#edit-modal"><i class="fa fa-pencil"></i></button>
+                                    <button data-id="{{$medication->id}}" class="btn btn-sm del-medication">&nbsp;<i class="fa fa-trash "></i></button>
                                 </td>
                             </tr>
                             @endforeach
@@ -114,7 +110,7 @@
                         <div class="modal-header">
                         <h5 class="modal-title" id="addMedicationLabel">Add New Medication</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                            <i class="fa fa-2x fa-times" aria-hidden="true"></i>
                         </button>
                         </div>
                         <form action="{{ url('/medications/new') }}" method="post">
@@ -169,18 +165,18 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-sm-12 col-md-6">
+                                    <div class="col-sm-12 col-md-12">
                                         <div class="form-group">
                                             <label for="start_date">Start Date</label>
-                                            <input class="form-control shadow" value="{{ old('start_date') }}" name="start_date" type="date">
+                                            <input class="form-control shadow" id="start_date" name="start_date" type="date">
                                         </div>
                                     </div>
-                                    <div class="col-sm-12 col-md-6">
+                                    <!-- <div class="col-sm-12 col-md-6">
                                         <div class="form-group">
                                             <label for="start_date">End Date</label>
                                             <input type="date" name="end_date" id="end_date" class="form-control shadow" value="{{ old('end_date') }}">
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -202,7 +198,7 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="edit-modal-label">Edit Medication</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                            <i class="fa fa-2x fa-times" aria-hidden="true"></i>
                         </button>
                     </div>
                     <form id="edit-form" class="form-horizontal" method="POST" action="{{ url('/medications/edit') }}">
@@ -281,7 +277,33 @@
 
 @section('scripts')
 <script>
+    /*
+        Calculate End-Date from Duration + Start-Date
+    */
+    // function setEndDate() {
+    //     var someDate = new Date();
+
+    //     var numberOfDaysToAdd = document.getElementById("duration").value;
+    //     console.log(numberOfDaysToAdd);
+        
+    //     someDate.setDate(someDate.getDate() + numberOfDaysToAdd);
+
+    //     var dd = someDate.getDate();
+    //     var mm = someDate.getMonth() + 1;
+    //     var y = someDate.getFullYear();
+
+    //     var someFormattedDate = mm + '/'+ dd + '/'+ y;
+
+    //     alert(someFormattedDate);
+
+    //     document.getElementById('end_date').value = someFormattedDate;
+
+    // }
+
+
     $(document).ready(function() {
+
+        
 
         // Edit within modal
         $('#edit-modal').on('show.bs.modal', function(event) {

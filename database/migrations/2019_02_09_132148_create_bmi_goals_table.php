@@ -20,10 +20,12 @@ class CreateBmiGoalsTable extends Migration
             $table->string('bmi')->change();
             $table->integer('weight');
             $table->integer('height');
-            $table->string('frequency');
-            $table->string('weekDay')->nullable();
-            $table->integer('monthDay')->nullable();
-            $table->integer('hour')->change();
+            $table->date('start_date');
+            $table->date('end_date');
+            // $table->string('frequency');
+            // $table->string('weekDay')->nullable();
+            // $table->integer('monthDay')->nullable();
+            // $table->integer('hour')->change();
             $table->timestamps();
         });
     }

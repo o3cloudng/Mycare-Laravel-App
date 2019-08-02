@@ -2,7 +2,7 @@
 @extends('layouts.dashboard')
 
 @section('header')
-    <h2><i class="fa fa-user"></i> Contact Team</h2>
+    <h2><!-- <i class="fa fa-user"></i> --> Contact Team</h2>
 @endsection
 
 @section('title')
@@ -28,7 +28,7 @@
             <div class="row mt-3 heading shadow-sm">
                 <!-- <div class="col-2">
                     <div class="input-group">
-                        <input type="search" class="form-control" name="search" placeholder="Search" />
+                        <input type="search" class="form-control" phone="search" placeholder="Search" />
                         <div class="input-group-append btn-warning"><span class="input-group-text"><i class="fa fa-search"></i></span></div>
                     </div>
                 </div>
@@ -47,8 +47,9 @@
                     <a href="#" class="btn"><img style="width: 35px;" src="{{ asset('img/pencil.png') }}"></a>
                     <a href="#" class="btn"><img style="width: 35px;" src="{{ asset('img/delete.png') }}"></a>
                 </div> -->
-                <div class="col-12">
-                    <div class="text-right"> <button type="button" class="btn_1 btn btn2 button shadow mx-auto activeBPLink" data-toggle="modal" data-target="#addContact">Add New Contact Member  &nbsp; &#43;</button>
+                <div class="col-md-12">
+                    <div class="text-right"> 
+                        <a href="#" class="btn_1 btn mx-auto" data-toggle="modal" data-target="#addContact">Add New Contact Member  &nbsp;<i class="fa fa-plus"></i></a>
                     </div>
                 </div>
             </div>
@@ -58,7 +59,7 @@
                </div>
                <div class="card-body">
                     <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-12">
                     @if($errors->all())
                         <div class="alert alert-danger">
                             <ul>
@@ -76,7 +77,7 @@
                                 <th>Description</th>
                                 <th>Email</th>
                                 <th>Mobile</th>
-                                <!-- <th>Action</th> -->
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -95,10 +96,23 @@
                                     <td>{{ ucfirst($contactTeam->description) }}</td>
                                     <td>{{ $contactTeam->email }}</td>
                                     <td>{{ $contactTeam->phone }}</td>
-                                    <!-- <td> -->
-                                        <!-- <button class="btn_1 gray delete del-contactTeam btn btn2 button shadow mx-auto activeBPLink" data-id="{{ $contactTeam->id }}" ><i class="fa fa-fw fa-times-circle-o"></i></button> -->
-                                        <!-- <a href="contact-team/delete/{{ $contactTeam->id }}" class="btn btn-danger"><i class="fa fa-fw fa-times-circle-o"></i></a> -->
-                                    <!-- </td> -->
+                                    <td class="d-flex">
+                                        <button class="btn btn-sm" data-id="{{ $contactTeam->id }}"
+                                         data-name="{{ $contactTeam->name }}" 
+                                         data-email="{{ $contactTeam->email }}" 
+                                         data-phone="{{ $contactTeam->phone }}" 
+                                         data-description="{{ $contactTeam->description }}" 
+                                         data-toggle="modal" 
+                                         data-target="#editContact"><i class="fa fa-pencil"></i></button>
+
+                                         <form class="delete" action="{{ url('/deleteContact') }}" method="POST">
+                                            <input type="hidden" name="_method" value="{{ $contactTeam->id }}">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                            <button type="submit" class="btn btn-sm"><i class='fa fa-trash'></i></button>
+                                        </form>
+
+                                        <!-- <a href="/deleteContact/{{ $contactTeam->id }}" class="btn btn-sm delete"><i class="fa fa-trash"></i></a>  -->
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -118,7 +132,7 @@
                         <div class="modal-header">
                         <h5 class="modal-title" id="addEmergencyLabel">Add Contact</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                            <i class="fa fa-2x fa-times" aria-hidden="true"></i>
                         </button>
                         </div>
                         <form action="{{ url('/contact-team/new') }}" method="POST">  
@@ -173,7 +187,81 @@
                             
                             <div class="modal-footer">
                                 <div class="form-group">
-                                    <button type="button" class="btn_1 btn btn2 button shadow default gray delete" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn_1 btn btn2 button shadow default gray" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn_1 btn btn2 button shadow activeBPLink gray approve">Add Contact</button>
+                                </div>
+                            </div>
+                        </form> 
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="modal fade" id="editContact" tabindex="-1" role="dialog" aria-labelledby="addUserLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="editEmergencyLabel">Edit Contact</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-2x fa-times" aria-hidden="true"></i>
+                        </button>
+                        </div>
+                        <form action="{{ url('/contact-team/edit') }}" method="POST">  
+                                {{ csrf_field() }}
+                            <div class="modal-body">
+                                 
+                                <div class="form-group">
+                                    <label>Name</label>
+                                    <input type="text" class="form-control shadow {{ $errors->has('name') ? ' is-invalid' : '' }}" value="" name="name" id="name">
+                                    @if ($errors->has('name'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('name') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control shadow {{ $errors->has('email') ? ' is-invalid' : '' }}" value="" name="email" id="email">
+                                    @if ($errors->has('email'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('email') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Phone Number</label>
+                                            <input type="number" class="form-control shadow {{ $errors->has('phone') ? ' is-invalid' : '' }}" value="" name="phone" id="phone">
+                                            @if ($errors->has('phone'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('phone') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <select class="form-control shadow" name="description" id="description">
+                                                <option value="physician">Physician</option>
+                                                <option value="physician">Physician</option>
+                                                <option value="emergency-contact">Emergency Contact</option>
+                                                <option value="doctor">Doctor</option>
+                                                <option value="father">Father</option>
+                                                <option value="mother">Mother</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="modal-footer">
+                                <div class="form-group">
+                                    <button type="button" class="btn_1 btn btn2 button shadow default gray" data-dismiss="modal">Close</button>
                                     <button type="submit" class="btn_1 btn btn2 button shadow activeBPLink gray approve">Add Contact</button>
                                 </div>
                             </div>
@@ -185,4 +273,35 @@
           <!-- /row-->
          
         </div>
+@endsection
+@section('scripts')
+<script>
+    $(document).ready(function() {
+        // Edit within modal
+        $('#editContact').on('show.bs.modal', function(event) {
+            // console.log('Reading modal data'); 
+            var button = $(event.relatedTarget)
+            var id = button.data('id')
+            var name = button.data('name')
+            var email = button.data('email')
+            var phone = button.data('phone')
+            var description = button.data('description')
+
+            var modal = $(this)
+
+
+            modal.find('.modal-body #id').val(id)
+            modal.find('.modal-body #name').val(name)
+            modal.find('.modal-body #email').val(email)
+            modal.find('.modal-body #phone').val(phone)
+            modal.find('.modal-body #description').val(description)
+
+        });
+
+        // $(".delete").on("click", function(){
+        //     return confirm("Do you want to delete this item?");
+        // });
+
+    });
+</script>
 @endsection

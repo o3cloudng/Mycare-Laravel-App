@@ -51,13 +51,17 @@ class MedicationController extends Controller
         
     }
     public function create(Request $request) {
+        $start_date = $request->start_date;
+        $duration = $request->duration;
+        $end_date = date('Y-m-d', strtotime($start_date. ' + '.$duration.' days'));
+
         //TODO: Validation
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'dosage' => 'required|string|max:255',
             'frequency' => 'required',
             'start_date' => 'before:end_date',
-            'end_date' => ''
+            'end_date' => $end_date
         ]);
         //TODO: Create New Medication
         $subscriber_id = session('subscriber_id');

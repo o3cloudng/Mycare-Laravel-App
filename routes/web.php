@@ -53,8 +53,17 @@ Route::group( [ 'middleware' => 'checkSubAuth', 'checksession'], function () {
     Route::get('/careTeam/request/pending', 'MedicalPersonal\RequestController@viewPendingRequests');
     Route::get('/careTeam/request/disapprove', 'MedicalPersonal\RequestController@viewDisapprovedRequests');
 
+    /* Contact Team: To Replace Care Team Implementation */
+    Route::get('/contact-team', 'Subscriber\ContactTeamController@index');
+    Route::post('/contact-team/new', 'Subscriber\ContactTeamController@store');
+    Route::post('/deleteContact', 'Subscriber\ContactTeamController@delete');
+        
+    /* Care Team */
+    Route::get('/care-team', 'Subscriber\SubscriberController@getCareTeam');
+    Route::post('/care-team', 'Subscriber\CareTeamController@register');
 
-    
+    Route::post('/care-team/member/new', 'Subscriber\CareTeamController@addUserToCareTeam');
+                    
 
 
     /* Subscriber Routes */
@@ -89,18 +98,7 @@ Route::group( [ 'middleware' => 'checkSubAuth', 'checksession'], function () {
         Route::get('/diagnosis/{diagnosis}/medication/{id}/delete', 'Subscriber\MedicationController@delete');
         
         /* Users */
-        Route::get('/medical_personel', 'Subscriber\SubscriberController@getMedicalPersonals');
-
-        /* Contact Team: To Replace Care Team Implementation */
-        Route::get('/contact-team', 'Subscriber\ContactTeamController@index');
-        Route::post('/contact-team/new', 'Subscriber\ContactTeamController@store');
-        Route::get('/contact-team/delete/{$id}', 'Subscriber\ContactTeamController@delete');
-            
-        /* Care Team */
-        Route::get('/care-team', 'Subscriber\SubscriberController@getCareTeam');
-        Route::post('/care-team', 'Subscriber\CareTeamController@register');
-
-        Route::post('/care-team/member/new', 'Subscriber\CareTeamController@addUserToCareTeam');
+        // Route::get('/medical_personel', 'Subscriber\SubscriberController@getMedicalPersonals');
 
         /* Personal Profile */
         Route::post('/profile/avatar', 'Subscriber\SubscriberController@uploadAvatar');

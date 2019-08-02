@@ -2,7 +2,7 @@
     Blood Pressure
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('header'); ?>
-    <i class="fa fa-user"></i> Medical Record
+    <!-- <i class="fa fa-user"></i> --> Medical Record
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
     <div class="container">
@@ -13,9 +13,9 @@
                   <h4 class="">Blood Pressure</h4>
                 </div>
                 <div class="col-sm-12 col-md-3">
-                  <button type="button" data-phone="<?php echo e($subscriber->phone); ?>" class="btn_1 btn btn2 button shadow activeBPLink float-right text-sm-center" data-toggle="modal" data-target="#addBloodPressure">
+                  <a href="#" data-phone="<?php echo e($subscriber->phone); ?>" class="btn_1 btn float-right text-sm-center" data-toggle="modal" data-target="#addBloodPressure">
                         Add New Blood Pressure <i class="fa fa-plus"></i>
-                    </button>
+                    </a>
                 </div>    
             </div>
             </div>
@@ -24,11 +24,11 @@
               <div class="header_box version_2">
                 <!-- Blood Pressure DataTables Card-->
                 <div class="card mb-3">
-                  <div class="card-header">
-                    <i class="fa fa-table"></i> Blood Pressure Records</div>
+                 <!--  <div class="card-header">
+                    <i class="fa fa-table"></i> Blood Pressure Records</div> -->
                   <div class="card-body">
                     <div class="table-responsive">
-                      <table class="table table-bordered" id="bloodPressureTable" width="100%" cellspacing="0">
+                      <table class="table" id="bloodPressureTable" width="100%" cellspacing="0">
                         <thead>
                           <tr>
                               <th>Systolic</th>
@@ -42,7 +42,7 @@
                               <th>Action</th>
                           </tr>
                         </thead>
-                        <tfoot>
+                        <!-- <tfoot>
                           <tr>
                               <th>Systolic</th>
                               <th>Diastolic</th>
@@ -54,7 +54,7 @@
                               <th>Created at</th>
                               <th>Action</th>
                           </tr>
-                        </tfoot>
+                        </tfoot> -->
                         <tbody>
                             <?php $__currentLoopData = $bps; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $bp): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr class="bp<?php echo e($bp->id); ?>">
@@ -68,8 +68,8 @@
                                 <td><?php echo e(\App\Http\Utility::dateToWords($bp->created_at)); ?></td>
                                 <td><!-- <button data-id="<?php echo e($bp->id); ?>" class="btn btn-sm btn-primary fa fa-pencil edit-bp"></button>
                                     <button data-id="<?php echo e($bp->id); ?>" class="btn btn-sm btn-danger fa fa-trash del-bp"></button> -->
-                                    <a href="editBP/<?php echo e($bp->id); ?>" class="btn btn-sm btn-primary fa fa-pencil edit-bp"></a>
-                                    <a href="deleteBP/<?php echo e($bp->id); ?>" class="btn btn-sm btn-danger fa fa-trash del-bp"></a>
+                                    <a href="editBP/<?php echo e($bp->id); ?>" class="btn bg-white btn-sm edit-bp"><i class="fa fa-pencil"></i></a>
+                                    <a href="deleteBP/<?php echo e($bp->id); ?>" class="btn bg-white btn-sm del-bp delete"><i class="fa fa-trash"></i></a>
                                   </td>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -77,7 +77,7 @@
                       </table>
                     </div>
                   </div>
-                  <div class="card-footer small text-muted">Blood Pressure</div>
+                  <!-- <div class="card-footer small text-muted">Blood Pressure</div> -->
                 </div>
                  <!-- /tables-->
               </div>
@@ -90,7 +90,7 @@
                     <div class="modal-header">
                     <h5 class="modal-title" id="addMedicationLabel">Add New Blood Pressure</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <i class="fa fa-2x fa-times" aria-hidden="true"></i>
                     </button>
                     </div>
                    

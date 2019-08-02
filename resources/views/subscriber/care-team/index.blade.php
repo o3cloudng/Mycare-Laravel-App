@@ -96,7 +96,7 @@ black
                         <div class="modal-header">
                         <h5 class="modal-title" id="addEmergencyLabel">Add User Contact</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                            <i class="fa fa-2x fa-times" aria-hidden="true"></i>
                         </button>
                         </div>
                         <form action="{{ url('/care-team') }}" method="POST">  

@@ -49,14 +49,15 @@
                   <!-- <span>Profile</span> -->
                 </a>
                 <div class="text-left ml-2">
-                    <a href="/dashboard" class="list-group-item"><img src="{{asset('img/svg/icons/dashboard.svg')}}" class="menu_icon" /> Dashboard</a>
+                    <a href="/dashboard" class="list-group-item @if(Request::is('dashboard')) activeNav @endif"><img src="{{asset('img/svg/icons/dashboard.svg')}}" class="menu_icon" /> Dashboard</a>
                     <!-- <a href="/records" class="list-group-item"><img src="{{asset('img/svg/icons/medical_records.svg')}}" class="menu_icon" /> Records</a> -->
-                    <a href="/med_records" class="list-group-item"><img src="{{asset('img/svg/icons/medical_records.svg')}}" class="menu_icon" /> Medical Records</a>
-                    <a href="/contact-team" class="list-group-item"><img src="{{asset('img/svg/icons/contact_team.svg')}}" class="menu_icon" /> Contact Team</a>
-                    <a href="/medical_personel" class="list-group-item"><img src="{{asset('img/svg/icons/medical_personel.svg')}}" class="menu_icon" /> Medical Personal</a>
-                    <a href="medications" class="list-group-item"><img src="{{ asset('img/svg/icons/medication.svg') }}" class="menu_icon" /> Medication</a>
-                    <a href="/goals" class="list-group-item"><img src="{{ asset('img/svg/icons/goals.svg') }}" class="menu_icon" /> Goal</a>
-                    <a href="/subscriptions" class="list-group-item"><img src="{{ asset('img/svg/icons/subscription.svg') }}" class="menu_icon" /> Subscription</a>
+                    <a href="/personal_profile" class="list-group-item @if(Request::is('personal_profile')) activeNav @endif"><img src="{{asset('img/svg/icons/medical_personel.svg')}}" class="menu_icon" /> Personal Profile</a>
+                    <a href="/med_records" class="list-group-item @if(Request::is('med_records')) activeNav @endif"><img src="{{asset('img/svg/icons/medical_records.svg')}}" class="menu_icon" /> Medical Records</a>
+                    <a href="/contact-team" class="list-group-item @if(Request::is('contact-team')) activeNav @endif"><img src="{{asset('img/svg/icons/contact_team.svg')}}" class="menu_icon" /> Contact Team</a>
+                    <!-- <a href="/medical_personel" class="list-group-item @if(Request::is('medical_personel')) activeNav @endif"><img src="{{asset('img/svg/icons/medical_personel.svg')}}" class="menu_icon" /> Medical Personal</a> -->
+                    <a href="medications" class="list-group-item @if(Request::is('medications')) activeNav @endif"><img src="{{ asset('img/svg/icons/medication.svg') }}" class="menu_icon" /> Medication</a>
+                    <a href="/goals" class="list-group-item @if(Request::is('goals')) activeNav @endif"><img src="{{ asset('img/svg/icons/goals.svg') }}" class="menu_icon" /> Goal</a>
+                    <a href="/subscriptions" class="list-group-item @if(Request::is('subscriptions')) activeNav @endif"><img src="{{ asset('img/svg/icons/subscription.svg') }}" class="menu_icon" /> Subscription</a>
                 </div>
             </div>
         </div>
@@ -95,7 +96,7 @@
                     <a href="/contact-team" class="nav-link"><img src="{{asset('img/svg/icons/contact_team.svg')}}" class="menu_icon" /> Contact Team</a>
                   </li>
                   <li class="nav-item">
-                    <a href="medical_personel" class="nav-link"><img src="{{asset('img/svg/icons/medical_personel.svg')}}" class="menu_icon" /> Medical Personal</a>
+                    <!-- <a href="medical_personel" class="nav-link"><img src="{{asset('img/svg/icons/medical_personel.svg')}}" class="menu_icon" /> Medical Personal</a> -->
                   </li>
                   <li class="nav-item">
                     <a href="/medications" class="nav-link"><img src="{{asset('img/svg/icons/medication.svg')}}" class="menu_icon" /> Medication</a>
@@ -127,7 +128,7 @@
                                   <a id="mlogo" href="/subscription"><img class="w-50" src="img/logo.jpeg" /></a>  
                                   </div>
                                   <div class="col-6">
-                                      <span class="align-items-center">Hi
+                                      <span class="align-items-center user">Hi
                                         @if($subscriber)
                                            {{ $subscriber->name }}
                                         @else
@@ -139,20 +140,26 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-12 col-md-8 top-link">
-                                    <a href="/blood_pressures" class="btn btn2 button shadow mr-2 activeBPLink">MYBP</a>
-                                    <a href="/blood_glucoses" class="btn btn2 button shadow mr-2 activeBPLink">MYBG</a>
-                                    <a href="/bmi" class="btn btn2 button shadow activeBPLink">BMI</a>
-                                    <!-- <a href="/cholesterol" class="btn btn2 button shadow activeBPLink">MYCholesterol</a> -->
+                                    <div class="row">
+                                      <div class=" col-md-6 d-flex justify-content-center">
+                                        <a href="/blood_pressures" id="mybp" class="btn btn2 button shadow mr-2 @if(Request::is('blood_pressures')) activeBPLink @endif">MYBP</a>
+                                        <a href="/blood_glucoses" id="mybg" class="btn btn2 button shadow mr-2 @if(Request::is('blood_glucoses')) activeBPLink @endif">MYBG</a>
+                                        <a href="/mybump" id="mybump" class="btn btn2 button shadow @if(Request::is('mybump')) activeBPLink @endif">MYBUMP</a>
+                                      </div>
+                                      <!-- <a href="/cholesterol" class="btn btn2 button shadow activeBPLink">MYCholesterol</a> -->
 
-                                   <a href="/signout" class="float-right settings" style="color: #F8A602;"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>&nbsp;</a>
-                                    <span class="float-right mr-4 logout"><a href="settings" style="color: #F8A602;"><small id="settings"><img src="{{asset('img/svg/icons/settings.svg')}}" id="cog" />  Settings</small></a></span>
+                                     <div class="col-md-6">
+                                       <a href="/signout" class="float-right settings" style="color: #F8A602;"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>&nbsp;</a>
+                                      <span class="float-right mr-4 logout"><a href="settings" style="color: #F8A602;"><small id="settings"><img src="{{asset('img/svg/icons/settings.svg')}}" id="cog" />  Settings</small></a></span>
+                                     </div>
+                                    </div>
                                     <!-- <a href="#" class="ml-5"><small id="settings"><i class=""></i> Bell</small></a></span> -->
                                 </div>
                                 </div>
                             </div>
                                 <div class="container mt-4 mb-2">
                                     <div class="row justify-content-center">
-                                        <div class="col-xs-12 col-sm-12 mx-auto col-md-4 h3 text-md-left text-sm-center">
+                                        <div class="col-xs-12 col-sm-12 col-md-4 h3 text-md-left text-sm-center">
                                           @yield('header')
                                         </div>
                                         <div class="col-xs-10 col-sm-10 col-md-8 mx-sm-auto px-auto">
@@ -193,23 +200,31 @@
 
       <!-- Bootstrap core JavaScript-->
    
-  <script src="{{asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-  <!-- Core plugin JavaScript-->
-  <script src="{{asset('admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
-  <!-- Page level plugin JavaScript-->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
-  <script src="{{asset('admin/vendor/datatables/jquery.dataTables.js')}}"></script>
-  <script src="{{asset('admin/vendor/datatables/dataTables.bootstrap4.js')}}"></script>
-  <script src="{{asset('admin/vendor/jquery.selectbox-0.2.js')}}"></script>
-  <script src="{{asset('admin/vendor/retina-replace.min.js')}}"></script>
-  <script src="{{asset('admin/vendor/jquery.magnific-popup.min.js')}}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
-  <script src="{{asset('admin/js/aos.js')}}"></script>
-  <script src="{{asset('admin/js/gauge.js')}}"></script>
-  <!-- Custom scripts for all pages-->
-  <script src="{{asset('admin/js/admin.js')}}"></script>
-  <script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
-  <script src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
-  <script src="{{asset('/js/scripts.js')}}"></script>
+      <script src="{{asset('admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+      <!-- Core plugin JavaScript-->
+      <script src="{{asset('admin/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+      <!-- Page level plugin JavaScript-->
+      <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+      <script src="{{asset('admin/vendor/datatables/jquery.dataTables.js')}}"></script>
+      <script src="{{asset('admin/vendor/datatables/dataTables.bootstrap4.js')}}"></script>
+      <script src="{{asset('admin/vendor/jquery.selectbox-0.2.js')}}"></script>
+      <script src="{{asset('admin/vendor/retina-replace.min.js')}}"></script>
+      <script src="{{asset('admin/vendor/jquery.magnific-popup.min.js')}}"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+      <script src="{{asset('admin/js/aos.js')}}"></script>
+      <script src="{{asset('admin/js/gauge.js')}}"></script>
+      <!-- Custom scripts for all pages-->
+      <script src="{{asset('admin/js/admin.js')}}"></script>
+      <script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+      <script src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+      <script src="{{asset('/js/scripts.js')}}"></script>
+      <script>
+    $(document).ready(function() {
+        $(".delete").on("click", function(){
+            return confirm("Do you want to delete this item?");
+        });
+
+    });
+</script>
     </body>
 </html>

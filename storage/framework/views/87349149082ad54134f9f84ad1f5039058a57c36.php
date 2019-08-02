@@ -2,10 +2,38 @@
     MYBUMP
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('header'); ?>
-    MYBUMP
+    
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-    <div class="content-wrapper">
+    <div class="container">
+      <div class="box_general padding_bottom">
+            <?php if($errors->all()): ?>
+                <div class="alert alert-danger">
+                    <ul>
+                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <li><?php echo e($error); ?></li>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
+            <div class="header_box version_2">
+                <div class="row heading shadow-sm">
+                    <div class="col-md-9">
+                      <h4 class="">MyBUMP</h4>
+                    </div>
+                    <div class="col-md-3">
+                      <!-- <a href="<?php echo e(url('add_medications')); ?>" class="btn_1 approve activeBPLink shadow btn btn2 button float-right">
+                            Add New Medication
+                        </a> -->
+                        <!-- <button href="" class="btn_1 approve activeBPLink shadow btn btn2 button float-right" data-toggle="modal" data-target="#addMedication">
+                                Add New Medication
+                        </button> -->
+                    </div>    
+                </div>
+            </div>
+            <div class="text-left">
+            </div>
+          </div>
       <div class="container-fluid">
         <div class="box_general padding_bottom">
           <div class="row my-auto">
@@ -26,7 +54,7 @@
                       </p>
                     </div>
                     <div class="card-footer text-center">
-                      <a href="mybp" class="btn btn-secondary"> Continue</a>
+                      <a href="#" class="btn btn-secondary"> Continue</a>
                     </div>
                   </div>
                 </div>
@@ -48,7 +76,7 @@
                       </p>
                     </div>
                     <div class="card-footer text-center">
-                      <a href="mybg" class="btn btn-secondary"> Continue</a>
+                      <a href="#" class="btn btn-secondary"> Continue</a>
                     </div>
                   </div>
                 </div>
@@ -70,7 +98,7 @@
                   </p>
                 </div>
                 <div class="card-footer text-center">
-                  <a href="mybump" class="btn btn-secondary align-center"> Continue</a>
+                  <a href="#" class="btn btn-secondary align-center"> Continue</a>
                 </div>
             </div>
           </div>

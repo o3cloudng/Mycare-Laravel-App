@@ -7,12 +7,21 @@ body{
   margin: 0px !important;
   padding: 0px !important;
 }
+a {
+    font-family: 'Poppins', sans-serif !important;   
+    font-size: 16px !important; 
+    color: #576B94 !important;
+  }
+
+.fa {
+  color: #F87D02 !important;
+}
 .row {
   margin: 0px !important;
 }
 
   .activeBPLink, input[type="file"] {
-    background: #FCB858 !important;
+    /*background: #FCB858 !important;*/
     color: white !important;
     background-image: linear-gradient(#F7A501, #EF6800) !important;
     transition: all .2s;
@@ -72,7 +81,7 @@ body{
   transition: all 0.5s ease;
 }
 .records:hover {
-  color: #fff;
+  color: #fff !important;
   background-color: #EF6800;
   transform: translateY(-5px);
   /*background-image: linear-gradient(#F7A501, #EF6800) !important; */
@@ -80,6 +89,8 @@ body{
 .heading {
   padding: 15px 30px;
   background: white;
+  font-family: "Dosis", sans-serif !important;
+  font-size: 25px !important;
   border-radius: 20px;
   width: 100% !important;
   margin-bottom: 30px !important;
@@ -114,19 +125,6 @@ tbody tr {
   font-size: 14px !important;
   width: 100% !important;
 }
-tbody tr:hover {
-  background-color: #ffffff;
-  box-shadow: 1px 1px 20px #AAA;
-  cursor: pointer;
-  /*border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-  border-top-left-radius: 20px;
-  border-bottom-left-radius: 20px;*/
-  transform: scale(1);
-  /*-webkit-transform-style: preserve-3d;
-  -webkit-backface-visibility: hidden;*/
-  margin-left: 5px;
-}
 
 .bd-placeholder-img {
     font-size: 1.125rem;
@@ -144,6 +142,21 @@ tbody tr:hover {
     font-size: 12px !important;
     font-family: 'Poppins', sans-serif !important;
   }
+  .table, .dataTable {
+    font-family: 'Poppins', sans-serif !important;   
+    font-size: 17px !important; 
+    font-weight: 500 !important;
+    color: #576B94; /*#27385B;*/
+  }
+  tbody tr:hover {
+  background-color: #ffffff;
+  box-shadow: 1px 1px 20px #AAA;
+  cursor: pointer;
+  color: #27385B;
+  /*font-weight: bold !important;*/
+  transform: scale(1);
+  margin-left: 5px;
+}
   .list-group-item {
     background-color: #111 !important;
     width: 100% !important;
@@ -156,11 +169,16 @@ tbody tr:hover {
   .list-group-items {
     background-color: #ffffff !important;
   }
-  a.list-group-item:hover {
+  a.list-group-item:hover{
     color: #fcfcfc !important;
     background-color: #222 !important;
     transform: scale(1.05);
     color: #F8A602 !important;
+  }
+  a.activeNav {
+    color: #F8A602 !important;
+    background-color: #222 !important;
+    transform: scale(1.05) !important;
   }
   .menu_icon {
     width: 15px;
@@ -172,8 +190,11 @@ tbody tr:hover {
   }
   .round_box {
     border: 1px solid #F8A602;
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
+    padding: 20px auto !important;
+    /*background: #F8A602;
+    color: #fcfcfc;*/
     border-radius: 75px;
   }
   /*.round_box:hover {
@@ -290,7 +311,7 @@ tbody tr:hover {
   }
   h3 {
     font-family: 'Dosis', sans-serif;
-    font-size: 30px !important;
+    font-size: 27px !important;
   }
   p, button, a {
     font-size: 13px !important;
@@ -480,7 +501,18 @@ input:checked + .slider:before {
         transform: rotateX(180deg) !important;
     }
     /* End Gauge */
+  /*Graph*/
+  #bloodGlucoseGraph, #bloodPressureGraph, #bmi {
+    width: 100% !important;
+    height: 30% !important;
+    margin:45px 0 15px 0;
+    margin:45px 0 15px 0;
+  }
 
+  .user{
+    font-size: 25px !important;
+    margin-left: -15px;
+  }
   @media (min-width: 768px) {
     .bd-placeholder-img-lg {
       font-size: 3.5rem;
@@ -494,7 +526,8 @@ input:checked + .slider:before {
     background-color: lightblue;
   }
   #mybox_gauge {
-    height: 250px !important;
+    height: 200px !important;
+    margin-bottom: 20px !important;
   }
 
   .cover-width {
@@ -519,10 +552,9 @@ input:checked + .slider:before {
 
   .top-link {
     width: 100% !important;
-    margin-left: 25px !important;
+    margin-left: 0px !important;
   }
   .col-md-6 {
-    width: 50% !important;
   }
   button {
     display: inline-block;
@@ -586,4 +618,33 @@ input:checked + .slider:before {
   .top_mobile_margin {
     margin-top: 30px !important;
   }
+  /*Graph*/
+  #bloodGlucoseGraph, #bloodPressureGraph, #bmi {
+    width: 100% !important;
+    height: 100px !important;
+    padding: 0px !important;
+  }
+  .fa-times {
+    float: right !important;
+  }
+  .top-link {
+      margin-left: 0px !important;
+      align-content: center !important;
+      width: 100% !important;
+    }
+    .h3, .heading {
+      text-align: center !important;
+    }
+}
+
+/* Mobile Device */
+  @media only screen and (max-width: 320px) {
+    .top-link {
+      margin-left: 0px !important;
+      align-content: center !important;
+      width: 100% !important;
+    }
+    .h3, .heading {
+      text-align: center !important;
+    }
 }

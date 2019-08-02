@@ -53,7 +53,7 @@
                         <div class="col-md-7">
                             <div class="form-group">
                                 <label>Email</label>
-                                <input name="email" value="<?php echo e($subscriber->email); ?>" type="email" class="form-control shadow" placeholder="Email" readonly>
+                                <input name="email" value="<?php echo e($subscriber->email); ?>" type="email" class="form-control shadow" placeholder="Email">
                             </div>
                         </div>
                         <div class="col-md-5">
@@ -148,8 +148,8 @@
                                     <td><?php echo e($d->id); ?></td>
                                     <td><?php echo e($d->name); ?></td>
                                     <td>None</td>
-                                    <td><button data-id="<?php echo e($d->id); ?>" class="btn btn-sm btn-primary fa fa-pencil d-flex" id="edit-diagnosis"></button>
-                                        <button data-id="<?php echo e($d->id); ?>" class="btn btn-sm btn-danger fa fa-trash del-diagnosis d-flex"></button>
+                                    <td><button data-id="<?php echo e($d->id); ?>" class="btn btn-sm d-flex" id="edit-diagnosis"><i class="fa fa-pencil"></i></button>
+                                        <button data-id="<?php echo e($d->id); ?>" class="btn btn-sm del-diagnosis d-flex"><i class="fa fa-trash"></i></button>
                                     </td>
                                 </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -168,7 +168,7 @@
             </div>
             <div class="col-sm-12 col-xs-12 col-md-7">
                 <div class="col-md-12 py-4 mybox shadow">
-                        <h5> <i class="fa fa-user"></i>Update Profile</h5>
+                        <h5> <i class="fa fa-user"></i>&nbsp;Update Profile</h5>
                         <form action="<?php echo e(url('updateProfile')); ?>" method="post">
                             <?php echo e(csrf_field()); ?>
 

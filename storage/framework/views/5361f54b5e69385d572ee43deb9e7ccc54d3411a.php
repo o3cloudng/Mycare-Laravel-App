@@ -2,7 +2,7 @@
     Medical Records
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('header'); ?>
-    <i class="fa fa-user"></i> Body Mass Index
+    <!-- <i class="fa fa-user"></i> --> Body Mass Index
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 
@@ -14,16 +14,16 @@
                       <h4 class="">Body Mass Index (Profile details)</h4>
                     </div>
                     <div class="col-md-3">
-                      <button type="button" class="btn_1 btn btn2 shadow activeBPLink" data-toggle="modal" data-target="#addBodyMass">
-                            Add New Body Mass Index
-                        </button>
+                      <a href="#" class="btn_1 btn float-right text-sm-center" data-toggle="modal" data-target="#addBodyMass">
+                            Add New Body Mass Index <i class="fa fa-plus"></i>
+                        </a>
                     </div>    
                 </div>
             </div>
             <div class="card">
-                <div class="card-header">
+                <!-- <div class="card-header">
                     <h5 class=""><i class="fa fa-table"></i> Body Mass Indexes</h5>
-                </div>
+                </div> -->
                 <div class="card-body">
                     <div class="row">
                 <div class="col-md-12">
@@ -68,10 +68,10 @@
                                         <td><?php echo e($bmi->status); ?></td>
                                         <td><?php echo e($bmi->risk); ?></td>
                                         <td>
-                                            <button data-id="<?php echo e($bmi->id); ?>" data-height="<?php echo e($bmi->height); ?>" data-weight="<?php echo e($bmi->weight); ?>" class="btn btn-sm btn-primary fa fa-pencil" id="edit-bmi"  data-target="#edit-modal" data-toggle="modal"></button> 
+                                            <a data-id="<?php echo e($bmi->id); ?>" data-height="<?php echo e($bmi->height); ?>" data-weight="<?php echo e($bmi->weight); ?>" class="btn btn-sm" id="edit-bmi"  data-target="#edit-modal" data-toggle="modal"><i class="fa fa-pencil"></i></a> 
                                             <!-- <button data-id="<?php echo e($bmi->id); ?>" class="btn btn-sm btn-danger fa fa-trash del-bmi"></button> -->
                                             <!-- <a href="updateBmi/<?php echo e($bmi->id); ?>" class="btn btn-sm btn-primary fa fa-pencil"></a> -->
-                                            <a href="deleteBMI/<?php echo e($bmi->id); ?>" class="btn btn-sm btn-danger fa fa-trash del-bmi"></a>
+                                            <a href="deleteBMI/<?php echo e($bmi->id); ?>" class="btn btn-sm del-bmi"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -93,7 +93,7 @@
                         <div class="modal-header">
                         <h5 class="modal-title" id="addBodyMassLabel">Add Body Mass Index</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                            <i class="fa fa-2x fa-times" aria-hidden="true"></i>
                         </button>
                         </div>
                     
@@ -182,7 +182,7 @@
             <div class="modal-header">
               <h5 class="modal-title" id="edit-modal-label">Edit Body Mass Index</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
+                  <i class="fa fa-2x fa-times" aria-hidden="true"></i>
               </button>
             </div>
             <form id="edit-form" class="form-horizontal" method="POST" action="<?php echo e(url('/updateBmi')); ?>">

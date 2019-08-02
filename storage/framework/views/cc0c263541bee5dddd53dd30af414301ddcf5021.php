@@ -26,16 +26,16 @@
                       <div class="container">
                         <div class="row">
                           <a href="blood_pressures" class="col-md-3 col-sm-6 col-xs-6 mybox shadow m-4 d-flex align-items-center records">
-                            <h2 class="">Blood Pressure</h2>
+                            <h2 id="h2-white">Blood Pressure</h2>
                           </a>
                           <a href="blood_glucoses" class="col-md-3 col-sm-6 col-xs-6 mybox shadow m-4 d-flex align-items-center records">
-                            <h2 class="">Blood Glucose</h2>
+                            <h2 id="h2-white">Blood Glucose</h2>
                           </a>
                           <a href="bmi" class="col-md-3 col-sm-6 col-xs-6 mybox shadow m-4 d-flex align-items-center records">
-                            <h2 class="">Body Mass Index</h2>
+                            <h2 id="h2-white">Body Mass Index</h2>
                           </a>
                           <a href="cholesterol" class="col-md-3 col-sm-6 col-xs-6 mybox shadow m-4 d-flex align-items-center records">
-                            <h2 class="">Cholesterol</h2>
+                            <h2 id="h2-white">Cholesterol</h2>
                           </a>
                         </div>
                       </div>

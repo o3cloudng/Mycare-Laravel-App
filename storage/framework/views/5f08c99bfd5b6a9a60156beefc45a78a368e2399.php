@@ -2,7 +2,7 @@
     Medical Records
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('header'); ?>
-    <i class="fa fa-user"></i> Medical Records
+    <!-- <i class="fa fa-user"></i> --> Medical Records
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
     <div class="container">
@@ -11,7 +11,7 @@
                 <h4 class="heading shadow">Cholesterol Records</h4>
             </div>
             <div class="card">
-                <div class="card-header"><i class="fa fa-table"></i> Cholesterol</div>
+                <!-- <div class="card-header"><i class="fa fa-table"></i> Cholesterol</div> -->
                 <div class="card-body">
                     <div class="row">
                 <div class="col-md-8">

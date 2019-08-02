@@ -2,7 +2,7 @@
     Blood Glucose
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('header'); ?>
-    <i class="fa fa-user"></i> Medical Record 
+    <!-- <i class="fa fa-user"></i> --> Medical Record 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
     <div class="container">         
@@ -12,7 +12,7 @@
                 <h4 class="heading shadow-sm">Blood Glucose</h4>
             </div>
             <div class="card">
-                <div class="card-header"><i class="fa fa-table"></i> Blood Glucose</div>
+               <!--  <div class="card-header"><i class="fa fa-table"></i> Blood Glucose</div> -->
                 <div class="card-body">
                     <div class="row">
                 <div class="col-md-8">
@@ -37,8 +37,8 @@
                                 <td><?php echo e($bg->bg); ?></td>
                                 <td><?php echo e(\App\Http\Utility::dateToWords($bg->created_at)); ?></td>
                                 <!-- <td><button data-id="<?php echo e($bg->id); ?>" class="btn btn-sm btn-primary fa fa-pencil edit-bg"></button> -->
-                                   <td> <a href="editBG/<?php echo e($bg->id); ?>" class="btn btn-sm btn-primary fa fa-pencil edit-bg"></a>
-                                    <a href="deleteBG/<?php echo e($bg->id); ?>" class="btn btn-sm btn-danger fa fa-trash del-bg"></a>
+                                   <td> <a href="editBG/<?php echo e($bg->id); ?>" class="btn btn-sm bg-white edit-bg"><i class="fa fa-pencil"></i></a>
+                                    <a href="deleteBG/<?php echo e($bg->id); ?>" class="btn btn-sm bg-white del-bg delete"><i class="fa fa-trash"></i></a>
                                     <!-- <button data-id="<?php echo e($bg->id); ?>" class="btn btn-sm btn-danger fa fa-trash del-bg"></button></td> -->
                                 </td>
                             </tr>

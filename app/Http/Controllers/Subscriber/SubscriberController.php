@@ -167,19 +167,21 @@ class SubscriberController extends Controller
 
            
             $bmi = Bmi::where('subscriber_id',$id)->orderBy('created_at', 'desc')->first();
+            $bmi_history = Bmi::where('subscriber_id',$id)->orderBy('created_at', 'desc')->take(7)->get();
+            $bmi_last = Bmi::where('subscriber_id',$id)->orderBy('created_at', 'desc')->pluck('bmi')->take(1);
+            // $bmi_last = Bmi::where('subscriber_id',$id)->pluck('bg')->take(1);
+
             $bgs_last = BloodGlucose::where('subscriber_id',$id)->orderBy('created_at', 'desc')->first();
             $cholesterol = \App\Cholesterol::where('subscriber_id',$id)->orderBy('created_at', 'desc')->first();
             // $cholesterol = \App\Cholesterol::all();
 
-            // dd($cholesterol);
+            // dd($bmi_history);
 
        
             
             //TODO: Dashboard Main View is a Line Graph showing the Last 30 Day's Blood Pressure Reading (Diastolic and Systolic)
 
             //TODO: MyBG - Blood Glucose Graph (Used to show blood glucose)
-
-           
            
             return view('dashboard',[
                 'bp_systole_today'=> $bp_systole_today[0],
@@ -196,6 +198,7 @@ class SubscriberController extends Controller
 
                 'bg_monthly_avg'=>$bg_monthly_avg,
                 'bmi'=>$bmi,
+                'bmi_history'=>$bmi_history,
                 'bps' => $bps,
                 'bgs' => $bgs,
                 'bmi_goal' => $bmi_goal,

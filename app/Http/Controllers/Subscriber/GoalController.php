@@ -17,6 +17,7 @@ class GoalController extends Controller
         $subscriber = User::findOrFail($subscriber_id);
         $bmiGoal = BmiGoal::where('subscriber_id', $subscriber_id)->first();
         $bloodPressureGoal = BloodPressureGoal::where('subscriber_id', $subscriber_id)->first();
+        // $bloodGlucoseGoal = BloodGlucoseGoal::where('subscriber_id', $subscriber_id)->first();
 
         // dd($bloodPressureGoal);
         
@@ -49,9 +50,9 @@ class GoalController extends Controller
             'systolic' => $request->systolic,
             'diastolic' => $request->diastolic,
             'frequency' => $request->frequency,
-            'hour' => $request->hour,
-            'weekDay' => $request->weekDay,
-            'monthDay' => $request->monthDay
+            // 'weekDay' => $request->weekDay,
+            // 'monthDay' => $request->monthDay,
+            'hour' => $request->hour
         ]);
         if ( $bloodPressureGoal ):
             return back()->with('success','You have set a Blood Pressure Goal');

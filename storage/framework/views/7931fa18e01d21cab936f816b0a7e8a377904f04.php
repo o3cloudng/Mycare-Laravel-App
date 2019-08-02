@@ -2,7 +2,7 @@
     Subscriptions
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('header'); ?>
-   <i class="fa fa-user"></i> Subscription Data
+   <!-- <i class="fa fa-user"></i> --> Subscription Data
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -13,18 +13,9 @@
               </div>
             </div>
             <div class="row">
-              <?php if(isset( $subscription )): ?>
-                <?php if($subscription[0]->subscriptionExpiryDate): ?>
-                  <?php echo e($subscription[0]->subscriptionExpiryDate); ?> 
-                <?php else: ?>
-                  now()->toDateTimeString('Y-m-d')        
-                <?php endif; ?>
-              <?php endif; ?>
+              
             </div>
             <div class="card">
-              <div class="card-header">
-                <div class="">Subscriptions</div>
-              </div>
               <div class="card-body">
                 <div class="row table-responsive">
                 <div class="col-md-8">
