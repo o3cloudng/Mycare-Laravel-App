@@ -178,7 +178,7 @@ $active = 'mybp';
                                       {{ $bmi->bmi }}
                                    </h1>
                                   <b > 
-                                    BMI Goal - {{ $bmi_goal->bmi }}
+                                    BMI Goal - @isset($bmi_goal){{ $bmi_goal->bmi }}@endisset
                                   </b> 
                                     @endisset
                                 </div>
