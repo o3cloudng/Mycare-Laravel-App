@@ -131,7 +131,7 @@
                                 @isset($bmiGoal)
                                     <li><strong>Weight</strong> {{ $bmiGoal->weight }}</li>
                                     <li><strong>Height</strong> {{ $bmiGoal->height }}</li>
-                                    <li><strong>Body Mass Index</strong> {{ $bmiGoal->bmi }}</li>
+                                    <li><strong>Body Mass Index</strong> @isset($bmiGoal->bmi){{ $bmiGoal->bmi }}@endisset</li>
                                     <li><strong>Frequency</strong> {{ ucfirst($bmiGoal->frequency) }}</li>
                                     <li><strong>Time</strong> {{ $bmiGoal->hour.':00:00' }}</li>
                                     @if($bmiGoal->frequency == 'weekly') 
