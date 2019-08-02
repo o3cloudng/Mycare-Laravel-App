@@ -240,7 +240,7 @@
                                 <ul class="d-flex justify-content-around">
                                     <li class="text-center round_box activeBPLink text-white justify-content-center" style="margin-left: -40px;">
                                         <br><strong>BMI Goal</strong> <br>
-                                        @if(isset($bloodPressureGoal)) {{ $bmiGoal->bmi }} @else No Value @endif </li>
+                                        @if(isset($bmiGoal)) {{ $bmiGoal->bmi }} @else No Value @endif </li>
                                 </ul>
                                 <p class="text-center"><a href="" class="btn_1 activeBPLink approve btn btn2 shadow" data-toggle="modal" data-target="#setBMIGoal"><i class="fa fa-fw fa-pencil"></i> Set BMI Goal</a></p>
                                 <ul>
@@ -316,95 +316,6 @@
                     7 => 'Saturday',
                 ];
                 @endphp  
-             <!-- Blood Pressure -->
-             <!-- <div class="box_general padding_bottom" id="setBloodPGoal">
-                    <div class="header_box">
-                        <h5><i class="fa fa-user"></i> Blood Pressure Goal </h5>
-                    </div>
-                    <div class="list_general">
-                        <ul>
-                            <li>
-                                <a href="" class="btn_1 green approve" data-toggle="modal" data-target="#setBloodLimitGoal"><i class="fa fa-fw fa-pencil"></i>Set Goal</a>
-                                <ul class="booking_details">
-                                    <li><small>Normal Blood Pressure Rate: Systolic < 120 and Diastolic < 80</small></li>
-                                    <li><small>At Risk (Prehypertension): Systolic >= 120 and Diastolic >= 80</small></li>
-                                    <li><small>High: Systolic >= 140 and Diastolic <= 90</small></li>
-                                </ul>
-                                
-                                <ul class="booking_details">
-                                        <li><strong>Systolic</strong> @if(isset($bloodPressureGoal)) {{ $bloodPressureGoal->systolic }} @else No Value @endif </li>
-                                        <li><strong>Diastolic</strong> @if(isset($bloodPressureGoal)) {{ $bloodPressureGoal->diastolic }} @else No Value @endif</li>
-                                        <li><strong>Frequency</strong> @if(isset($bloodPressureGoal)) {{ ucfirst($bloodPressureGoal->frequency) }} @else No Value @endif</li>
-                                    </ul>
-                                <ul class="buttons">
-                                    @isset($bloodPressureGoal)
-                                        @if($bloodPressureGoal->status == 'activate')
-                                            <li><a href="#0" class="btn_1 gray delete"><i class="fa fa-fw fa-times-circle-o"></i> Deactivate</a></li> 
-                                        @else
-                                             <li><a href="#0" class="btn_1 gray approve"><i class="fa fa-fw fa-check-circle-o"></i> Activate</a></li>
-                                        @endif
-                                    @endisset
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div> -->
-    
-                
-            <!-- Body Mass -->
-            <!-- <div class="box_general padding_bottom" id="setBodyMGoal">
-                <div class="header_box">
-                    <h5><i class="fa fa-user"></i> Body Mass Index Goal </h5>
-                </div>
-                <div class="list_general">
-                    <ul>
-                        <li>
-                            <a href="" class="btn_1 green approve" data-toggle="modal" data-target="#setBMIGoal"><i class="fa fa-fw fa-pencil"></i>Set Goal</a>
-                            <ul class="booking_details">
-                                <li><small>Underweight:  Less than 18.5</small></li>
-                                <li><small>Normal weight: 18.5 - 24.9</small></li>
-                                <li><small>Overweight: 25 - 29.9</small></li>
-                                <li><small>Obesity: BMI of 30 or greater</small></li>
-                            </ul>
-                            <hr>
-                            <h6>Current Body Mass Index Goal Details</h6>
-                            <ul class="booking_details">
-                                  
-                                @isset($bmiGoal)
-                                    <li><strong>Weight</strong> {{ $bmiGoal->weight }}</li>
-                                    <li><strong>Height</strong> {{ $bmiGoal->height }}</li>
-                                    <li><strong>Body Mass Index</strong> {{ $bmiGoal->bmi }}</li>
-                                    <li><strong>Frequency</strong> {{ ucfirst($bmiGoal->frequency) }}</li>
-                                    <li><strong>Time</strong> {{ $bmiGoal->hour.':00:00' }}</li>
-                                    @if($bmiGoal->frequency == 'weekly') 
-                                        <li><strong>Week Day</strong> {{ ucfirst($weekMap[$bmiGoal->weekDay]) }}</li>
-                                    @elseif($bmiGoal->frequency == 'monthly')
-                                        <li><strong>Month Day</strong> {{ $bmiGoal->monthDay }}</li>
-                                    @else
-                                    @endif
-                                @else
-                                    <li><strong>Weight</strong> No Weight Recorded Yet</li>
-                                    <li><strong>Height</strong> No Height Recorded Yet</li>
-                                    <li><strong>Body Mass Index</strong> No Goal Set Yet</li>
-                                    <li><strong>Frequency</strong> Nothing</li>
-                                    <li><strong>Time</strong> </li>
-                                
-                                @endisset
-                            </ul>
-                            <ul class="buttons">
-                                    @isset($bmiGoal)
-                                    @if($bmiGoal->status == 'activate')
-                                        <li><button id="activateOrDeactivateBMI" data-id={{ $bmiGoal->id }} class="btn_1 gray delete"><i class="fa fa-fw fa-times-circle-o"></i> Deactivate</button></li> 
-                                    @else
-                                         <li><button id="activateOrDeactivateBMI" data-id={{ $bmiGoal->id }}  class="btn_1 gray approve"><i class="fa fa-fw fa-check-circle-o"></i> Activate</button></li>
-                                    @endif
-                                @endisset
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div> -->
-          <!-- /row-->
 
              
         </div>
