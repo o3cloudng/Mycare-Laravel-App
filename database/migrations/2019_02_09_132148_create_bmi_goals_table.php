@@ -17,7 +17,7 @@ class CreateBmiGoalsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('subscriber_id');
             $table->string('status');
-            $table->string('bmi')->change();
+            $table->string('bmi');
             $table->string('frequency');
             $table->integer('weight');
             $table->date('start_date');
