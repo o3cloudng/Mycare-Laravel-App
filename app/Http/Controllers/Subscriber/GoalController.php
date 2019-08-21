@@ -71,6 +71,7 @@ class GoalController extends Controller
         // dd($request);
         $this->validate($request, [
             'bg_goal' => 'required',
+            'frequency' => '',
             'end_date' => 'after:start_date',
             'start_date' => 'required'
         ]);
@@ -83,8 +84,8 @@ class GoalController extends Controller
             'status' => 'activate',
             'bg_goal' => $request->bg_goal,
             'start_date' => $request->start_date,
-            'end_date' => $request->end_date
-            // 'weekDay' => $request->weekDay,
+            'end_date' => $request->end_date,
+            'frequency' => 'daily'
             // 'monthDay' => $request->monthDay,
             // 'hour' => $request->hour
         ]);
