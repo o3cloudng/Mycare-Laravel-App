@@ -18,10 +18,10 @@ class CreateBloodGlucoseGoalsTable extends Migration
             $table->unsignedInteger('subscriber_id');
             $table->integer('bg_goal');
             $table->string('frequency');
-            $table->integer('hour')->nullable();
+            $table->integer('hour');
             // $table->time('hour');
             $table->string('start_date');
-            $table->integer('end_date')->nullable();
+            $table->integer('end_date');
             $table->string('status');
             $table->timestamps();
         });
