@@ -55,7 +55,7 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tfoot>
+                        <!-- <tfoot>
                             <tr>
                                 <th>S/N</th>
                                 <th>Name</th>
@@ -67,7 +67,7 @@
                                 <th>End Date</th>
                                 <th>Actions</th>
                             </tr>
-                        </tfoot>
+                        </tfoot> -->
                         <tbody>
                             <?php $__currentLoopData = $medications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $medication): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr class="data-row">
@@ -79,17 +79,8 @@
                                 <td class="medical_personal_phone"><?php echo e($medication->medical_personal_phone); ?></td>
                                 <td class="start_date"><?php echo e($medication->start_date); ?></td>
                                 <td class="end_date"><?php echo e($medication->end_date); ?></td>
-                                <td><button 
-                                    data-id="<?php echo e($medication->id); ?>" 
-                                    data-name="<?php echo e($medication->name); ?>"
-                                    data-dosage="<?php echo e($medication->dosage); ?>"
-                                    data-frequency="<?php echo e($medication->frequency); ?>"
-                                    data-medical_personal="<?php echo e($medication->medical_personal); ?>"
-                                    data-medical_personal_phone="<?php echo e($medication->medical_personal_phone); ?>"
-                                    data-start_date="<?php echo e($medication->start_date); ?>"
-                                    data-end_date="<?php echo e($medication->end_date); ?>" 
-                                    class="btn btn-sm" id="edit-modal" data-toggle="modal" data-target="#edit-modal"><i class="fa fa-pencil"></i></button>
-                                    <button data-id="<?php echo e($medication->id); ?>" class="btn btn-sm del-medication">&nbsp;<i class="fa fa-trash "></i></button>
+                                <td><a data-id="<?php echo e($medication->id); ?>" data-name="<?php echo e($medication->name); ?>" data-dosage="<?php echo e($medication->dosage); ?>" data-frequency="<?php echo e($medication->frequency); ?>" data-medical_personal="<?php echo e($medication->medical_personal); ?>" data-medical_personal_phone="<?php echo e($medication->medical_personal_phone); ?>" data-start_date="<?php echo e($medication->start_date); ?>" data-end_date="<?php echo e($medication->end_date); ?>" class="btn btn-sm" data-toggle="modal" data-target="#edit-modal"><i class="fa fa-pencil"></i></a>
+                                    <a href="medications/delete/<?php echo e($medication->id); ?>" class="btn btn-sm delete"><i class="fa fa-trash "></i></a>
                                 </td>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -178,7 +169,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn_1 btn btn2 shadow default delete" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn_1 btn btn2 shadow default" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn_1 btn btn2 shadow activeBPLink approve">Add New Medication</button>
                             </div>
                         </form> 
@@ -208,7 +199,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Name</label>
-                                        <input id="name" class="form-control"  name="name" type="text" required>
+                                        <input id="name" class="form-control shadow"  name="name" type="text" required>
                                     </div>
                                 </div>
                             </div>
@@ -216,13 +207,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Dosage</label>
-                                        <input type="text" name="dosage" id="dosage" class="form-control">
+                                        <input type="text" name="dosage" id="dosage" class="form-control shadow">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Frequency (per Day)</label>
-                                        <input type="text" name="frequency" id="frequency" class="form-control">
+                                        <input type="text" name="frequency" id="frequency" class="form-control shadow">
                                     </div>
                                 </div>
                             </div>
@@ -230,13 +221,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Medical Personal</label>
-                                        <input type="text" name="medical_personal" id="medical_personal" class="form-control">
+                                        <input type="text" name="medical_personal" id="medical_personal" class="form-control shadow">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Medical Personal Phone</label>
-                                        <input type="text" name="medical_personal_phone" id="medical_personal_phone" class="form-control">
+                                        <input type="text" name="medical_personal_phone" id="medical_personal_phone" class="form-control shadow">
                                     </div>
                                 </div>
                             </div>
@@ -244,19 +235,19 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="start_date">Start Date</label>
-                                        <input type="date" name="start_date" id="start_date" class="form-control" value="<?php echo e(old('start_date')); ?>">
+                                        <input type="date" name="start_date" id="start_date" class="form-control shadow" value="<?php echo e(old('start_date')); ?>">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="start_date">End Date</label>
-                                        <input type="date" name="end_date" id="end_date" class="form-control" value="<?php echo e(old('end_date')); ?>">
+                                        <input type="date" name="end_date" id="end_date" class="form-control shadow" value="<?php echo e(old('end_date')); ?>">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn_1 btn btn2 button shadow default gray delete" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn_1 btn btn2 button shadow default gray" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn_1 btn btn2 button shadow activeBPLink gray approve">Edit Medication</button>
                         </div>
                     </form>
@@ -317,11 +308,12 @@
             var start_date = button.data('start_date')
             var end_date = button.data('end_date')
 
+            // var weight = button.data('weight')
             var modal = $(this)
 
 
             modal.find('.modal-body #id').val(id)
-            modal.find('.modal-body #name').val(height)
+            modal.find('.modal-body #name').val(name)
             modal.find('.modal-body #dosage').val(dosage)
             modal.find('.modal-body #frequency').val(frequency)
             modal.find('.modal-body #medical_personal').val(medical_personal)

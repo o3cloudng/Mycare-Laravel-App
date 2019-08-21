@@ -223,7 +223,7 @@
       <script>
     $(document).ready(function() {
         $(".delete").on("click", function(){
-            return confirm("Do you want to delete this item?");
+            return confirm("Are you sure you want to delete this record?");
         });
 
     });

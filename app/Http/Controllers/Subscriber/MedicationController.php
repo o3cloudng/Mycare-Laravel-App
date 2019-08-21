@@ -60,8 +60,8 @@ class MedicationController extends Controller
             'name' => 'required|string|max:255',
             'dosage' => 'required|string|max:255',
             'frequency' => 'required',
-            'start_date' => 'before:end_date',
-            'end_date' => $end_date
+            'end_date' => 'after:start_date',
+            'start_date' => 'required'
         ]);
         //TODO: Create New Medication
         $subscriber_id = session('subscriber_id');
@@ -69,12 +69,12 @@ class MedicationController extends Controller
         $medication['subscriber_id'] =  $subscriber_id;
         // $medication['diagnosis_id'] = $request->diagnosis_id; //TODO: Diagnosis should be added in the personal profile
         $medication['dosage'] = $request->dosage;
-        $medication['diagnosis_id'] = $request->dosage;
+        $medication['diagnosis_id'] = 2;
         $medication['frequency'] = $request->frequency;
         $medication['medical_personal'] = $request->medical_personal;
         $medication['medical_personal_phone'] = $request->medical_personal_phone;
         $medication['start_date'] = $request->start_date;
-        $medication['end_date'] = $request->end_date;
+        $medication['end_date'] = $end_date;
         $medication = Medication::create($medication);
         
         return redirect('/medications')->with('success', $medication->name. ' medication was added');
@@ -89,10 +89,11 @@ class MedicationController extends Controller
             'name' => 'string|max:255',
             'dosage' => 'string|max:255',
             'frequency' => 'required',
-            'medical_personal_phone' => 'number',
+            'medical_personal_phone' => 'required|min:11',
             'start_date' => 'before:end_date',
             'end_date' => ''
         ]);
+
         $subscriber_id = session('subscriber_id');
 
         $medication = Medication::where('id', $request->id)->first();
@@ -102,29 +103,43 @@ class MedicationController extends Controller
         $medication->dosage = $request->dosage;
         $medication->frequency = $request->frequency;
         $medication->medical_personal = $request->medical_personal;
-        $medication->medical_personal_phone = $request->medical_personal_profile;
+        $medication->medical_personal_phone = $request->medical_personal_phone;
         $medication->start_date = $request->start_date;
         $medication->end_date = $request->end_date;
 
         $m = $medication->update();
         if ($m) {
-            return back()->with('success',$m->name. ' Medication updated successfully');
+            return back()->with('success',$medication->name. ' Medication updated successfully');
         } else { 
             return back()->with('error','Error updating Medication');
         }
 
     }
 
-    public function delete (Request $request) {
-        $medication = Medication::findOrFail($request->id);
-        $subscriber_id = session('subscriber_id');
+    public function delete ($id) {
+        // $medication = Medication::findOrFail($request->id);
+        // $subscriber_id = session('subscriber_id');
 
-        if($medication->subscriber_id == $subscriber_id):
+        // if($medication->subscriber_id == $subscriber_id):
+        //     $medication->delete();
+        //     return response()->json(['success' => 'Medication has been deleted', 'name' => $medication->name]);
+        // else:
+        //     return response()->json('error','Unable to delete medication, please try again');
+        // endif;
+
+        $medication = Medication::findOrFail($id);
+        // dd($medication);
+
+        if(is_null($medication)){
+            return back()->with('error','Unable to delete medication, please try again');
+        }else{
             $medication->delete();
-            return response()->json(['success' => 'Medication has been deleted', 'name' => $medication->name]);
-        else:
-            return response()->json('error','Unable to delete medication, please try again');
-        endif;
+            return back()->with('success','Medication has been deleted '.$medication->name);
+        }
+
+
+        Utility::errorLog($e);
+        return back();
 
     }
 }

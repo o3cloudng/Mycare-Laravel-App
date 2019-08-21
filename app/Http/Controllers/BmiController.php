@@ -232,46 +232,47 @@ class BmiController extends Controller
     public function setGoal(Request $request) {
         
         $subscriber_id = session('subscriber_id');
-        $weight_unit = $request->weight_unit;
-        $height_unit = $request->height_unit;
+        // $weight_unit = $request->weight_unit;
+        // $height_unit = $request->height_unit;
 
 
             //TODO: When Weight is in Pound, Convert to Kilogram
-            if ($weight_unit == 'lbs') {
-                $this->validate($request, [
-                    'weight' => 'required|numeric|min:0|max:300|',
-                ]);
-                $w = $request->weight;
-                $weight = round($w/2.2046, 2);
-            } else {
-                $this->validate($request, [
-                    'weight' => 'required|numeric|min:0|max:100|',
-                ]);
-                $weight = round($request->weight, 2);
-            }
+            // if ($weight_unit == 'lbs') {
+            //     $this->validate($request, [
+            //         'weight' => 'required|numeric|min:0|max:300|',
+            //     ]);
+            //     $w = $request->weight;
+            //     $weight = round($w/2.2046, 2);
+            // } else {
+            //     $this->validate($request, [
+            //         'weight' => 'required|numeric|min:0|max:100|',
+            //     ]);
+            //     $weight = round($request->weight, 2);
+            // }
 
             $this->validate($request, [
-                'start_date'    => 'required|date',
+                'bmi'=>'required',
+                'start_date'=>'required|date',
                 'end_date' => 'required|date|after:start_date'
             ]);
 
             //TODO: Convert Height From Inches to Centimetre
-            if ($height_unit == 'feet') {
-                $this->validate($request, [
-                    'height' => 'required|numeric|max:12'
-                ]);
-                $h = $request->height;
-                $height = round($h*30.48, 2);
-            } else {
-                $this->validate($request, [
-                    'height' => 'required|numeric|max:370'
-                ]);
-                $height = round($request->height, 2);
+            // if ($height_unit == 'feet') {
+            //     $this->validate($request, [
+            //         'height' => 'required|numeric|max:12'
+            //     ]);
+            //     $h = $request->height;
+            //     $height = round($h*30.48, 2);
+            // } else {
+            //     $this->validate($request, [
+            //         'height' => 'required|numeric|max:370'
+            //     ]);
+            //     $height = round($request->height, 2);
 
-            }
-
-            $bmiCal = round(($weight/$height/$height) * 10000, 2);
-           $hourTime = date('H', strtotime($request->hour));
+            // }
+        $bmi = $request->bmi;
+        // $bmiCal = round(($weight/$height/$height) * 10000, 2);
+        // $hourTime = date('H', strtotime($request->hour));
 // dd($hourTime);
         $status= 'activate';
         
@@ -280,11 +281,11 @@ class BmiController extends Controller
             'subscriber_id' => $subscriber_id,
                 ],
                 [
-                    'bmi' => $bmiCal,
-                    'height' => $height,
-                    'weight' => $weight,
+                    'bmi' => $bmi,
+                    // 'height' => $height,
+                    // 'weight' => $weight,
                     'status' => $status,
-                    'frequency' => $request->frequency
+                    'frequency' => 1
                     // 'hour' => $hourTime,
                     // 'weekDay' => $request->weekDay,
                     // 'monthDay' => $request->monthDay

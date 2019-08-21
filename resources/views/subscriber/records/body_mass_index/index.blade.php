@@ -50,7 +50,7 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tfoot>
+                        <!-- <tfoot>
                             <tr>
                                 <th>Weight (kg)</th>
                                 <th>Height (cm)</th>
@@ -59,7 +59,7 @@
                                 <th>Risk</th>
                                 <th>Actions</th>
                             </tr>
-                        </tfoot>
+                        </tfoot> -->
                         <tbody>
                             @if(isset($body_mass_indexes))
                                 @foreach ($body_mass_indexes as $bmi)
@@ -164,7 +164,7 @@
                             </div>
                             <div class="modal-footer">
                                 <div class="form-group">
-                                    <button type="button" class="btn_1 gray delete btn2 button btn default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn_1 gray btn2 button btn default" data-dismiss="modal">Close</button>
                                     <button type="submit" class="btn_1 gray approve btn2 button btn activeBPLink">Submit</button>
                                 </div>
                             </div>
@@ -200,7 +200,7 @@
                     </div> 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn_1 btn btn2 button shadow default delete" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn_1 btn btn2 button shadow default" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn_1 btn btn2 button shadow activeBPLink approve">Save Changes</button>
                 </div>
             </form>

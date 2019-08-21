@@ -51,9 +51,9 @@
                 </div>
             </div>
            <div class="card">
-               <div class="card-header">
+               <!-- <div class="card-header">
                    Contact Team
-               </div>
+               </div> -->
                <div class="card-body">
                     <div class="row">
                 <div class="col-md-12">
@@ -77,19 +77,19 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tfoot>
+                        <!-- <tfoot>
                             <tr>
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>Email</th>
                                 <th>Mobile</th>
-                                <!-- <th>Action</th> -->
+                                <th>Action</th>
                             </tr>
-                        </tfoot>
+                        </tfoot> -->
                         <tbody>
                             <?php $__currentLoopData = $contactTeams; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $contactTeam): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <tr>
-                                    <td><a href=""> <?php echo e($contactTeam->name); ?> </a></td>
+                                    <td><?php echo e($contactTeam->name); ?></td>
                                     <td><?php echo e(ucfirst($contactTeam->description)); ?></td>
                                     <td><?php echo e($contactTeam->email); ?></td>
                                     <td><?php echo e($contactTeam->phone); ?></td>
@@ -102,13 +102,13 @@
                                          data-toggle="modal" 
                                          data-target="#editContact"><i class="fa fa-pencil"></i></button>
 
-                                         <form class="delete" action="<?php echo e(url('/deleteContact')); ?>" method="POST">
+                                         <!-- <form class="delete" action="<?php echo e(url('/deleteContact')); ?>" method="POST">
                                             <input type="hidden" name="_method" value="<?php echo e($contactTeam->id); ?>">
                                             <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>" />
                                             <button type="submit" class="btn btn-sm"><i class='fa fa-trash'></i></button>
-                                        </form>
+                                        </form> -->
 
-                                        <!-- <a href="/deleteContact/<?php echo e($contactTeam->id); ?>" class="btn btn-sm delete"><i class="fa fa-trash"></i></a>  -->
+                                        <a href="/deleteContact/<?php echo e($contactTeam->id); ?>" class="btn btn-sm delete"><i class="fa fa-trash"></i></a> 
                                     </td>
                                 </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

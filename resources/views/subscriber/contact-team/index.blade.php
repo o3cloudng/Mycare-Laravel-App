@@ -54,9 +54,9 @@
                 </div>
             </div>
            <div class="card">
-               <div class="card-header">
+               <!-- <div class="card-header">
                    Contact Team
-               </div>
+               </div> -->
                <div class="card-body">
                     <div class="row">
                 <div class="col-md-12">
@@ -80,19 +80,19 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tfoot>
+                        <!-- <tfoot>
                             <tr>
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th>Email</th>
                                 <th>Mobile</th>
-                                <!-- <th>Action</th> -->
+                                <th>Action</th>
                             </tr>
-                        </tfoot>
+                        </tfoot> -->
                         <tbody>
                             @foreach($contactTeams as $contactTeam)
                                 <tr>
-                                    <td><a href=""> {{ $contactTeam->name }} </a></td>
+                                    <td>{{ $contactTeam->name }}</td>
                                     <td>{{ ucfirst($contactTeam->description) }}</td>
                                     <td>{{ $contactTeam->email }}</td>
                                     <td>{{ $contactTeam->phone }}</td>
@@ -105,13 +105,13 @@
                                          data-toggle="modal" 
                                          data-target="#editContact"><i class="fa fa-pencil"></i></button>
 
-                                         <form class="delete" action="{{ url('/deleteContact') }}" method="POST">
+                                         <!-- <form class="delete" action="{{ url('/deleteContact') }}" method="POST">
                                             <input type="hidden" name="_method" value="{{ $contactTeam->id }}">
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                             <button type="submit" class="btn btn-sm"><i class='fa fa-trash'></i></button>
-                                        </form>
+                                        </form> -->
 
-                                        <!-- <a href="/deleteContact/{{ $contactTeam->id }}" class="btn btn-sm delete"><i class="fa fa-trash"></i></a>  -->
+                                        <a href="/deleteContact/{{ $contactTeam->id }}" class="btn btn-sm delete"><i class="fa fa-trash"></i></a> 
                                     </td>
                                 </tr>
                             @endforeach

@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Subscriber;
 
 use App\ContactTeam;
 use App\Http\Controllers\Controller;
+use App\Notifications\ContactTeamNotify;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
 
 
 class ContactTeamController extends Controller
@@ -27,6 +29,12 @@ class ContactTeamController extends Controller
                 'description' => 'required'
         ]);
         $subscriber_id = session('subscriber_id');
+        $user = User::find($subscriber_id);
+
+        $contactTeamExits = ContactTeam::where('email', $request->email)->where('subscriber_id', $subscriber_id)->first();
+        if($contactTeamExits) {
+            return redirect('contact-team')->with('error', $request->email.' has already been added.');
+        }
    
          $contactTeam = ContactTeam::create([
                  'name' => $request->name,
@@ -35,6 +43,13 @@ class ContactTeamController extends Controller
                  'subscriber_id' => $subscriber_id,
                  'description' => $request->description
              ]);
+
+         $contactTeam = ContactTeam::where('email', $request->email)->where('subscriber_id', $subscriber_id)->first();
+
+         $arr = ['contactTeam' => $contactTeam];
+         ContactTeam::find($contactTeam->id)->notify(new ContactTeamNotify($contactTeam));
+         // ContactTeam::findOrFail('subscriber_id', $subscriber_id)->notify(new ContactTeamNotify);
+         
 
         if ( $contactTeam ) {
             return redirect('contact-team')->with('success', $contactTeam->name. ' has been added as a '. ucfirst($contactTeam->description) .' contact');
@@ -62,16 +77,15 @@ class ContactTeamController extends Controller
     // }
 
 
-    public function delete(Request $request) {
+    public function delete($id) {
 
-        print_r($request);
-        // $subscriber_id = session('subscriber_id');
-        // return ['success' => 'has been removed from your contact team', 'id' => $request->id]);
-        $contactTeam = ContactTeam::findOrFail($request->id);
+        $subscriber_id = session('subscriber_id');
+        $contactTeam = ContactTeam::findOrFail($id);
         
          if ($contactTeam->subscriber_id == $subscriber_id) {
             $contactTeam->delete();
-            return response()->json(['success' => $contactTeam->name.' has been removed from your contact team', 'name' => $contactTeam->name]);
+             return back()->with('success',$contactTeam->name.' has been removed from your contact team');
+            // return response()->json(['success' => $contactTeam->name.' has been removed from your contact team', 'name' => $contactTeam->name]);
         } else {
             return response()->json('error','Error deleting contact member');
        }

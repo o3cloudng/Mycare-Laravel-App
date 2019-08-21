@@ -143,12 +143,12 @@ $active = 'mybp';
                           </div>
                           <div class="col-xs-10 col-sm-10 offset-sm-1 col-md-4 m-3 py-3 text-center my-auto mybox shadow" id="mybox_gauge">
                             <div class="row justify-content-center">
-                                <h5>BP Goal</h5>
+                                <h5>Blood Pressure</h5>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                   <h1 style="height: 120px; overflow: hidden; margin-top: 20px; margin-bottom: -35px;">
-                                    <?php if(isset($bps)): ?><?php echo e($bps[0]->systolic); ?>/<?php echo e($bps[0]->diastolic); ?><?php endif; ?>
+                                    <?php if(isset($bps)): ?><?php echo e($currentBP->systolic); ?>/<?php echo e($currentBP->diastolic); ?><?php endif; ?>
                                   </h1>
-                                  <b>Current BP - <?php if(isset($bps)): ?><?php echo e($currentBP->systolic); ?>/<?php echo e($currentBP->diastolic); ?><?php endif; ?></b>
+                                  <b>BP Goal - <?php if(isset($bps)): ?><?php echo e($bps[0]->systolic); ?>/<?php echo e($bps[0]->diastolic); ?><?php endif; ?> </b>
                                 </div>
                             </div>
                           </div>
@@ -161,7 +161,7 @@ $active = 'mybp';
                                   <h1 style="height: 120px; overflow: hidden; margin-top: 20px; margin-bottom: -35px;">
                                     <?php if(isset($bg_today)): ?><?php echo e($bg_today); ?><?php endif; ?> mg/dl
                                            </h1>
-                                  <b>Current BG - <?php if(isset($bps)): ?><?php echo e($bgs[0]->bg); ?><?php endif; ?></b>
+                                  <b>BG Goal - <?php if(isset($bloodGlucoseGoal)): ?><?php echo e($bloodGlucoseGoal->bg_goal); ?><?php endif; ?></b>
                                 </div>
                             </div>
                           </div>
@@ -183,12 +183,11 @@ $active = 'mybp';
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                   <h1 style="height: 120px; overflow: hidden; margin-top: 20px; margin-bottom: -35px;">
                                     <?php if(isset($bmi)): ?>
-                                      <?php echo e($bmi->bmi); ?>
+                                      <?php echo e(number_format($bmi->bmi, 2)); ?>
 
                                    </h1>
                                   <b > 
-                                    BMI Goal - <?php echo e($bmi_goal->bmi); ?>
-
+                                    BMI Goal - <?php if(isset($bmi_goal)): ?><?php echo e(number_format($bmi_goal->bmi, 2)); ?><?php endif; ?>
                                   </b> 
                                     <?php endif; ?>
                                 </div>
@@ -205,7 +204,7 @@ $active = 'mybp';
                         <button type="button" class="btn shadow default" data-toggle="modal" data-target="#BP">BP Recent History</button>&nbsp;
                         <button type="button" class="btn shadow default" data-toggle="modal" data-target="#BG">Blood Glucose History</button>&nbsp;
                         <button type="button" class="btn shadow default" data-toggle="modal" data-target="#BMI">Body MAss Index</button>&nbsp;
-                        <button type="button" class="btn shadow default">Cholesterol</button>&nbsp;
+                        <!-- <button type="button" class="btn shadow default">Cholesterol</button>&nbsp; -->
                       </div>
                     </div>
                   </section>

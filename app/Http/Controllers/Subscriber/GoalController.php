@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Subscriber;
 
+use App\BloodGlucoseGoal;
 use App\BloodPressure;
 use App\BloodPressureGoal;
 use App\BmiGoal;
@@ -17,6 +18,7 @@ class GoalController extends Controller
         $subscriber = User::findOrFail($subscriber_id);
         $bmiGoal = BmiGoal::where('subscriber_id', $subscriber_id)->first();
         $bloodPressureGoal = BloodPressureGoal::where('subscriber_id', $subscriber_id)->first();
+        $bloodGlucoseGoal = BloodGlucoseGoal::where('subscriber_id', $subscriber_id)->first();
         // $bloodGlucoseGoal = BloodGlucoseGoal::where('subscriber_id', $subscriber_id)->first();
 
         // dd($bloodPressureGoal);
@@ -25,6 +27,7 @@ class GoalController extends Controller
             'subscriber_id' => $subscriber_id,
             'bmiGoal' => $bmiGoal,
             'subscriber' => $subscriber,
+            'bloodGlucoseGoal' => $bloodGlucoseGoal,
             'bloodPressureGoal' => $bloodPressureGoal
         ]);
     }
@@ -56,6 +59,37 @@ class GoalController extends Controller
         ]);
         if ( $bloodPressureGoal ):
             return back()->with('success','You have set a Blood Pressure Goal');
+        else: 
+            return back()->with('error','An error was encountered');
+        endif;
+    }
+
+
+
+    public function setBGGoal(Request $request) {
+        $subscriber_id = session('subscriber_id');
+        // dd($request);
+        $this->validate($request, [
+            'bg_goal' => 'required',
+            'end_date' => 'after:start_date',
+            'start_date' => 'required'
+        ]);
+
+
+        $bloodGlusoceGoal = BloodGlucoseGoal::updateOrCreate(
+            ['subscriber_id' => $subscriber_id,
+                ], 
+            [
+            'status' => 'activate',
+            'bg_goal' => $request->bg_goal,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date
+            // 'weekDay' => $request->weekDay,
+            // 'monthDay' => $request->monthDay,
+            // 'hour' => $request->hour
+        ]);
+        if ( $bloodGlusoceGoal ):
+            return back()->with('success','You have set a Blood Glucose Goal');
         else: 
             return back()->with('error','An error was encountered');
         endif;

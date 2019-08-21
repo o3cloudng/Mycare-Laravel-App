@@ -48,7 +48,7 @@
                                 <th>Actions</th>
                             </tr>
                         </thead>
-                        <tfoot>
+                        <!-- <tfoot>
                             <tr>
                                 <th>Weight (kg)</th>
                                 <th>Height (cm)</th>
@@ -57,7 +57,7 @@
                                 <th>Risk</th>
                                 <th>Actions</th>
                             </tr>
-                        </tfoot>
+                        </tfoot> -->
                         <tbody>
                             <?php if(isset($body_mass_indexes)): ?>
                                 <?php $__currentLoopData = $body_mass_indexes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $bmi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
@@ -71,7 +71,7 @@
                                             <a data-id="<?php echo e($bmi->id); ?>" data-height="<?php echo e($bmi->height); ?>" data-weight="<?php echo e($bmi->weight); ?>" class="btn btn-sm" id="edit-bmi"  data-target="#edit-modal" data-toggle="modal"><i class="fa fa-pencil"></i></a> 
                                             <!-- <button data-id="<?php echo e($bmi->id); ?>" class="btn btn-sm btn-danger fa fa-trash del-bmi"></button> -->
                                             <!-- <a href="updateBmi/<?php echo e($bmi->id); ?>" class="btn btn-sm btn-primary fa fa-pencil"></a> -->
-                                            <a href="deleteBMI/<?php echo e($bmi->id); ?>" class="btn btn-sm del-bmi"><i class="fa fa-trash"></i></a>
+                                            <a href="deleteBMI/<?php echo e($bmi->id); ?>" class="btn btn-sm del-bmi delete"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -163,7 +163,7 @@
                             </div>
                             <div class="modal-footer">
                                 <div class="form-group">
-                                    <button type="button" class="btn_1 gray delete btn2 button btn default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn_1 gray btn2 button btn default" data-dismiss="modal">Close</button>
                                     <button type="submit" class="btn_1 gray approve btn2 button btn activeBPLink">Submit</button>
                                 </div>
                             </div>
@@ -200,7 +200,7 @@
                     </div> 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn_1 btn btn2 button shadow default delete" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn_1 btn btn2 button shadow default" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn_1 btn btn2 button shadow activeBPLink approve">Save Changes</button>
                 </div>
             </form>

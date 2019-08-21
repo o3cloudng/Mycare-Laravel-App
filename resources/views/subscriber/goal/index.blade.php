@@ -61,7 +61,7 @@
                         <br/>
                         <small>Type 1-2 80-130 mg/dl</small>
                         <br/>
-                        <a href="#0" class="btn_1 btn shadow gray approve wishlist_close"><i class="fa fa-fw fa-plus-circle"></i> Approve</a>
+                        <a href="#0" class="btn_1 btn shadow gray approve wishlist_close" data-toggle="modal" data-target="#setBGGoal"><i class="fa fa-fw fa-plus-circle"></i> Approve</a>
                     </p>
                 </div>
                 <div class="col-sm-12 col-md-3 mb-3 text-center corner table-bordered bg-white p-4">
@@ -70,7 +70,7 @@
                         <small>Normal weight: 18.5 - 24.9</small>
                         <br/>
                         <br/>
-                        <a href="#0" data-toggle="modal" data-target="#setBMIGoal" class="btn_1 btn shadow gray approve wishlist_close"><i class="fa fa-fw fa-plus-circle"></i> Approve</a>
+                        <a href="#0" data-toggle="modal" data-target="#setBMIGoal" class="btn_1 btn shadow gray approve wishlist_close"><i class="fa fa-fw fa-plus-circle" data-toggle="modal" data-target="#setBMIGoal"></i> Approve</a>
                     </p>
                 </div>
             </div>
@@ -147,7 +147,7 @@
                                     <ul class="buttons">
                                     @isset($bloodPressureGoal)
                                         @if($bloodPressureGoal->status == 'activate')
-                                            <li><br><a href="#0" class="btn_1 btn btn-inverse btn2 shadow gray delete"><i class="fa fa-fw fa-times-circle-o"></i> Deactivate</a></li> 
+                                            <li><br><a href="#0" class="btn_1 btn btn-inverse btn2 shadow gray"><i class="fa fa-fw fa-times-circle-o"></i> Deactivate</a></li> 
                                         @else
                                              <li><a href="#0" class="btn_1 btn btn2 shadow gray approve"><i class="fa fa-fw fa-check-circle-o"></i> Activate</a></li>
                                         @endif
@@ -172,13 +172,13 @@
                         <ul class="d-flex justify-content-around">
                             <li class="text-center round_box activeBPLink text-white justify-content-center">
                                 <br><strong>BG Goal</strong> <br>
-                                @if(isset($bloodPressureGoal)) {{ $bloodPressureGoal->systolic }} @else No Value @endif </li>
+                                @if(isset($bloodGlucoseGoal)) {{ $bloodGlucoseGoal->bg_goal }} @else No Value @endif </li>
                             <!-- <li class="text-center round_box activeBPLink text-white justify-content-center">
                                 <br><strong>Diastolic</strong> <br/> 
-                                @if(isset($bloodPressureGoal)) {{ $bloodPressureGoal->diastolic }} @else No Value @endif</li>
+                                @if(isset($bloodGlucoseGoal)) {{ $bloodGlucoseGoal->diastolic }} @else No Value @endif</li>
                             <li class="text-center round_box activeBPLink text-white justify-content-center">
                                 <br><strong>Frequency</strong> <br/> 
-                                @if(isset($bloodPressureGoal)) {{ ucfirst($bloodPressureGoal->frequency) }} @else No Value @endif</li> -->
+                                @if(isset($bloodGlucoseGoal)) {{ ucfirst($bloodGlucoseGoal->frequency) }} @else No Value @endif</li> -->
                         </ul>
                         <p class="text-center ml-5">
                             <a href="" class="btn_1 btn btn2 shadow activeBPLink approve align-center" data-toggle="modal" data-target="#setBGGoal"><i class="fa fa-fw fa-pencil"></i>Set BG Goal</a>
@@ -210,9 +210,9 @@
                             <li>
                                 <p class="text-center">
                                     <ul class="buttons">
-                                        @isset($bloodPressureGoal)
-                                            @if($bloodPressureGoal->status == 'activate')
-                                                <li><br><a href="#0" class="btn_1 btn btn-inverse btn2 shadow gray delete"><i class="fa fa-fw fa-times-circle-o"></i> Deactivate</a></li> 
+                                        @isset($bloodGlucoseGoal)
+                                            @if($bloodGlucoseGoal->status == 'activate')
+                                                <li><br><a href="#0" class="btn_1 btn btn-inverse btn2 shadow gray"><i class="fa fa-fw fa-times-circle-o"></i> Deactivate</a></li> 
                                             @else
                                                  <li><a href="#0" class="btn_1 btn btn2 shadow gray approve"><i class="fa fa-fw fa-check-circle-o"></i> Activate</a></li>
                                             @endif
@@ -289,7 +289,7 @@
                                 <p class="buttons">
                                     @isset($bmiGoal)
                                         @if($bmiGoal->status == 'activate')
-                                            <li><button id="activateOrDeactivateBMI" data-id={{ $bmiGoal->id }} class="btn_1 gray delete"><i class="fa fa-fw fa-times-circle-o"></i> Deactivate</button></li> 
+                                            <li><button id="activateOrDeactivateBMI" data-id={{ $bmiGoal->id }} class="btn_1 gray"><i class="fa fa-fw fa-times-circle-o"></i> Deactivate</button></li> 
                                         @else
                                              <li><button id="activateOrDeactivateBMI" data-id={{ $bmiGoal->id }}  class="btn_1 gray approve"><i class="fa fa-fw fa-check-circle-o"></i> Activate</button></li>
                                         @endif
@@ -337,8 +337,8 @@
                             {{csrf_field()}}
                         <div class="modal-body">
                             <div class="form-group">
-                                @if(!isset($bmiGoal->height))
-                                <div class="row">
+                                @if(!isset($bmiGoal))
+                                <!-- <div class="row">
                                     <div class="col-sm-6">
                                         <label>Height</label>
                                         <input class="form-control shadow" value="@isset($bmiGoal->height){{ $bmiGoal->height }}@endisset" name="height" type="number" step="any">
@@ -350,9 +350,9 @@
                                                 <option value="feet">Feet</option>
                                             </select>
                                     </div>
-                                </div>
+                                </div> -->
                                 @else
-                                    <input class="form-control shadow" value="@isset($bmiGoal->height){{ $bmiGoal->height }}@endisset" name="height" type="hidden" step="any">
+                                    <!-- <input class="form-control shadow" value="@isset($bmiGoal->height){{ $bmiGoal->height }}@endisset" name="height" type="hidden" step="any"> -->
                                 @endif
                                 
                                 <span>
@@ -361,6 +361,14 @@
                             </div>
                             <div class="form-group">
                                 <div class="row">
+                                    <div class="col-md-12">
+                                        <label>BMI</label>
+                                        <input name="bmi" type="number" value="@isset($bmiGoal){{ $bmiGoal->bmi }}@endisset" class="form-control shadow" step="any">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <!-- <div class="row">
                                     <div class="col-sm-6">
                                         <label>Weight</label>
                                         <input name="weight" type="number" value="@isset($bmiGoal){{ $bmiGoal->weight }}@endisset" class="form-control shadow" step="any">
@@ -368,13 +376,13 @@
                                     <div class="col-sm-6">
                                         <label>Unit (lbs/kg)</label>
                                             <select name="weight_unit" class="form-control shadow" style="font-size: 80%; font-weight: 400;" required>
-                                               <!-- <option value="" selected="selected" disabled="disabled">-- Select One --</option> -->
+                                               <option value="" selected="selected" disabled="disabled">-- Select One --</option>
                                                <option value="lbs">Pounds</option>
                                                <option value="kg">Kilogram</option>
                                             </select>
                                         
                                     </div>
-                                </div>
+                                </div> -->
                                 
                             </div>
                            <!--  <div class="form-group">
@@ -405,7 +413,7 @@
                         </div>
                         <div class="modal-footer">
                             <div class="form-group">
-                                <button type="button" class="btn_1 btn btn2 shadow default gray delete" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn_1 btn btn2 shadow default gray" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn_1 btn btn2 shadow activeBPLink gray approve">Set BMI Goal</button>
                             </div>
                         </div>
@@ -435,9 +443,9 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>Blood Glucose Gloa</label>
-                                        <input name="BG_Goal" type="number" value="@isset($BG_Goal){{ $BG_Goal }}@endisset" class="form-control shadow" step="any">
+                                    <div class="col-sm-12">
+                                        <label>Blood Glucose Goal</label>
+                                        <input name="bg_goal" type="number" value="@isset($bloodGlucoseGoal->bg_goal){{ $bloodGlucoseGoal->bg_goal }}@endisset" class="form-control shadow" step="any">
                                     </div>
                                 </div>
                                 
@@ -457,7 +465,7 @@
                         </div>
                         <div class="modal-footer">
                             <div class="form-group">
-                                <button type="button" class="btn_1 btn btn2 shadow default gray delete" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn_1 btn btn2 shadow default gray" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn_1 btn btn2 shadow activeBPLink gray approve">Set Blood Glucose Goal</button>
                             </div>
                         </div>
@@ -565,7 +573,7 @@
                         </div>
                         <div class="modal-footer">
                             <div class="form-group">
-                                <button type="button" class="btn_1 btn btn2 shadow default gray delete" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn_1 btn btn2 shadow default gray" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn_1 btn btn2 shadow activeBPLink gray approve">Set Blood Pressure Goal</button>
                             </div>
                         </div>

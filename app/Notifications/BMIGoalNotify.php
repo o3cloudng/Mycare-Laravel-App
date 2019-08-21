@@ -45,7 +45,7 @@ class BMIGoalNotify extends Notification
         $bmiGoal = $this->bmiGoal;
         return (new MailMessage)
                 // ->from('noreply@mycareplus.com', 'MyCarePlus')
-                ->subject('Body Mass Index Goal Remainder')
+                ->subject('Body Mass Index Goal Reminder')
                 ->greeting(sprintf('Hello %s', $bmiGoal->subscriber->name))
                 ->line('Hello, This is to notify you that you set a Body Mass Index Goal of the following: ')
                 ->line('Weight: '.$bmiGoal->weight)

@@ -49,7 +49,7 @@ class NotifySubscriber extends Notification
 
         return (new MailMessage)
             ->from('no-reply@mycareplus.com', 'MyCarePlus')
-            ->subject('Notification - Remainder')
+            ->subject('Notification - Reminder')
             ->greeting(sprintf('Hello %s', $notification->subscriber->name))
             ->line('Hello, This is to notify you of the following: ')
             ->line($notification->notification. ' ' . date('h:i a', strtotime($time)))

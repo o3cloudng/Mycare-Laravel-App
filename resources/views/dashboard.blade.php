@@ -135,12 +135,12 @@ $active = 'mybp';
                           </div>
                           <div class="col-xs-10 col-sm-10 offset-sm-1 col-md-4 m-3 py-3 text-center my-auto mybox shadow" id="mybox_gauge">
                             <div class="row justify-content-center">
-                                <h5>BP Goal</h5>
+                                <h5>Blood Pressure</h5>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                   <h1 style="height: 120px; overflow: hidden; margin-top: 20px; margin-bottom: -35px;">
-                                    @isset($bps){{ $bps[0]->systolic }}/{{ $bps[0]->diastolic }}@endisset
+                                    @isset($bps){{ $currentBP->systolic }}/{{ $currentBP->diastolic }}@endisset
                                   </h1>
-                                  <b>Current BP - @isset($bps){{ $currentBP->systolic }}/{{ $currentBP->diastolic }}@endisset</b>
+                                  <b>BP Goal - @isset($bps){{ $bps[0]->systolic }}/{{ $bps[0]->diastolic }}@endisset </b>
                                 </div>
                             </div>
                           </div>
@@ -153,7 +153,7 @@ $active = 'mybp';
                                   <h1 style="height: 120px; overflow: hidden; margin-top: 20px; margin-bottom: -35px;">
                                     @isset($bg_today){{ $bg_today }}@endisset mg/dl
                                            </h1>
-                                  <b>Current BG - @isset($bps){{ $bgs[0]->bg }}@endisset</b>
+                                  <b>BG Goal - @isset($bloodGlucoseGoal){{ $bloodGlucoseGoal->bg_goal }}@endisset</b>
                                 </div>
                             </div>
                           </div>
@@ -175,10 +175,10 @@ $active = 'mybp';
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                   <h1 style="height: 120px; overflow: hidden; margin-top: 20px; margin-bottom: -35px;">
                                     @isset($bmi)
-                                      {{ $bmi->bmi }}
+                                      {{ number_format($bmi->bmi, 2) }}
                                    </h1>
                                   <b > 
-                                    BMI Goal - @isset($bmi_goal){{ $bmi_goal->bmi }}@endisset
+                                    BMI Goal - @isset($bmi_goal){{ number_format($bmi_goal->bmi, 2) }}@endisset
                                   </b> 
                                     @endisset
                                 </div>
@@ -195,7 +195,7 @@ $active = 'mybp';
                         <button type="button" class="btn shadow default" data-toggle="modal" data-target="#BP">BP Recent History</button>&nbsp;
                         <button type="button" class="btn shadow default" data-toggle="modal" data-target="#BG">Blood Glucose History</button>&nbsp;
                         <button type="button" class="btn shadow default" data-toggle="modal" data-target="#BMI">Body MAss Index</button>&nbsp;
-                        <button type="button" class="btn shadow default">Cholesterol</button>&nbsp;
+                        <!-- <button type="button" class="btn shadow default">Cholesterol</button>&nbsp; -->
                       </div>
                     </div>
                   </section>

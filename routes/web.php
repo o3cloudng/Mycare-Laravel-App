@@ -56,7 +56,7 @@ Route::group( [ 'middleware' => 'checkSubAuth', 'checksession'], function () {
     /* Contact Team: To Replace Care Team Implementation */
     Route::get('/contact-team', 'Subscriber\ContactTeamController@index');
     Route::post('/contact-team/new', 'Subscriber\ContactTeamController@store');
-    Route::post('/deleteContact', 'Subscriber\ContactTeamController@delete');
+    Route::get('/deleteContact/{id}', 'Subscriber\ContactTeamController@delete');
         
     /* Care Team */
     Route::get('/care-team', 'Subscriber\SubscriberController@getCareTeam');
@@ -92,7 +92,7 @@ Route::group( [ 'middleware' => 'checkSubAuth', 'checksession'], function () {
         // Route::get('/medications/new', 'Subscriber\MedicationController@addMedication');
         Route::post('/medications/new', 'Subscriber\MedicationController@create');
         Route::post('/medications/edit', 'Subscriber\MedicationController@edit');
-        Route::post('/medications/delete', 'Subscriber\MedicationController@delete');
+        Route::get('/medications/delete/{id}', 'Subscriber\MedicationController@delete');
         Route::get('/diagnosis/{id}/medication/', 'Subscriber\MedicationController@new');
       
         Route::get('/diagnosis/{diagnosis}/medication/{id}/delete', 'Subscriber\MedicationController@delete');
@@ -117,12 +117,11 @@ Route::group( [ 'middleware' => 'checkSubAuth', 'checksession'], function () {
         Route::post('/setBmiGoal', 'BmiController@setGoal');
         Route::post('/setBmiGoal/activateOrDeactivate', 'BmiController@activateOrDeactivate');
         Route::post('/setBPGoal', 'Subscriber\GoalController@setBPGoal');
+        Route::post('/setBGGoal', 'Subscriber\GoalController@setBGGoal');
 
         /* Choresterol Record */
         Route::get('/cholesterol', 'Subscriber\CholesterolController@index');
         Route::post('/cholesterol', 'Subscriber\CholesterolController@store');
-
-
 
 
 

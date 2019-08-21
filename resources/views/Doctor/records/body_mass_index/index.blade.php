@@ -69,7 +69,7 @@ black
                                         <td>{{ $bmi->risk }}</td>
                                         <td>
                                             {{-- <button data-id="{{ $bmi->id }}" class="btn btn-sm btn-primary fa fa-pencil" id="edit-bmi"></a> --}}
-                                            <button data-id="{{ $bmi->id }}" class="btn btn-sm btn-danger fa fa-trash del-bmi"></button>
+                                            <button data-id="{{ $bmi->id }}" class="btn btn-sm btn-danger fa fa-trash del-bmi delete"></button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -148,7 +148,7 @@ black
                             </div>
                             <div class="modal-footer">
                                 <div class="form-group">
-                                    <button type="button" class="btn_1 btn btn2 button shadow default gray delete" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn_1 btn btn2 button shadow default gray" data-dismiss="modal">Close</button>
                                     <button type="submit" class="btn_1 btn btn2 button shadow activeBPLink gray approve">Submit</button>
                                 </div>
                             </div>
@@ -184,7 +184,7 @@ black
                     </div> 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn_1 delete" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn_1 default" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn_1 approve">Edit Body Mass Index</button>
                 </div>
             </form>
