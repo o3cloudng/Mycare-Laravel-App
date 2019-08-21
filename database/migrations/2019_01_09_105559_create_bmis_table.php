@@ -19,8 +19,8 @@ class CreateBmisTable extends Migration
             $table->string('height');
             $table->integer('subscriber_id')->nullable();
             $table->string('bmi')->nullable();
-            $table->string('status')->nullable();
             $table->text('risk');
+            $table->string('status')->nullable();
             $table->softDeletes();
             
             $table->timestamps();

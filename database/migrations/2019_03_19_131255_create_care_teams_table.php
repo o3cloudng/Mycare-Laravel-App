@@ -15,8 +15,8 @@ class CreateCareTeamsTable extends Migration
     {
         Schema::create('care_teams', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('subscriber_id');
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('subscriber_id');
             $table->string('status');
             $table->timestamps();
         });

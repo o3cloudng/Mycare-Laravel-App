@@ -21,8 +21,8 @@ class CreateBloodPressuresTable extends Migration
             $table->string('tel')->nullable();
             $table->integer('imsi')->nullable();
             $table->integer('imei')->nullable();
-            $table->integer('pulse')->nullable();
             $table->integer('iccid')->nullable();
+            $table->integer('pulse')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -16,8 +16,8 @@ class CreateBloodGlucosesTable extends Migration
         Schema::create('blood_glucoses', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('subscriber_id')->nullable();
-            $table->integer('bg');
             $table->softDeletes();
+            $table->integer('bg');
             $table->timestamps();
         });
     }

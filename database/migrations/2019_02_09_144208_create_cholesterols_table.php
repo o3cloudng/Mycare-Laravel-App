@@ -17,8 +17,8 @@ class CreateCholesterolsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('subscriber_id');
             $table->integer('total_cholesterol');
-            $table->integer('high_density_lipoprotein');
             $table->string('total_cholesterol_status');
+            $table->integer('high_density_lipoprotein');
             $table->string('hdl_status');
             $table->timestamps();
         });

@@ -16,8 +16,8 @@ class CreateNotifiesTable extends Migration
         Schema::create('notifies', function (Blueprint $table) {
             $table->increments('id');
             $table->text('notification');
-            $table->string('time')->nullable();
             $table->integer('status');
+            $table->string('time')->nullable();
             $table->integer('subscriber_id');
             $table->integer('deletable')->nullable();
             $table->integer('updatable')->nullable();

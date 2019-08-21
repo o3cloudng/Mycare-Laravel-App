@@ -19,8 +19,8 @@ class CreateMedicationsTable extends Migration
             $table->unsignedInteger('diagnosis_id');
             $table->string('name')->nullable();
             $table->string('dosage')->nullable();
-            $table->string('frequency');
             $table->integer('duration')->nullable();
+            $table->string('frequency');
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
 

@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->integer('verified')->default(0);
             $table->integer('active')->default(1);
             $table->integer('role')->default(0);
-            $table->string('code')->nullable();
+            $table->string('code')->nullable(0);
             $table->string('status')->default('available');
             $table->string('remember_token')->nullable();
             $table->string('date_of_birth')->nullable();

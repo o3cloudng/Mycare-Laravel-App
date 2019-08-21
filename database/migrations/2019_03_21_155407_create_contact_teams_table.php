@@ -18,8 +18,8 @@ class CreateContactTeamsTable extends Migration
             $table->unsignedInteger('subscriber_id');
             $table->string('name');
             $table->string('email');
-            $table->string('phone');
             $table->string('description');
+            $table->string('phone');
             $table->timestamps();
         });
     }

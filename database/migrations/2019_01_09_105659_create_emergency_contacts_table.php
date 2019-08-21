@@ -21,8 +21,8 @@ class CreateEmergencyContactsTable extends Migration
             $table->string('email')->nullable();
             $table->text('street');
             $table->string('city')->nullable();
-            $table->string('state');
             $table->string('zip_code');
+            $table->string('state');
             $table->timestamps();
         });
     }

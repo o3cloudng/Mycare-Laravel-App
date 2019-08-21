@@ -16,8 +16,8 @@ class CreateRecordsTable extends Migration
         Schema::create('records', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('subscriber_id');
-            $table->integer('total_cholesterol');
             $table->integer('triglyceride');
+            $table->integer('total_cholesterol');
             $table->integer('hdl');
             $table->integer('ldl');
             $table->timestamps();

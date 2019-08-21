@@ -20,8 +20,8 @@ class CreateSubscribersTable extends Migration
             $table->string('name')->nullable();
             $table->string('gender')->nullable();
             $table->string('avatar')->nullable();
-            $table->integer('verified')->default(0);
             $table->integer('active')->default(1);
+            $table->integer('verified')->default(0);
             $table->string('code')->nullable();
             $table->string('remember_token')->nullable();
             $table->string('date_of_birth')->nullable();
