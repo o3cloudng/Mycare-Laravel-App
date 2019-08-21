@@ -84,6 +84,8 @@ class GoalController extends Controller
             'bg_goal' => $request->bg_goal,
             'start_date' => $request->start_date,
             'end_date' => $request->end_date,
+            'hour' => 8,
+            'end_date' => $request->end_date,
             'frequency' => 'daily'
             // 'monthDay' => $request->monthDay,
             // 'hour' => $request->hour
