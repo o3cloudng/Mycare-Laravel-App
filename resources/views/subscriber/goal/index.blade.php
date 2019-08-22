@@ -249,6 +249,7 @@
                                     <i class="fa fa-user"></i> Body Mass Index Goal 
                                 </h5>
                             </div>
+                            <hr/>
                             <div class="list_general">
                                 <ul class="d-flex justify-content-around">
                                     <li class="text-center round_box activeBPLink text-white justify-content-center" style="margin-left: -40px;">
