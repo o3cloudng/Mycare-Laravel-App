@@ -138,9 +138,15 @@ $active = 'mybp';
                                 <h5>Blood Pressure</h5>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                   <h1 style="height: 120px; overflow: hidden; margin-top: 20px; margin-bottom: -35px;">
-                                    @isset($bps){{ $currentBP->systolic }}/{{ $currentBP->diastolic }}@endisset
+                                    @isset($currentBP){{ $currentBP->systolic }}/{{ $currentBP->diastolic }} 
+                                    @else
+                                    No Data yet
+                                    @endisset
                                   </h1>
-                                  <b>BP Goal - @isset($bps){{ $bps[0]->systolic }}/{{ $bps[0]->diastolic }}@endisset </b>
+                                  <b>BP Goal - @isset($bps[0]){{ $bps[0]->systolic }}/{{ $bps[0]->diastolic }}
+                                  @else
+                                  No data yet
+                                @endisset </b>
                                 </div>
                             </div>
                           </div>
@@ -162,9 +168,14 @@ $active = 'mybp';
                                 <h5>Choleserol</h5>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                   <h1 style="height: 120px; overflow: hidden; margin-top: 20px; margin-bottom: -35px;">
-                                    @isset($cholesterol){{ $cholesterol->total_cholesterol }}@endisset
+                                    @isset($cholesterol){{ $cholesterol->total_cholesterol }}
+                                    @else
+                                    No data yet
+                                    @endisset
                                            </h1>
-                                     <b>@isset($cholesterol){{ $cholesterol->total_cholesterol_status }}@endisset</b>
+                                     <b>@isset($cholesterol){{ $cholesterol->total_cholesterol_status }}
+                                     @else No data yet
+                                   @endisset</b>
                                            <!-- <b>Current Cholesterol - </b> -->
                                 </div>
                             </div>
@@ -176,11 +187,16 @@ $active = 'mybp';
                                   <h1 style="height: 120px; overflow: hidden; margin-top: 20px; margin-bottom: -35px;">
                                     @isset($bmi)
                                       {{ number_format($bmi->bmi, 2) }}
+                                    @else
+                                    No data yet
                                    </h1>
+                                   @endisset
                                   <b > 
-                                    BMI Goal - @isset($bmi_goal){{ number_format($bmi_goal->bmi, 2) }}@endisset
-                                  </b> 
+                                    BMI Goal - @isset($bmi_goal){{ number_format($bmi_goal->bmi, 2) }}
+                                    @else
+                                    No data yet
                                     @endisset
+                                  </b> 
                                 </div>
                             </div>
                           </div>

@@ -146,9 +146,16 @@ $active = 'mybp';
                                 <h5>Blood Pressure</h5>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                   <h1 style="height: 120px; overflow: hidden; margin-top: 20px; margin-bottom: -35px;">
-                                    <?php if(isset($bps)): ?><?php echo e($currentBP->systolic); ?>/<?php echo e($currentBP->diastolic); ?><?php endif; ?>
+                                    <?php if(isset($currentBP)): ?><?php echo e($currentBP->systolic); ?>/<?php echo e($currentBP->diastolic); ?> 
+                                    <?php else: ?>
+                                    No Data yet
+                                    <?php endif; ?>
                                   </h1>
-                                  <b>BP Goal - <?php if(isset($bps)): ?><?php echo e($bps[0]->systolic); ?>/<?php echo e($bps[0]->diastolic); ?><?php endif; ?> </b>
+                                  <b>BP Goal - <?php if(isset($bps[0])): ?><?php echo e($bps[0]->systolic); ?>/<?php echo e($bps[0]->diastolic); ?>
+
+                                  <?php else: ?>
+                                  No data yet
+                                <?php endif; ?> </b>
                                 </div>
                             </div>
                           </div>
@@ -170,9 +177,16 @@ $active = 'mybp';
                                 <h5>Choleserol</h5>
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                   <h1 style="height: 120px; overflow: hidden; margin-top: 20px; margin-bottom: -35px;">
-                                    <?php if(isset($cholesterol)): ?><?php echo e($cholesterol->total_cholesterol); ?><?php endif; ?>
+                                    <?php if(isset($cholesterol)): ?><?php echo e($cholesterol->total_cholesterol); ?>
+
+                                    <?php else: ?>
+                                    No data yet
+                                    <?php endif; ?>
                                            </h1>
-                                     <b><?php if(isset($cholesterol)): ?><?php echo e($cholesterol->total_cholesterol_status); ?><?php endif; ?></b>
+                                     <b><?php if(isset($cholesterol)): ?><?php echo e($cholesterol->total_cholesterol_status); ?>
+
+                                     <?php else: ?> No data yet
+                                   <?php endif; ?></b>
                                            <!-- <b>Current Cholesterol - </b> -->
                                 </div>
                             </div>
@@ -185,11 +199,17 @@ $active = 'mybp';
                                     <?php if(isset($bmi)): ?>
                                       <?php echo e(number_format($bmi->bmi, 2)); ?>
 
+                                    <?php else: ?>
+                                    No data yet
                                    </h1>
+                                   <?php endif; ?>
                                   <b > 
-                                    BMI Goal - <?php if(isset($bmi_goal)): ?><?php echo e(number_format($bmi_goal->bmi, 2)); ?><?php endif; ?>
-                                  </b> 
+                                    BMI Goal - <?php if(isset($bmi_goal)): ?><?php echo e(number_format($bmi_goal->bmi, 2)); ?>
+
+                                    <?php else: ?>
+                                    No data yet
                                     <?php endif; ?>
+                                  </b> 
                                 </div>
                             </div>
                           </div>
