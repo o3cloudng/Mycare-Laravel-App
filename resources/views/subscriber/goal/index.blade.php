@@ -43,11 +43,8 @@
                             <input value="120" name="systolic" type="hidden" step="any">
                             <input value="80" name="diastolic" type="hidden" step="any">
                             <input value="daily" name="frequency" type="hidden" step="any">
-                            <!-- <select class="form-control shadow" name="frequency" onchange="changeBPGoalPlan(value)" required>
-                                <option value="daily">Daily</option>
-                                <option value="weekly">Weekly</option>
-                                <option value="monthly">Monthly</option>
-                            </select> -->
+                            <input value="<?php echo date('Y-m-d'); ?>" name="start_date" type="hidden" step="any">
+                            <input value="<?php echo (new DateTime('+7 day'))->format('Y-m-d H:i:s'); ?>" name="end_date" type="hidden" step="any">
                             <input type="hidden" value="08:00" name="hour" required>
                             <button href="#0" class="btn_1 btn shadow gray approve wishlist_close"><i class="fa fa-fw fa-plus-circle"></i> Approve</button>
                         </form>
@@ -57,20 +54,36 @@
                 <div class="col-sm-12 col-md-3 mb-3 text-center corner table-bordered bg-white p-4">
                     <p>
                         <h4>BG Goal</h4>
-                        <small>Non-diabetic 80-99 mg/dl</small>
+                        <small>Set 85 mg/dl</small>
                         <br/>
-                        <small>Type 1-2 80-130 mg/dl</small>
                         <br/>
-                        <a href="#0" class="btn_1 btn shadow gray approve wishlist_close" data-toggle="modal" data-target="#setBGGoal"><i class="fa fa-fw fa-plus-circle"></i> Approve</a>
+                        <form action="{{ url('setBGGoal') }}" method="POST">
+                            {{csrf_field()}}
+                            <input value="85" name="bg_goal" type="hidden" step="any">
+                            <input value="daily" name="frequency" type="hidden" step="any">
+                            <input value="<?php echo date('Y-m-d'); ?>" name="start_date" type="hidden" step="any">
+                            <input value="<?php echo (new DateTime('+7 day'))->format('Y-m-d H:i:s'); ?>" name="end_date" type="hidden" step="any">
+                            <input type="hidden" value="08:00" name="hour" required>
+                            <button href="#0" class="btn_1 btn shadow gray approve wishlist_close"><i class="fa fa-fw fa-plus-circle"></i> Approve</button>
+                        </form>
                     </p>
                 </div>
                 <div class="col-sm-12 col-md-3 mb-3 text-center corner table-bordered bg-white p-4">
                     <p>
                         <h4>BMI Goal</h4>
-                        <small>Normal weight: 18.5 - 24.9</small>
+                        <small>Normal BMI: 18.5 - 24.9</small>
                         <br/>
+                        <small>Set: 20</small>
                         <br/>
-                        <a href="#0" data-toggle="modal" data-target="#setBMIGoal" class="btn_1 btn shadow gray approve wishlist_close"><i class="fa fa-fw fa-plus-circle" data-toggle="modal" data-target="#setBMIGoal"></i> Approve</a>
+                        <form action="{{ url('setBmiGoal') }}" method="POST">
+                            {{csrf_field()}}
+                            <input value="20" name="bmi" type="hidden" step="any">
+                            <input value="daily" name="frequency" type="hidden" step="any">
+                            <input value="<?php echo date('Y-m-d'); ?>" name="start_date" type="hidden" step="any">
+                            <input value="<?php echo (new DateTime('+7 day'))->format('Y-m-d H:i:s'); ?>" name="end_date" type="hidden" step="any">
+                            <input type="hidden" value="08:00" name="hour" required>
+                            <button href="#0" class="btn_1 btn shadow gray approve wishlist_close"><i class="fa fa-fw fa-plus-circle"></i> Approve</button>
+                        </form>
                     </p>
                 </div>
             </div>
@@ -506,68 +519,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-md-12">
-                                        <label>Frequency</label>
-                                        <select class="form-control shadow" name="frequency" onchange="changeBPGoalPlan(value)" required>
-                                            <option value="daily">Daily</option>
-                                            <option value="weekly">Weekly</option>
-                                            <option value="monthly">Monthly</option>
-                                        </select>
+                                    <div class="col-md-6">
+                                        <label>Start Date</label>
+                                        <input type="date" name="start_date" id="" value="" class="form-control shadow" required>
                                     </div>
-                                    <!-- Hidden Hour -->
-                                    <input type="hidden" value="08:00" name="hour" id="" class="form-control shadow" required>
-                                    <!-- <div class="col-md-4">
-                                        <label>Hour</label>
-                                        <input type="hidden" value="08:00" name="hour" id="" class="form-control shadow" required>
-                                    </div> -->
-                                    <!-- <div class="col-md-4 hideCol" id="dayOfWeekBP">
-                                        <label for="">Day of the week </label>
-                                        <select class="form-control shadow" name="weekDay">
-                                            <option value="" selected="selected" disabled="disabled">-- Select One --</option>
-                                            <option value="1">Sunday</option>
-                                            <option value="2">Monday</option>
-                                            <option value="3">Tuesday</option>
-                                            <option value="4">Wednesday</option>  
-                                            <option value="5">Thursday</option>
-                                            <option value="6">Friday</option>
-                                            <option value="7">Saturday</option>
-                                        </select>
+                                    <div class="col-md-6">
+                                        <label>End Date</label>
+                                        <input type="date" name="end_date" id="" value="" class="form-control shadow" required>
                                     </div>
-                                    <div class="col-md-4 hideCol" id="dayOfMonthBP">
-                                            <label for="">Day of the Month</label>
-                                            <select class="form-control shadow" name="monthDay">
-                                                <option value="" selected="selected" disabled="disabled">-- Select One --</option>
-                                                <option value="1">Day 1</option>
-                                                <option value="2">Day 2</option>
-                                                <option value="3">Day 3</option>  
-                                                <option value="4">Day 4</option>
-                                                <option value="5">Day 5</option>
-                                                <option value="6">Day 6</option>
-                                                <option value="7">Day 7</option>
-                                                <option value="8">Day 8</option>
-                                                <option value="9">Day 9</option>
-                                                <option value="10">Day 10</option>  
-                                                <option value="11">Day 11</option>
-                                                <option value="12">Day 12</option>
-                                                <option value="13">Day 13</option>
-                                                <option value="14">Day 14</option>\
-                                                <option value="15">Day 15</option>
-                                                <option value="16">Day 16</option>
-                                                <option value="17">Day 17</option>  
-                                                <option value="18">Day 18</option>
-                                                <option value="19">Day 19</option>
-                                                <option value="20">Day 20</option>
-                                                <option value="21">Day 21</option>
-                                                <option value="22">Day 22</option>
-                                                <option value="23">Day 23</option>  
-                                                <option value="24">Day 24</option>
-                                                <option value="25">Day 25</option>
-                                                <option value="26">Day 26</option>
-                                                <option value="27">Day 27</option>
-                                            </select>
-                                        </div> -->
                                 </div>
                             </div>
                         </div>

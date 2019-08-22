@@ -52,10 +52,11 @@ class GoalController extends Controller
             'status' => 'activate',
             'systolic' => $request->systolic,
             'diastolic' => $request->diastolic,
-            'frequency' => $request->frequency,
-            // 'weekDay' => $request->weekDay,
-            // 'monthDay' => $request->monthDay,
-            'hour' => $request->hour
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'hour' => 8,
+            'end_date' => $request->end_date,
+            'frequency' => 'daily'
         ]);
         if ( $bloodPressureGoal ):
             return back()->with('success','You have set a Blood Pressure Goal');
