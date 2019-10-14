@@ -62,7 +62,7 @@
                             <?php if(isset($body_mass_indexes)): ?>
                                 <?php $__currentLoopData = $body_mass_indexes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $bmi): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr class="data-row">
-                                        <td class="weight"><?php echo e($bmi->weight); ?></td>
+                                        <td class="weight"><?php echo e(round($bmi->weight, 1)); ?></td>
                                         <td class="height"><?php echo e($bmi->height); ?></td>
                                         <td><?php echo e(number_format($bmi->bmi, 1)); ?></td>
                                         <td><?php echo e($bmi->status); ?></td>

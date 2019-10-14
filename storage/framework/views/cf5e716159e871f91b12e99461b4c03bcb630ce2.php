@@ -197,14 +197,14 @@ $active = 'mybp';
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                   <h1 style="height: 120px; overflow: hidden; margin-top: 20px; margin-bottom: -35px;">
                                     <?php if(isset($bmi)): ?>
-                                      <?php echo e(number_format($bmi->bmi, 2)); ?>
+                                      <?php echo e(number_format($bmi->bmi, 1)); ?>
 
                                     <?php else: ?>
                                     No data yet
+                                    <?php endif; ?>
                                    </h1>
-                                   <?php endif; ?>
                                   <b > 
-                                    BMI Goal - <?php if(isset($bmi_goal)): ?><?php echo e(number_format($bmi_goal->bmi, 2)); ?>
+                                    BMI Goal - <?php if(isset($bmi_goal)): ?><?php echo e(number_format($bmi_goal->bmi, 1)); ?>
 
                                     <?php else: ?>
                                     No data yet

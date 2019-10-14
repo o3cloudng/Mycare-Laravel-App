@@ -104,12 +104,12 @@ class BmiController extends Controller
                     'weight' => 'required|numeric|min:0|max:300|',
                 ]);
                 $w = $request->weight;
-                $weight = round($w/2.2046, 2);
+                $weight = round($w/2.2046, 1);
             } else {
                 $this->validate($request, [
                     'weight' => 'required|numeric|min:0|max:100|',
                 ]);
-                $weight = round($request->weight, 2);
+                $weight = round($request->weight, 1);
             }
 
             //TODO: Convert Height From Inches to Centimetre
@@ -144,7 +144,7 @@ class BmiController extends Controller
 
             }
 
-            $bmiCal = round(($weight/$height/$height) * 10000, 2);
+            $bmiCal = round(($weight/$height/$height) * 10000, 1);
             
 
             $bmi['subscriber_id'] =  $id;

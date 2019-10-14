@@ -186,13 +186,13 @@ $active = 'mybp';
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                   <h1 style="height: 120px; overflow: hidden; margin-top: 20px; margin-bottom: -35px;">
                                     @isset($bmi)
-                                      {{ number_format($bmi->bmi, 2) }}
+                                      {{ number_format($bmi->bmi, 1) }}
                                     @else
                                     No data yet
+                                    @endisset
                                    </h1>
-                                   @endisset
                                   <b > 
-                                    BMI Goal - @isset($bmi_goal){{ number_format($bmi_goal->bmi, 2) }}
+                                    BMI Goal - @isset($bmi_goal){{ number_format($bmi_goal->bmi, 1) }}
                                     @else
                                     No data yet
                                     @endisset

@@ -64,7 +64,7 @@
                             @if(isset($body_mass_indexes))
                                 @foreach ($body_mass_indexes as $bmi)
                                     <tr class="data-row">
-                                        <td class="weight">{{ $bmi->weight }}</td>
+                                        <td class="weight">{{ round($bmi->weight, 1) }}</td>
                                         <td class="height">{{ $bmi->height }}</td>
                                         <td>{{  number_format($bmi->bmi, 1) }}</td>
                                         <td>{{ $bmi->status }}</td>
