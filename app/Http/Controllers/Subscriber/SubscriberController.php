@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\
     {Subscriber, Diagnosis, User, HealthCoach, Notify, BloodPressure, 
-    BloodGlucose, BloodGlucoseGoal, Bmi, Medication, BmiGoal, Http\Utility, Http\Controllers\Controller,  Notifications\ResetSubscriberPassword, CareTeam};
+    BloodGlucose, BloodGlucoseGoal, BloodPressureGoal, Bmi, Medication, BmiGoal, Http\Utility, Http\Controllers\Controller,  Notifications\ResetSubscriberPassword, CareTeam};
 
 use Spatie\Permission\Models\Role;
 use Carbon\Carbon;
@@ -145,6 +145,9 @@ class SubscriberController extends Controller
             $bg_monthly = BloodGlucose::where('subscriber_id',$id)->pluck('bg')->take(30);
 
             $bloodGlucoseGoal = BloodGlucoseGoal::where('subscriber_id', $id)->first();
+            $bloodPressureGoal = BloodPressureGoal::where('subscriber_id', $id)->first();
+
+            // dd($bloodPressureGoal);
 
             $bmi_goal = BmiGoal::where('subscriber_id', $id)->first();
 
@@ -205,6 +208,7 @@ class SubscriberController extends Controller
                 'bgs' => $bgs,
                 'bmi_goal' => $bmi_goal,
                 'bloodGlucoseGoal' => $bloodGlucoseGoal,
+                'bloodPressureGoal' => $bloodPressureGoal,
                 'currentBloodPressure' => $currentBloodPressure,
                 'currentBP' => $currentBP,
                 'bps_color' => $bps_color,

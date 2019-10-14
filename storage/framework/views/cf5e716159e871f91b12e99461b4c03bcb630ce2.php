@@ -151,7 +151,7 @@ $active = 'mybp';
                                     No Data yet
                                     <?php endif; ?>
                                   </h1>
-                                  <b>BP Goal - <?php if(isset($bps[0])): ?><?php echo e($bps[0]->systolic); ?>/<?php echo e($bps[0]->diastolic); ?>
+                                  <b>BP Goal - <?php if(isset($bloodPressureGoal)): ?><?php echo e($bloodPressureGoal->systolic); ?>/<?php echo e($bloodPressureGoal->diastolic); ?>
 
                                   <?php else: ?>
                                   No data yet

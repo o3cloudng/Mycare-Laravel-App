@@ -35,7 +35,7 @@
                             <?php $__currentLoopData = $bgs; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $bg): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
                                 <td><?php echo e($bg->bg); ?></td>
-                                <td><?php echo e(\App\Http\Utility::dateToWords($bg->created_at)); ?></td>
+                                <td><?php echo e(Carbon\Carbon::parse($bg->created_at)->format('d-m-Y H:i:s')); ?></td>
                                 <!-- <td><button data-id="<?php echo e($bg->id); ?>" class="btn btn-sm btn-primary fa fa-pencil edit-bg"></button> -->
                                    <td> <a href="editBG/<?php echo e($bg->id); ?>" class="btn btn-sm bg-white edit-bg"><i class="fa fa-pencil"></i></a>
                                     <a href="deleteBG/<?php echo e($bg->id); ?>" class="btn btn-sm bg-white del-bg delete"><i class="fa fa-trash"></i></a>

@@ -143,7 +143,7 @@ $active = 'mybp';
                                     No Data yet
                                     @endisset
                                   </h1>
-                                  <b>BP Goal - @isset($bps[0]){{ $bps[0]->systolic }}/{{ $bps[0]->diastolic }}
+                                  <b>BP Goal - @isset($bloodPressureGoal){{ $bloodPressureGoal->systolic }}/{{ $bloodPressureGoal->diastolic }}
                                   @else
                                   No data yet
                                 @endisset </b>

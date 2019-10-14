@@ -67,7 +67,7 @@
                                 <td>{{ $bp->imsi }}</td>
                                 <td>{{ $bp->tel }}</td>
                                 <td>{{ $bp->iccid }}</td>
-                                <td>{{\App\Http\Utility::dateToWords($bp->created_at)}}</td>
+                                <td>{{ Carbon\Carbon::parse($bp->created_at)->format('d-m-Y H:i:s')}}</td>
                                 <td><!-- <button data-id="{{$bp->id}}" class="btn btn-sm btn-primary fa fa-pencil edit-bp"></button>
                                     <button data-id="{{$bp->id}}" class="btn btn-sm btn-danger fa fa-trash del-bp"></button> -->
                                     <a href="editBP/{{$bp->id}}" class="btn bg-white btn-sm edit-bp"><i class="fa fa-pencil"></i></a>

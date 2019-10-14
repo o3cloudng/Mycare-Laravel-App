@@ -7,7 +7,7 @@
       <div class="container">
           <div class="row">
              <div class="col-xl-5 col-sm-12 mb-3" >
-              <p class="text-center mt-1 pt-0">(@isset( $bps ){{ $currentBP->created_at->diffForHumans() }} @endisset)</p>
+              <p class="text-center mt-1 pt-0">(@isset( $bps ){{ $currentBP->created_at->format('d-m-Y i') }} @endisset)</p>
             </div>
               <!-- </div> -->
               <div class="col-xl-7 col-sm-12" focusin="bloodPressure()">

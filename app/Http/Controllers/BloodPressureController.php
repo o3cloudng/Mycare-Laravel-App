@@ -62,8 +62,10 @@ class BloodPressureController extends Controller
         $id = session('subscriber_id');
         $subscriber = User::findOrfail($id);
         // $bps = User::findOrFail($id)->bloodPressure()->get();
-        $bps = User::findOrFail($id)->bloodPressure()->orderby('created_at', 'desc')->get(); //orderBy('created_at', 'desc')->get()
+        $bps = User::findOrFail($id)->bloodPressure()->orderBy('created_at', 'desc')->get(); //orderBy('created_at', 'desc')->get()
         // return $bps;
+
+        $bps = $bps->reverse();
         
         return view('subscriber.records.blood_pressure.index', [
             'bps' => $bps,
@@ -82,7 +84,7 @@ class BloodPressureController extends Controller
                'imei' => 'max:5',
                'imsi' => 'max:5',
                'iccid' => 'max:5',
-               'tel' => 'min:11',
+               'tel' => 'min:11'
                ]);
             if ($validator->fails()) {
                 // Session::flash('error', $validator->messages()->first());
@@ -103,9 +105,9 @@ class BloodPressureController extends Controller
                 return back()->with('error','There is an error with your diastolic value');
             }
     
-            if ($this->systolic >= 140 && $this->diastolic < 90) {
-                return back()->with('error','There is an error with your diastolic value');
-            }
+            // if ($this->systolic >= 140 && $this->diastolic < 90) {
+            //     return back()->with('error','There is an error with your diastolic value');
+            // }
         
     
             $subscriber_id = session('subscriber_id');

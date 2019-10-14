@@ -37,7 +37,7 @@
                             @foreach($bgs as $bg)
                             <tr>
                                 <td>{{$bg->bg}}</td>
-                                <td>{{\App\Http\Utility::dateToWords($bg->created_at)}}</td>
+                                <td>{{ Carbon\Carbon::parse($bg->created_at)->format('d-m-Y H:i:s') }}</td>
                                 <!-- <td><button data-id="{{$bg->id}}" class="btn btn-sm btn-primary fa fa-pencil edit-bg"></button> -->
                                    <td> <a href="editBG/{{$bg->id}}" class="btn btn-sm bg-white edit-bg"><i class="fa fa-pencil"></i></a>
                                     <a href="deleteBG/{{$bg->id}}" class="btn btn-sm bg-white del-bg delete"><i class="fa fa-trash"></i></a>
